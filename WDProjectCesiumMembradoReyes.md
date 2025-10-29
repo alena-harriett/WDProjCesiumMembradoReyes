@@ -16,7 +16,7 @@
 
 ## Wireframes
 <ul>
-<li>Prologue:</li>
+<li>Prologue: /Users/lumireyes/Downloads/CS 3 Q2 Proposal/2.png</li>
 <li>Home:</li>
 <li>Diary:</li>
 <li>Shrines:</li>
