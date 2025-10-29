@@ -24,6 +24,8 @@
 <li>Author’s Note: ![Author's Note](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/7.png)</li>
 </ul>
 
+## Favicon
+### ![Favicon](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/Untitled_design_1.webp)
 ## JavaScript Integration
 #### JavaScript will be used in the following:
 <ul>
