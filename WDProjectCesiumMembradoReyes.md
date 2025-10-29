@@ -16,9 +16,9 @@
 
 ## Wireframes
 <ul>
-<li>Prologue: ![Prologue](https://raw.githubusercontent.com/alena-harriett/WDProjCesiumMembradoReyes/refs/heads/main/image/2.png)</li>
-<li>Home: ![Home](https://raw.githubusercontent.com/alena-harriett/WDProjCesiumMembradoReyes/refs/heads/main/image/3.png)</li>
-<li>Diary: ![Diary](https://raw.githubusercontent.com/alena-harriett/WDProjCesiumMembradoReyes/refs/heads/main/image/4.png)</li>
+<li>Prologue: ![Prologue](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/2.png)</li>
+<li>Home: ![Home](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/3.png)</li>
+<li>Diary: ![Diary](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/4.png)</li>
 <li>Shrines:</li>
 <li>Guestbook:</li>
 <li>Author’s Note:</li>
