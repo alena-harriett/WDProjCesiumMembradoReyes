@@ -27,11 +27,11 @@
 ## JavaScript Integration
 #### JavaScript will be used in the following:
 <ul>
-<li>As a pop-up window. For example, when the user clicks a certain element or button, a pop-up window will appear on the page with an ominous message or warning that aligns with the website's lore. </li>
-<li>As a collapsible blog entry. For example, a read more button that the user can click to view all the content.</li>
-<li>As a photo gallery slider for the user to view fashion/photography collages.</li>
+<li>As a pop-up window. For example, when the user clicks an element or button, a pop-up window will appear on the page with an ominous message or warning that aligns with the website's lore. This will be used in the Prologue page.</li>
+<li>As a collapsible blog entry. For example, a read more button that the user can click to view all the content. This will be used in the Diary page.</li>
+<li>As a photo gallery slider for the user to view fashion/photography collages. This will be used in the Shrines page.</li>
 <li>As a comment section for the guestbook webpage.</li>
-<li>As a live date/time counter. </li>
+<li>As a live date/time counter. This will be used on the Home page.</li>
 </ul>
 
 
