@@ -28,7 +28,7 @@
       }
 
       .Header {
-        height: 100px;
+        height: 120px;
         width: 100%;
         background-color: bisque;
         padding: 10px;
@@ -37,7 +37,7 @@
       }
 
       .Divider {
-        height: 20px;
+        height: 40px;
         width: 100%;
         background-color: bisque;
         padding: 10px;
@@ -45,15 +45,15 @@
         margin: 10px 0 20px 0;
       }
 
-      .flex-container {
+      .flex-container1 {
         display: flex;
         width: 100%;
-        gap: 10px;
+        gap: 20px;
         justify-content: flex-start;
       }
 
-      .box1 {
-        flex: 3;                 /* Smaller box */
+      .Directory {
+        flex: 3;                 
         height: 350px;
         background-color: bisque;
         padding: 10px;
@@ -61,8 +61,44 @@
         margin-top: 10px;
       }
 
-      .box2 {
-        flex: 7;                 /* Larger box */
+      .Profile {
+        flex: 7;                 
+        height: 250px;
+        background-color: bisque;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      } 
+
+
+      .flex-container2 {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        justify-content: flex-start;
+      }
+
+      .Updates {
+        flex-grow: 4.5;                 
+        height: 250px;
+        background-color: bisque;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      .To-do-List {
+        flex-grow: 6.5;                 
+        height: 250px;
+        background-color: bisque;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      .Music {
+        flex: 3.5;                 
         height: 250px;
         background-color: bisque;
         padding: 10px;
@@ -74,8 +110,9 @@
 
       @media (max-width: 480px) {
         .myDiv { width: 95%; padding: 8px; }
-        .container { flex-direction: column; gap: 15px; }
-        .box { width: 100%; }
+        .flex-container1 { flex-direction: column; gap: 15px; }
+        .Directory { width: 100%; }
+        .Profile { width: 100% };
         .Header, .Divider { width: 100%; }
       }
     </style>
@@ -85,9 +122,14 @@
     <div class="myDiv">
       <div class="Header"></div>
       <div class="Divider"></div>
-      <div class="flex-container">
-        <div class="box1"></div>
-        <div class="box2"></div>
+      <div class="flex-container1">
+        <div class="Directory"></div>
+        <div class="Profile"></div>
+      </div>
+      <div class="flex-container2">
+        <div class="Updates"></div>
+        <div class="To-do-List"></div>
+        <div class ="Music"></div>
 </div>
     </div>
   </body>
