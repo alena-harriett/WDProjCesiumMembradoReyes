@@ -42,7 +42,8 @@
         background-color: bisque;
         padding: 10px;
         border-radius: 10px;
-        margin: 10px 0 20px 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
 
       .flex-container1 {
@@ -58,17 +59,16 @@
         background-color: bisque;
         padding: 10px;
         border-radius: 10px;
-        margin-top: 10px;
+        margin-top: 20px;
       }
 
       .Profile {
         flex: 7;                 
-        height: 250px;
+        height: 300px;
         background-color: bisque;
         padding: 10px;
         border-radius: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 20px;
       } 
 
 
@@ -77,42 +77,55 @@
         width: 100%;
         gap: 20px;
         justify-content: flex-start;
+        align-items: stretch;
       }
 
       .Updates {
-        flex-grow: 4.5;                 
-        height: 250px;
+        flex-grow: 4.6;                 
+        height: 200px;
         background-color: bisque;
         padding: 10px;
         border-radius: 10px;
-        margin-top: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
       }
 
       .To-do-List {
-        flex-grow: 6.5;                 
-        height: 250px;
+        flex-grow: 6.5;            
+        min-height: 200px;
         background-color: bisque;
         padding: 10px;
         border-radius: 10px;
-        margin-top: 10px;
-      }
+        margin-top: -30px;
+        margin-bottom: 10px;
+      } 
 
       .Music {
-        flex: 3.5;                 
-        height: 250px;
+        flex-grow: 3.5;                 
+        min-height: 200px;
         background-color: bisque;
         padding: 10px;
         border-radius: 10px;
-        margin-top: 10px;
+        margin-top: -30px;
+        margin-bottom: 10px;
       }
 
-
+      .Footer {
+        margin-top: 20px;
+        height: 60px;
+        width: 100%;
+        background-color: bisque;
+        padding: 10px;
+        border-radius: 10px;
+      }
 
       @media (max-width: 480px) {
         .myDiv { width: 95%; padding: 8px; }
         .flex-container1 { flex-direction: column; gap: 15px; }
+        .flex-container2 { flex-direction: column; gap: 15px; }
         .Directory { width: 100%; }
-        .Profile { width: 100% };
+        .Profile { width: 100%; }
+        .To-do-List, .Music { width: 100%; }
         .Header, .Divider { width: 100%; }
       }
     </style>
@@ -129,8 +142,9 @@
       <div class="flex-container2">
         <div class="Updates"></div>
         <div class="To-do-List"></div>
-        <div class ="Music"></div>
-</div>
+        <div class="Music"></div>
+      </div>
+      <div class="Footer"></div>
     </div>
   </body>
 </html>
