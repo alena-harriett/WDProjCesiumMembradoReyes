@@ -16,14 +16,16 @@
 
 ## Wireframes
 <ul>
-<li>Prologue: /Users/lumireyes/Downloads/CS 3 Q2 Proposal/2.png</li>
-<li>Home:</li>
-<li>Diary:</li>
-<li>Shrines:</li>
-<li>Guestbook:</li>
-<li>Author’s Note:</li>
+<li>Prologue: ![Prologue](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/2.png)</li>
+<li>Home: ![Home](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/3.png)</li>
+<li>Diary: ![Diary](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/4.png)</li>
+<li>Shrines: ![Shrines](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/5.png)</li>
+<li>Guestbook: ![Guestbook](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/6.png)</li>
+<li>Author’s Note: ![Author's Note](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/7.png)</li>
 </ul>
 
+## Favicon
+### ![Favicon](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/Untitled_design_1.webp)
 ## JavaScript Integration
 #### JavaScript will be used in the following:
 <ul>
