@@ -119,6 +119,19 @@
         border-radius: 10px;
       }
 
+      .block {
+        width: 95%;
+        border: none;
+        border-radius: 8px;
+        background-color: #04AA6D;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+        text-align: left;
+        margin-bottom: 15px;
+      }
+
       @media (max-width: 480px) {
         .myDiv { width: 95%; padding: 8px; }
         .flex-container1 { flex-direction: column; gap: 15px; }
@@ -128,6 +141,20 @@
         .To-do-List, .Music { width: 100%; }
         .Header, .Divider { width: 100%; }
       }
+      .centered-button {
+        width: 95%;
+        height: 20%;
+        border: none;
+        background-color: #04AA6D;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+        border-radius: 8px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
     </style>
   </head>
 
@@ -136,7 +163,21 @@
       <div class="Header"></div>
       <div class="Divider"></div>
       <div class="flex-container1">
-        <div class="Directory"></div>
+        <div class="Directory">
+          <a href="#">
+          <button class="centered-button">Directory</button></a><br>
+          <a href="#">
+          <button class="block">Home</button></a><br>
+          <a href="#">
+          <button class="block">Diary</button>
+          </a><br>
+          <a href="#">
+          <button class="block">Shrines</button>
+          </a><br>
+          <a href="#">
+          <button class="block">Guestbook</button>
+          </a><br>
+        </div>
         <div class="Profile"></div>
       </div>
       <div class="flex-container2">
