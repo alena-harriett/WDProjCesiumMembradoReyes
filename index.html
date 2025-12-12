@@ -99,6 +99,7 @@
       .Updates {
         flex-grow: 4.6;                 
         height: 200px;
+        width:24%;
         background-color: #fdb1bf;
         padding: 10px;
         border-radius: 10px;
@@ -107,17 +108,20 @@
       }
 
       .To-do-List {
-        flex-grow: 6.5;            
+        height: 200 px;
+        width: 33%;           
         min-height: 200px;
         background-color: #e19c91;
         padding: 10px;
         border-radius: 10px;
         margin-top: -30px;
         margin-bottom: 10px;
+        overflow:auto;
       } 
 
       .Music {
-        flex-grow: 3.5;                 
+        flex-grow: 3.5;  
+        width:27%;               
         min-height: 200px;
         background-color: #e19c91;
         padding: 10px;
@@ -171,6 +175,11 @@
         margin-top: 10px;
         margin-bottom: 20px;
       }
+      h1 {
+          font-size: 30px; 
+          color:#fffede;
+        }
+
     </style>
   </head>
 
@@ -203,7 +212,9 @@
       <div class="flex-container2">
         <div class="Updates">
         </div>
-        <div class="To-do-List"></div>
+        <div class="To-do-List">
+          <h1> To Do List !!</h1>
+        </div>
         <div class="Music"></div>
       </div>
       <div class="Footer">
