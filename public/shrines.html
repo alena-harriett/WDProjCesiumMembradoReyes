@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Shrines˚˖𓍢ִ໋❀</title>
-    <link rel="icon" type="image/png" href="image/Untitled_design_1.png">
-    
-    <style>
-      
-      * {
-      box-sizing: border-box;
-      image-rendering: pixelated;
-    }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shrines˚˖𓍢ִ໋❀</title>
+  <link rel="icon" type="image/png" href="image/Untitled_design_1.png">
 
-       body {
+  <style>
+    * { box-sizing: border-box; image-rendering: pixelated; }
+
+    body {
       margin: 0;
       font-family: "MS PGothic", "Tahoma", Arial, sans-serif;
       background-image: url("https://i.pinimg.com/736x/28/d8/2a/28d82a402a6f78e40d10bcf2c2fcc33f.jpg");
@@ -22,7 +18,7 @@
       color: #692f1a;
     }
 
-      .myDiv {
+    .myDiv {
       width: 95%;
       max-width: 1100px;
       margin: 30px auto;
@@ -31,175 +27,202 @@
       border: 4px solid #f8accf;
     }
 
-     .Header {
-      width: 100%;
-      height: 160px;
-      border: 3px solid #e19c91;
-      margin-bottom: 12px;
-      background: #fffede;
+    .Header { 
+      width: 100%; 
+      height: 160px; 
+      border: 3px solid #e19c91; 
+      margin-bottom: 12px; 
+      background: #fffede; 
+    }
+    .Header img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: stretch; 
+      display: block; 
     }
 
-    .Header img {
-      width: 100%;
-      height: 100%;
-      object-fit: stretch;
-      display: block;
+    .Divider { 
+      width: 100%; 
+      height: 45px; 
+      border: 2px solid #e19c91; 
+      margin: 12px 0; 
+      background: #fffede; 
+    }
+    .Divider img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block; 
     }
 
-    /* ===== DIVIDER ===== */
-    .Divider {
-      width: 100%;
-      height: 45px;
-      border: 2px solid #e19c91;
-      margin: 12px 0;
-      background: #fffede;
+    .flex-container1 { display: flex; 
+      gap: 18px; 
+      width: 100%; 
+      margin-bottom: 18px; 
     }
-     .Divider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .Directory { 
+      flex: 4; 
+      min-height: 420px; 
+      padding: 12px; 
+      background-color: #e19c91; 
+      border: 3px solid #996855; 
+    }
+    button { 
+      font-family: inherit; 
+      background-color: #fdb1bf; 
+      border: 3px solid #996855; 
+      padding: 12px; width: 100%; 
+      margin-bottom: 10px; 
+      cursor: pointer; 
+      text-align: left; }
+
+    button:hover { 
+      background-color: #fffede; 
+    }
+    .centered-button { 
+      text-align: center; 
+      font-weight: bold; 
+      background-color: #fffede; 
     }
 
-      .flex-container1 {
-      display: flex;
-      gap: 18px;
-      width: 100%;
-      margin-bottom: 18px;
-    }
-
-       .Directory {
-      flex: 3;
-      min-height: 420px;
-      padding: 12px;
-      background-color: #e19c91;
-      border: 3px solid #996855;
-    }
     .Spotlight {
-      flex: 7;
+      max-width: 713px;
       min-height: 300px;
-      padding: 10x;
+      padding: 12px;
       background-color: #e19c91;
       border: 3px solid #996855;
+      box-sizing: border-box;
     }
-      /* ===== ROW 2 (FIXED WIDTH ISSUE) ===== */
-    .flex-container2 {
+
+    /* Horizontal gallery inside Spotlight */
+    .spotlight-gallery {
       display: flex;
-      gap: 18px;
-      width: 100%;
-      margin-top: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 12px;
+      padding: 8px 0;
+      margin-top: 12px;
+      scroll-behavior: smooth;
     }
-    .Archives {
-      flex: 6.4; /* smaller */
-      min-height: 260px;
-      padding: 17px;
-      background-color: #fdb1bf;
+    .spotlight-gallery::-webkit-scrollbar { height: 10px; }
+    .spotlight-gallery::-webkit-scrollbar-track { background: #fffede; border: 2px solid #996855; }
+    .spotlight-gallery::-webkit-scrollbar-thumb { background: #fdb1bf; border: 2px solid #996855; }
+
+    .spotlight-item { flex: 0 0 auto; }
+    .spotlight-item img {
+      height: 200px;
+      max-width: 300px;
+      object-fit: contain;
       border: 3px solid #996855;
-    }
-    
-    .Projects {
-      flex: 7;
-      min-height: 260px;
-      padding: 12px;
-      background-color: #e19c91;
+      background: #fffede;
+      display: block;
     }
 
-    .Gallery {
-      flex: 7;
-      min-height: 260px;
-      padding: 12px;
-      background-color: #e19c91;
-    }
+    .flex-container2 { display: flex; gap: 18px; width: 100%; margin-top: 10px; }
+    .Archives { flex: 6.4; min-height: 260px; padding: 17px; background-color: #fdb1bf; border: 3px solid #996855; }
+    .Projects, .Gallery { flex: 7; min-height: 260px; padding: 12px; background-color: #e19c91; border: 3px solid #996855; }
+    .Footer { margin-top: 20px; padding: 12px; background-color: #fffede; border: 3px solid #e19c91; text-align: center; font-size: 13px; }
 
-     /* ===== FOOTER ===== */
-       .Footer {
-      margin-top: 20px;
-      padding: 12px;
-      background-color: #fffede;
-      border: 3px solid #e19c91;
-      text-align: center;
-      font-size: 13px;
-    }
+    h1 { font-size: 18px; color: #fffede; text-align: center; margin: 5px 0 12px; letter-spacing: 1px; }
+    p { font-size: 14px; line-height: 1.5; margin-left: 12px; letter-spacing: 1px; }
+    a { text-decoration: none; }
 
-/* ===== BUTTONS ===== */
-    button {
-      font-family: inherit;
-      background-color: #fdb1bf;
-      border: 3px solid #996855;
-      padding: 12px;
-      width: 100%;
-      margin-bottom: 10px;
-      cursor: pointer;
-      text-align: left;
-    }
+    @media (max-width: 700px) { .flex-container1, .flex-container2 { flex-direction: column; } }
+    @media (max-width: 500px) { .spotlight-item img { height: 140px; max-width: 200px; } }
+  </style>
+</head>
 
-    button:hover {
-      background-color: #fffede;
-    }
-
-    .centered-button {
-      text-align: center;
-      font-weight: bold;
-      background-color: #fffede;
-    }
-    /* ===== TEXT ===== */
-    h1 {
-      font-size: 18px;
-      color: #fffede;
-      text-align: center;
-      margin: 3px 0 10px;
-      letter-spacing: 1px;
-    }
-
-    p, li {
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 700px) {
-      .flex-container1,
-      .flex-container2 {
-        flex-direction: column;
-      }
-    }
-    </style>
-  </head>
-
-  <body>
-    <div class="myDiv">
+<body>
+  <div class="myDiv">
     <div class="Header">
       <img src="https://64.media.tumblr.com/3b7e48caed4da480110eff58a9b8f851/f68b1ecfcc71eb9c-da/s250x400/a77da1387f446ad85049fc55a4061b0b51157841.gif">
     </div>
+
     <div class="Divider">
       <img src="https://i5.glitter-graphics.org/pub/726/726615qqay0z8qmb.gif">
     </div>
 
-<div class="flex-container1">
+    <div class="flex-container1">
       <div class="Directory">
         <button class="centered-button">DIRECTORY</button>
-        <a href = "../index.html">
-        <button>Home</button></a>
-        <a href="../public/diary.html">
-        <button>Diary</button></a>
-        <a href="../public/shrines.html">
-        <button>Shrines</button></a>
-        <a href="../public/guestbook.html">
-        <button>Guestbook</button></a>
+        <a href="../index.html"><button>Home</button></a>
+        <a href="../public/diary.html"><button>Diary</button></a>
+        <a href="../public/shrines.html"><button>Shrines</button></a>
+        <a href="../public/guestbook.html"><button>Guestbook</button></a>
       </div>
 
-        <div class="Spotlight"></div>
+      <div class="Spotlight">
+        <h1>SPOTLIGHT</h1>
+        <p>
+          This section is for whatever I’m fixated on right now.
+          A character, a song, a feeling I can’t shake.
+          Something that keeps replaying in my head long after the screen goes dark.
+        </p>
+        <p>
+          If you don’t understand why something is here,
+          that probably means it belongs.
+        </p>
+
+        <div class="spotlight-gallery">
+          <div class="spotlight-item">
+            <img src="https://66.media.tumblr.com/4bf1748c9baba9b4615b5accbe4050cc/tumblr_ov144sYFHI1tennyyo1_400.gifv" alt="Spotlight 1">
+          </div>
+          <div class="spotlight-item">
+            <img src="https://64.media.tumblr.com/tumblr_m76g5y2rGk1rwgxwjo1_500.gif" alt="Spotlight 2">
+          </div>
+          <div class="spotlight-item">
+            <img src="https://media1.tenor.com/m/YTQ6Lx15K-cAAAAC/madoka-magica.gif" alt="Spotlight 3">
+          </div>
+          <div class="spotlight-item">
+            <img src="https://media1.tenor.com/m/zE4ozkXHGWAAAAAC/sylveon.gif" alt="Spotlight 4">
+          </div>
+        </div>
       </div>
-      <div class="flex-container2">
-        <div class="Archives"></div>
-        <div class="Projects"></div>
-        <div class="Gallery"></div>
-      </div>
-      <div class="Footer"></div>
     </div>
-  </body>
+
+    <div class="flex-container2">
+      <div class="Archives">
+        <h1>ARCHIVES</h1>
+        <ul>
+          <li>✿ abandoned shrine ideas</li>
+          <li>✿ unfinished layouts</li>
+          <li>✿ old fixations that still linger</li>
+          <li>✿ pages that no longer exist</li>
+        </ul>
+        <p>Not everything here is active. Some things are retired gently. Others were left behind without explanation.</p>
+      </div>
+
+      <div class="Projects">
+        <h1>PROJECTS</h1>
+        <p>This is where I’ll post any creative works I’m working on. Stories, art, music, whatever I feel like sharing.</p>
+        <ul>
+          <li>✧ character shrine (in progress)</li>
+          <li>✧ media analysis page (paused)</li>
+          <li>✧ interactive diary idea (broken)</li>
+        </ul>
+        <p>Right now, there’s nothing here. But soon, I hope to fill this space with things that matter to me.</p>
+      </div>
+
+      <div class="Gallery">
+        <h1>GALLERY</h1>
+        <p>A collection of images, gifs, and other visual things that I find inspiring or comforting.</p>
+        <p>This gallery is always changing. New things get added, old things get removed. It’s a reflection of my current mood and interests.</p>
+      </div>
+    </div>
+
+    <div class="Footer">© 2025 Clemmy’s Corner ♡</div></div>
+
+  <script>
+    // Convert vertical scroll to horizontal on gallery
+    const gallery = document.querySelector('.spotlight-gallery');
+    if (gallery) {
+      gallery.addEventListener('wheel', function(e) {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+          gallery.scrollLeft += e.deltaY;
+        }
+      }, { passive: false });
+    }
+  </script>
+</body>
 </html>
