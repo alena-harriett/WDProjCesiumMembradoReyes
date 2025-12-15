@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Diary₊˚⊹ ᰔ</title>
     <link rel="icon" type="image/png" href="image/Untitled_design_1.png">
-    
+  
     <style>
       * {
       box-sizing: border-box;
@@ -86,6 +86,14 @@
       background-color: #e19c91;
       border: 3px solid #996855;
     }
+    .TableOfContents img {
+    display: block;
+    margin: auto;
+    width: 50%; 
+    height: 50%; 
+    object-fit: cover; 
+    display: block; 
+}
 
       /* ===== ROW 2 (FIXED WIDTH ISSUE) ===== */
     .flex-container2 {
@@ -107,15 +115,22 @@
       padding: 164px;
       background-color: #e19c91;
     }
+    .Diary img {
+    float: right;
+    width: 50%; 
+    height: 50%; 
+    object-fit: cover; 
+    display: block; 
+}
  /* ===== FOOTER ===== */
-    .Footer {
+       .Footer {
       margin-top: 20px;
       padding: 12px;
       background-color: #fffede;
       border: 3px solid #e19c91;
       text-align: center;
       font-size: 13px;
-    }
+       }
 
     /* ===== BUTTONS ===== */
     button {
@@ -137,6 +152,28 @@
       text-align: center;
       font-weight: bold;
       background-color: #fffede;
+    }
+    /* =====OVERLAY===== */
+    .oh{
+     position: fixed;
+     bottom: 0;
+     right: 0;
+     width: 20%;
+     height: 50%;
+     opacity: 1;
+     z-index: 1;
+    }
+    .nameidk {
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-image: url("https://64.media.tumblr.com/7ded3425e26f43b277f9565861117c79/0c60959738e04002-dc/s640x960/7ccb900ce8fb65652e5df75f0a403555a0493ca1.pnj");
+     opacity: 0.6;
+     background-size: cover; 
+     background-position: center;
+     z-index: -1;
     }
      /* ===== TEXT ===== */
     h1 {
@@ -163,6 +200,45 @@
         flex-direction: column;
       }
     }
+    /* =====THE POPUP FOR JS===== */
+.popup {
+    display: none; 
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+}
+
+/* Modal Content/Box */
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px; /* Could be more or less, depending on screen size */
+    max-width: 80%;
+    border-radius: 5px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
     </style>
   </head>
 
@@ -186,15 +262,46 @@
         <a href="../public/guestbook.html">
         <button>Guestbook</button></a>
       </div>
-        <div class="TableOfContents"></div>
+        <div class="TableOfContents">
+          <h1>TABLE OF CONTENTS</h1>
+          <p style="text-align: left;">Entry ##, Oct ?, 20??</p>
+          <p style="text-align: left;">Entry 1-ERR. FILE REMOVED</p>
+          <p style="text-align: left;">All other entries have been removed. 👁️</p>
+          <img src="https://files.catbox.moe/u2ct77.gif" alt="creepy...">
+        </div>
       </div>
       <div class="flex-container2">
-        <div class="Comments"></div>
-        <div class="Diary"></div>
+        <div class="Comments">
+          <h1>COMMENTS</h1>
+          <p>Live comments to come!</p>
+          <div class="container">
+        <textarea id="newComment" placeholder="Write a comment..."></textarea>
+        <button id="addCommentBtn">Add Comment</button>
+        <h2>Comments</h2>
+        <div id="commentsContainer">
+            <!-- Comments will be dynamically added here by JavaScript -->
+        </div>
+    </div>
+        </div>
+        <div class="Diary">
+          <h1>DIARY</h1>
+        <p>This is where I put all my writings and thoughts!</p>
+        <p style="text-align: left;">Entry ##, Oct ?, 20??</p>
+        <p style="text-align: left;">Yesterday I went to [REDACTED] and saw something so beautiful. I wish I could see it again but it's [REDACTED] and [REDACTED]. </p>
+         <img src="https://files.catbox.moe/gxl8ze.gif" alt="angel wings">
+         <img src="https://files.catbox.moe/gxl8ze.gif" alt="angel wings">
+         <figcaption>angel...ִֶָ. ..𓂃 ࣪ ִֶָ🪽་༘࿐</figcaption>
       </div>
-      <div class="Footer">
-         © 2025 Clemmy’s Corner — Made With Love ♡
+        </div>
+        <div class="nameidk"></div>
+    <div class="oh">
+      <img src="https://files.catbox.moe/ijeyee.gif" alt="glitched anime girl">
+    </div>
+        <div class="Footer">
+          © 2025 Clemmy’s Corner — Made With Love ♡
+        </div>
       </div>
     </div>
+     <script src="js/script.js"></script>
   </body>
 </html>
