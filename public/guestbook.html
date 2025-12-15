@@ -7,11 +7,7 @@
   <link rel="icon" type="image/png" href="image/Untitled_design_1.png">
 
   <style>
-    * {
-      box-sizing: border-box;
-      image-rendering: pixelated;
-    }
-
+    * { box-sizing: border-box; image-rendering: pixelated; }
     body {
       margin: 0;
       font-family: "MS PGothic", "Tahoma", Arial, sans-serif;
@@ -21,209 +17,35 @@
       color: #692f1a;
     }
 
-    .myDiv {
-      width: 95%;
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 16px;
-      background-color: #996855;
-      border: 4px solid #f8accf;
-    }
-
-    .Header {
-      width: 100%;
-      height: 160px;
-      border: 3px solid #e19c91;
-      margin-bottom: 12px;
-      background: #fffede;
-    }
-
-    .Header img {
-      width: 100%;
-      height: 100%;
-      object-fit: stretch;
-      display: block;
-    }
-
-    .Divider {
-      width: 100%;
-      height: 45px;
-      border: 2px solid #e19c91;
-      margin: 12px 0;
-      background: #fffede;
-    }
-
-    .Divider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .flex-container1 {
-      display: flex;
-      gap: 18px;
-      width: 100%;
-      margin-bottom: 18px;
-    }
-
-    .Directory {
-      flex: 3;
-      min-height: 420px;
-      padding: 12px;
-      background-color: #e19c91;
-      border: 3px solid #996855;
-    }
-
-    .GuestbookLog {
-      flex: 7;
-      min-height: 300px;
-      padding: 10px; /* FIXED */
-      background-color: #e19c91;
-      border: 3px solid #996855;
-    }
-
-    .flex-container2 {
-      display: flex;
-      gap: 18px;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .Updates {
-      flex: 3.4;
-      min-height: 260px;
-      padding: 17px;
-      background-color: #fdb1bf;
-      border: 3px solid #996855;
-    }
-
-    .GuestbookHistory {
-      flex: 8.2;
-      min-height: 260px;
-      background-color: bisque;
-      padding: 10px;
-      border: 3px solid #996855;
-    }
-
-    .Footer {
-      margin-top: 20px;
-      padding: 12px;
-      background-color: #fffede;
-      border: 3px solid #e19c91;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    button {
-      font-family: inherit;
-      background-color: #fdb1bf;
-      border: 3px solid #996855;
-      padding: 12px;
-      width: 100%;
-      margin-bottom: 10px;
-      cursor: pointer;
-      text-align: left;
-    }
-
-    button:hover {
-      background-color: #fffede;
-    }
-
-    .centered-button {
-      text-align: center;
-      font-weight: bold;
-      background-color: #fffede;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 80px;
-      padding: 8px;
-      font-family: inherit;
-      border: 2px solid #996855;
-      background-color: #fffede;
-      resize: vertical;
-      margin-bottom: 8px;
-    }
-
-    h1 {
-      font-size: 18px;
-      color: #fffede;
-      text-align: center;
-      margin: 5px 0 12px;
-      letter-spacing: 1px;
-    }
-
-    h2 {
-      font-size: 16px;
-      margin-left: 12px;
-    }
-
-    p {
-      font-size: 14px;
-      line-height: 1.5;
-      margin-left: 12px;
-      letter-spacing: 1px;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-/* Guestbook horizontal scroll container */
-.guestbook-gallery {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  gap: 12px;
-  padding: 8px 0;
-  margin-top: 12px;
-  scroll-behavior: smooth;
-}
-
-/* Scrollbar styling */
-.guestbook-gallery::-webkit-scrollbar { height: 10px; }
-.guestbook-gallery::-webkit-scrollbar-track { background: #fffede; border: 2px solid #996855; }
-.guestbook-gallery::-webkit-scrollbar-thumb { background: #fdb1bf; border: 2px solid #996855; }
-
-/* Individual comment boxes */
-.guestbook-comment {
-  flex: 0 0 auto; /* keep them from stretching */
-  background-color: #fffede;
-  border: 3px solid #996855;
-  padding: 12px;
-  min-width: 220px;
-  max-height: 500px;
-  box-sizing: border-box;
-}
-
-.guestbook-comment h3 {
-  margin: 0 0 6px 0;
-  font-size: 14px;
-  color: #692f1a;
-}
-
-.guestbook-comment p {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.4;
-  color: #692f1a;
-}
-
-    @media (max-width: 700px) {
-      .flex-container1,
-      .flex-container2 {
-        flex-direction: column;
-      }
-    }
-    .Updates,.GuestbookHistory {
-      max-height: 260px;
-      overflow-y: auto;
-    }
+    .myDiv { width: 95%; max-width: 1100px; margin: 30px auto; padding: 16px; background-color: #996855; border: 4px solid #f8accf; }
+    .Header { width: 100%; height: 160px; border: 3px solid #e19c91; margin-bottom: 12px; background: #fffede; }
+    .Header img { width: 100%; height: 100%; object-fit: stretch; display: block; }
+    .Divider { width: 100%; height: 45px; border: 2px solid #e19c91; margin: 12px 0; background: #fffede; }
+    .Divider img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .flex-container1 { display: flex; gap: 18px; width: 100%; margin-bottom: 18px; }
+    .Directory { flex: 3; min-height: 420px; padding: 12px; background-color: #e19c91; border: 3px solid #996855; }
+    .GuestbookLog { flex: 7; min-height: 300px; padding: 10px; background-color: #e19c91; border: 3px solid #996855; }
+    .flex-container2 { display: flex; gap: 18px; width: 100%; margin-top: 10px; }
+    .Updates { flex: 3.4; min-height: 260px; padding: 17px; background-color: #fdb1bf; border: 3px solid #996855; }
+    .GuestbookHistory { flex: 8.2; min-height: 260px; background-color: bisque; padding: 10px; border: 3px solid #996855; overflow-y: auto; }
+    .Footer { margin-top: 20px; padding: 12px; background-color: #fffede; border: 3px solid #e19c91; text-align: center; font-size: 13px; }
+    button { font-family: inherit; background-color: #fdb1bf; border: 3px solid #996855; padding: 12px; width: 100%; margin-bottom: 10px; cursor: pointer; text-align: left; }
+    button:hover { background-color: #fffede; }
+    .centered-button { text-align: center; font-weight: bold; background-color: #fffede; }
+    textarea { width: 100%; min-height: 80px; padding: 8px; font-family: inherit; border: 2px solid #996855; background-color: #fffede; resize: vertical; margin-bottom: 8px; }
+    h1 { font-size: 18px; color: #fffede; text-align: center; margin: 5px 0 12px; letter-spacing: 1px; }
+    p { font-size: 14px; line-height: 1.5; margin-left: 12px; letter-spacing: 1px; }
+    a { text-decoration: none; }
+    .guestbook-gallery { display: flex; overflow-x: auto; overflow-y: hidden; gap: 12px; padding: 8px 0; margin-top: 12px; scroll-behavior: smooth; }
+    .guestbook-gallery::-webkit-scrollbar { height: 10px; }
+    .guestbook-gallery::-webkit-scrollbar-track { background: #fffede; border: 2px solid #996855; }
+    .guestbook-gallery::-webkit-scrollbar-thumb { background: #fdb1bf; border: 2px solid #996855; }
+    .guestbook-comment { flex: 0 0 auto; background-color: #fffede; border: 3px solid #996855; padding: 12px; min-width: 220px; max-height: 500px; box-sizing: border-box; }
+    .guestbook-comment h3 { margin: 0 0 6px 0; font-size: 14px; color: #692f1a; }
+    .guestbook-comment p { margin: 0; font-size: 13px; line-height: 1.4; color: #692f1a; }
+    @media (max-width: 700px) { .flex-container1, .flex-container2 { flex-direction: column; } }
   </style>
 </head>
-
 <body>
   <div class="myDiv">
 
@@ -246,25 +68,12 @@
 
       <div class="GuestbookLog">
         <h1>Guest Book Log</h1>
-
-        <p>
-          Clemmy’s Corner is always changing, always unfinished, and always growing in small ways.
-          I hope you found something cozy here, even if it was just a moment of calm or a cute gif
-          that made you smile. Feel free to leave anything you’d like: a greeting, a thought,
-          or even just your name. It all means a lot to me.
-        </p>
-
-        <img
-          src="https://gifs4crds.carrd.co/assets/images/gallery09/650ecc5e.gif?vca07fc73a"
-          alt="Valentines!"
-          style="display:block; margin:12px auto;"
-        >
-
-        <p>Guestbook to come!</p>
+        <p>Clemmy’s Corner is always changing, always unfinished, and always growing in small ways. I hope you found something cozy here, even if it was just a moment of calm or a cute gif that made you smile. Feel free to leave anything you’d like: a greeting, a thought, or even just your name. It all means a lot to me.</p>
 
         <div class="container">
           <textarea id="newComment" placeholder="Write a log..."></textarea>
           <button id="addCommentBtn">Add Log</button>
+          <h2>Comments</h2>
           <div id="commentsContainer"></div>
         </div>
       </div>
@@ -273,59 +82,70 @@
     <div class="flex-container2">
       <div class="Updates">
         <h1>UPDATES</h1>
-        <p><b>✿ 02 / 16 / 25</b><br>
-        Guestbook page finally exists… even if it’s a little broken.
-        I like how empty it feels right now.</p>
-
-        <p><b>✿ 02 / 14 / 25</b><br>
-        Added pink borders + valentines gif ♡
-        This site feels softer lately.</p>
-
-        <p><b>✿ 02 / 10 / 25</b><br>
-        Moved things around again.
-        Nothing ever stays finished here.</p>
-
-        <p><b>✿ 02 / 07 / 25</b><br>
-        Thinking about archiving older pages instead of deleting them.</p>
+        <p><b>✿ 02 / 16 / 25</b><br>Guestbook page finally exists… even if it’s a little broken.</p>
       </div>
       <div class="GuestbookHistory">
-  <h1>GUESTBOOK</h1>
-
-  <div class="guestbook-gallery">
-    <div class="guestbook-comment">
-      <h3>Username1 — Jan 12, 2025</h3>
-      <p>Love your site! The Spotlight section is amazing.</p>
+        <h1>GUESTBOOK</h1>
+        <div class="guestbook-gallery" id="guestbookGallery">
+          <!-- Existing comments -->
+          <div class="guestbook-comment"><h3>Username1 — Jan 12, 2025</h3><p>Love your site! The Spotlight section is amazing.</p></div>
+          <div class="guestbook-comment"><h3>Username2 — Jan 13, 2025</h3><p>I really enjoy browsing your archives. Keep up the great work!</p></div>
+          <div class="guestbook-comment"><h3>Username3 — Jan 14, 2025</h3><p>The gallery makes me feel so nostalgic. Thank you for sharing.</p></div>
+        </div>
+      </div>
     </div>
 
-    <div class="guestbook-comment">
-      <h3>Username2 — Jan 13, 2025</h3>
-      <p>I really enjoy browsing your archives. Keep up the great work!</p>
-    </div>
-
-    <div class="guestbook-comment">
-      <h3>Username3 — Jan 14, 2025</h3>
-      <p>The gallery makes me feel so nostalgic. Thank you for sharing.</p>
-    </div>
+    <div class="Footer">© 2025 Clemmy’s Corner ♡</div>
   </div>
-</div>
-    </div>
 
-    <div class="Footer">
-      © 2025 Clemmy’s Corner ♡
-    </div>
-
-  </div>
-</body>
 <script>
-const guestbookGallery = document.querySelector('.guestbook-gallery');
-if (guestbookGallery) {
-  guestbookGallery.addEventListener('wheel', function(e) {
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      e.preventDefault();
-      guestbookGallery.scrollLeft += e.deltaY;
-    }
-  }, { passive: false });
+const commentsContainer = document.getElementById('commentsContainer');
+const addBtn = document.getElementById('addCommentBtn');
+const newComment = document.getElementById('newComment');
+
+// Load comments from localStorage
+let savedComments = JSON.parse(localStorage.getItem('guestbookLogs')) || [];
+function renderComments() {
+  commentsContainer.innerHTML = '';
+  savedComments.forEach(comment => {
+    const div = document.createElement('div');
+    div.classList.add('guestbook-comment');
+    div.innerHTML = `<h3>${comment.name} — ${comment.date}</h3><p>${comment.text}</p>`;
+    commentsContainer.appendChild(div);
+
+    // Also add to horizontal gallery
+    const gallery = document.getElementById('guestbookGallery');
+    const galleryDiv = document.createElement('div');
+    galleryDiv.classList.add('guestbook-comment');
+    galleryDiv.innerHTML = `<h3>${comment.name} — ${comment.date}</h3><p>${comment.text}</p>`;
+    gallery.appendChild(galleryDiv);
+  });
 }
+renderComments();
+
+// Add new comment
+addBtn.addEventListener('click', () => {
+  if (!newComment.value.trim()) return;
+  const commentObj = {
+    name: 'Guest',
+    date: new Date().toLocaleDateString(),
+    text: newComment.value.trim()
+  };
+  savedComments.push(commentObj);
+  localStorage.setItem('guestbookLogs', JSON.stringify(savedComments));
+  newComment.value = '';
+  renderComments();
+});
+
+// Horizontal scroll for gallery
+const guestbookGallery = document.getElementById('guestbookGallery');
+guestbookGallery.addEventListener('wheel', function(e) {
+  if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+    e.preventDefault();
+    guestbookGallery.scrollLeft += e.deltaY;
+  }
+}, { passive: false });
 </script>
 
+</body>
 </html>
