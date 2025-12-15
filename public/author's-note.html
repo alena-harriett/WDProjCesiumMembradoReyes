@@ -13,8 +13,11 @@
     }
       body {
         margin: 0;
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-        background: #f0f6fb;
+        font-family: "MS PGothic", "Tahoma", Arial, sans-serif;
+        background-image: url("https://i.pinimg.com/736x/28/d8/2a/28d82a402a6f78e40d10bcf2c2fcc33f.jpg");
+        background-repeat: repeat;
+        background-attachment: fixed;
+        color: #692f1a;
       }
 
       .myDiv {
@@ -32,145 +35,214 @@
         align-items: center;
       }
 
+      .myDiv {
+        width: 95%;
+        max-width: 1100px;
+        margin: 30px auto;
+        padding: 16px;
+        background-color: #996855;
+        border: 4px solid #f8accf;
+      }
+     /* =====HEADER=====*/
       .Header {
-        height: 120px;
         width: 100%;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin: auto;
+        height: 160px;
+        border: 3px solid #e19c91;
+        margin-bottom: 12px;
+        background: #fffede;
       }
 
+      .Header img {
+        width: 100%;
+        height: 100%;
+        object-fit: stretch;
+        display: block;
+      }
+    /* =====DIVIDER=====*/
       .Divider {
-        height: 40px;
         width: 100%;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        height: 45px;
+        border: 2px solid #e19c91;
+        margin: 12px 0;
+        background: #fffede;
       }
 
+      .Divider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      /* =====ROW 1=====*/
       .flex-container1 {
         display: flex;
+        gap: 18px;
         width: 100%;
-        gap: 20px;
-        justify-content: flex-start;
+        margin-bottom: 18px;
       }
 
       .Directory {
-        flex: 3;                 
-        height: 350px;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        flex: 3;
+        min-height: 420px;
+        padding: 12px;
+        background-color: #e19c91;
+        border: 3px solid #996855;
       }
 
       .Profile {
-        flex: 7;                 
-        height: 570px;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 20px;
-        margin-bottom: -200px;
-      } 
+      flex: 7;
+      min-height: 420px;
+      padding: 14px;
+      background-color: #e19c91;
+      border: 3px solid #996855;
+    }
 
-
+       /* =====ROW 2=====*/
       .flex-container2 {
         display: flex;
+        gap: 18px;
         width: 100%;
-        gap: 20px;
-        justify-content: flex-start;
-        align-items: stretch;
+        margin-top: 10px;
       }
 
       .Updates {
-        width: 30%;                 
-        height: 200px;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-      }
-      .Footer {
+      flex: 6.4; /* smaller */
+      min-height: 260px;
+      padding: 19px;
+      background-color: #fdb1bf;
+      border: 3px solid #996855;
+    }
+       .Footer {
         margin-top: 20px;
-        height: 60px;
-        width: 100%;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-      }
-
-      .block {
-        width: 95%;
-        border: none;
-        border-radius: 8px;
-        background-color: #04AA6D;
-        padding: 14px 28px;
-        font-size: 16px;
-        cursor: pointer;
-        display: inline-block;
-        text-align: left;
-        margin-bottom: 15px;
-      }
-
-      @media (max-width: 480px) {
-        .myDiv { width: 95%; padding: 8px; }
-        .flex-container1 { flex-direction: column; gap: 15px; }
-        .flex-container2 { flex-direction: column; gap: 15px; }
-        .Directory { width: 100%; }
-        .Profile { width: 100%; }
-        .To-do-List, .Music { width: 100%; }
-        .Header, .Divider { width: 100%; }
-      }
-      .centered-button {
-        width: 95%;
-        height: 20%;
-        border: none;
-        background-color: #04AA6D;
-        padding: 14px 28px;
-        font-size: 16px;
-        cursor: pointer;
-        display: inline-block;
+        padding: 12px;
+        background-color: #fffede;
+        border: 3px solid #e19c91;
         text-align: center;
-        border-radius: 8px;
-        margin-top: 10px;
-        margin-bottom: 20px;
+        font-size: 13px;
       }
+
+      button {
+        font-family: inherit;
+        background-color: #fdb1bf;
+        border: 3px solid #996855;
+        padding: 12px;
+        width: 100%;
+        margin-bottom: 10px;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      button:hover {
+        background-color: #fffede;
+      }
+
+      .centered-button {
+        text-align: center;
+        font-weight: bold;
+        background-color: #fffede;
+      }
+      textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 8px;
+      font-family: inherit;
+      border: 2px solid #996855;
+      background-color: #fffede;
+      resize: vertical;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 18px;
+      color: #fffede;
+      text-align: center;
+      margin: 5px 0 12px;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin-left: 12px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-left: 12px;
+      letter-spacing: 1px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+    /* =====OVERLAY===== */
+    .nameidk {
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 20%;
+     height: 50%;
+     z-index: 1;
+     }
     </style>
   </head>
 
   <body>
     <div class="myDiv">
-      <div class="Header"></div>
-      <div class="Divider"></div>
+      <div class="Header">
+        <img src="https://64.media.tumblr.com/3b7e48caed4da480110eff58a9b8f851/f68b1ecfcc71eb9c-da/s250x400/a77da1387f446ad85049fc55a4061b0b51157841.gif">
+      </div>
+      <div class="Divider">
+        <img src="https://i5.glitter-graphics.org/pub/726/726615qqay0z8qmb.gif">
+      </div>
+
       <div class="flex-container1">
-        <div class="Directory">
-          <a href="#">
-          <button class="centered-button">Directory</button></a><br>
-          <a href="./index.html">
-          <button class="block">Home</button></a><br>
-          <a href="diary.html">
-          <button class="block">Diary</button>
-          </a><br>
-          <a href="shrines.html">
-          <button class="block">Shrines</button>
-          </a><br>
-          <a href="guestbook.html">
-          <button class="block">Guestbook</button>
-          </a><br>
+       <div class="Directory">
+          <button class="centered-button">DIRECTORY</button>
+          <a href="../index.html"><button>Home</button></a>
+          <a href="../public/diary.html"><button>Diary</button></a>
+          <a href="../public/shrines.html"><button>Shrines</button></a>
+          <a href="../public/guestbook.html"><button>Guestbook</button></a>
         </div>
-        <div class="Profile"></div>
+        <div class="Profile">
+          <h1>PROFILE</h1>
+          <p><b>✿ ## / 16 / 20??</b><br>
+             Author's Note: I just came back from a trip to [REDCATED] so I might go on hiatus.</p>
+            <p> Not for anything bad, I just found the place so beautiful, so peaceful. I might write another diary entry.
+            </p>
+            <p> My blog has been acting up lately too though...I don't know why.</p>
+            <p> I don't think I'm the only one.</p>
+            <img src="https://files.catbox.moe/tw8mhu.gif" alt="heart">
+            <img src="https://files.catbox.moe/zjix92.gif" alt="heart">
+            <img src="https://files.catbox.moe/zjix92.gif" alt="heart">
+            <img src="https://files.catbox.moe/zjix92.gif" alt="heart">
+          </div>
       </div>
       <div class="flex-container2">
-        <div class="Updates"></div>
-        <div class="To-do-List"></div>
-        <div class="Music"></div>
+        <div class="Updates">
+          <h1>UPDATES</h1>
+        <p><b>✿ 02 / 16 / 25</b><br>
+        Guestbook page finally exists… even if it’s a little broken.
+        I like how empty it feels right now.</p>
+
+        <p><b>✿ 02 / 14 / 25</b><br>
+        Added pink borders + valentines gif ♡
+        This site feels softer lately.</p>
+
+        <p><b>✿ 02 / 10 / 25</b><br>
+        Moved things around again.
+        Nothing ever stays finished here.</p>
+
+        <p><b>✿ 02 / 07 / 25</b><br>
+        Thinking about archiving older pages instead of deleting them.</p>
+        </div>
       </div>
-      <div class="Footer"></div>
+      <div class="nameidk">
+      <img src="https://files.catbox.moe/w57oz9.gif" alt="dancing anime girl">
+    </div>
+      <div class="Footer">
+         © 2025 Clemmy’s Corner — Made With Love ♡       
+      </div>
     </div>
   </body>
 </html>
