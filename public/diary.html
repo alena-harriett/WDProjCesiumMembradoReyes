@@ -4,171 +4,185 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      * { box-sizing: border-box; }
+      * {
+      box-sizing: border-box;
+      image-rendering: pixelated;
+    }
 
-      body {
-        margin: 0;
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-        background: #f0f6fb;
-      }
+       body {
+      margin: 0;
+      font-family: "MS PGothic", "Tahoma", Arial, sans-serif;
+      background-image: url("https://i.pinimg.com/736x/28/d8/2a/28d82a402a6f78e40d10bcf2c2fcc33f.jpg");
+      background-repeat: repeat;
+      background-attachment: fixed;
+      color: #2a1a14;
+    }
 
-      .myDiv {
-        height: fit-content;
-        width: 90%;
-        max-width: 900px;
-        background-color: lightblue;
-        text-align: center;
-        padding: 12px;
-        border: 2px solid #F8ACCF;
-        border-radius: 12px;
-        margin: 18px auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+      /* ===== MAIN WRAPPER ===== */
+    .myDiv {
+      width: 95%;
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 16px;
+      background-color: #996855;
+      border: 4px solid #f8accf;
+    }
 
-      .Header {
-        height: 120px;
-        width: 100%;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin: auto;
-      }
+    /* ===== HEADER ===== */
+    .Header {
+      width: 100%;
+      height: 160px;
+      border: 3px solid #e19c91;
+      margin-bottom: 12px;
+      background: #fffede;
+    }
 
-      .Divider {
-        height: 40px;
-        width: 100%;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
+    .Header img {
+      width: 100%;
+      height: 100%;
+      object-fit: stretch;
+      display: block;
+    }
 
-      .flex-container1 {
-        display: flex;
-        width: 100%;
-        gap: 20px;
-        justify-content: flex-start;
-      }
+    /* ===== DIVIDER ===== */
+    .Divider {
+      width: 100%;
+      height: 45px;
+      border: 2px solid #e19c91;
+      margin: 12px 0;
+      background: #fffede;
+    }
 
-      .Directory {
-        flex: 3;                 
-        height: 350px;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 20px;
-      }
+    .Divider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-      .TableOfContents {
-        flex: 7;                 
-        height: 130px;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 20px;
-      } 
+      /* ===== ROW 1 ===== */
+    .flex-container1 {
+      display: flex;
+      gap: 18px;
+      width: 100%;
+      margin-bottom: 18px;
+    }
 
+       .Directory {
+      flex: 3;
+      min-height: 420px;
+      padding: 12px;
+      background-color: #e19c91;
+      border: 3px solid #996855;
+    }
 
-      .flex-container2 {
-        display: flex;
-        width: 100%;
-        gap: 20px;
-        justify-content: space-around;
-        align-items: stretch;
-        margin-right: 0px;
-      }
+     .TableOfContents {
+      flex: 7;
+      min-height: 130px;
+      padding: 10px;
+      background-color: #e19c91;
+      border: 3px solid #996855;
+    }
 
+      /* ===== ROW 2 (FIXED WIDTH ISSUE) ===== */
+    .flex-container2 {
+      display: flex;
+      gap: 18px;
+      width: 100%;
+      margin-top: 10px;
+    }
       .Comments {
-        flex-grow: 3.5;                 
-        height: 200px;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 20px;
-        margin-bottom: 10px;
-      }
-
+      flex: 6.4; /* smaller */
+      min-height: 260px;
+      padding: 12px;
+      background-color: #fdb1bf;
+      border: 3px solid #996855;
+    }
       .Diary {
-        flex: 8.2;                
-        height: 400px;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: -180px;
-        margin-bottom: 10px;
-      } 
+      flex: 8.2;
+      min-height: 400px;
+      padding: 10px;
+      background-color: #e19c91;
+    }
+ /* ===== FOOTER ===== */
+    .Footer {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #fffede;
+      border: 3px solid #e19c91;
+      text-align: center;
+      font-size: 13px;
+    }
 
-      .Footer {
-        margin-top: 20px;
-        height: 60px;
-        width: 100%;
-        background-color: bisque;
-        padding: 10px;
-        border-radius: 10px;
-      }
+    /* ===== BUTTONS ===== */
+    button {
+      font-family: inherit;
+      background-color: #fdb1bf;
+      border: 3px solid #996855;
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 10px;
+      cursor: pointer;
+      text-align: left;
+    }
 
-      .block {
-        width: 95%;
-        border: none;
-        border-radius: 8px;
-        background-color: #04AA6D;
-        padding: 14px 28px;
-        font-size: 16px;
-        cursor: pointer;
-        display: inline-block;
-        text-align: left;
-        margin-bottom: 15px;
-      }
+    button:hover {
+      background-color: #fffede;
+    }
 
-      @media (max-width: 480px) {
-        .myDiv { width: 95%; padding: 8px; }
-        .flex-container1 { flex-direction: column; gap: 15px; }
-        .flex-container2 { flex-direction: column; gap: 15px; }
-        .Directory { width: 100%; }
-        .TableOfContents { width: 100%; }
-        .Comments, .Diary { width: 100%; }
-        .Header, .Divider { width: 100%; }
+    .centered-button {
+      text-align: center;
+      font-weight: bold;
+      background-color: #fffede;
+    }
+     /* ===== TEXT ===== */
+    h1 {
+      font-size: 18px;
+      color: #fffede;
+      text-align: center;
+      margin: 5px 0 12px;
+      letter-spacing: 1px;
+    }
+
+    p, li {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 700px) {
+      .flex-container1,
+      .flex-container2 {
+        flex-direction: column;
       }
-      .centered-button {
-        width: 95%;
-        height: 20%;
-        border: none;
-        background-color: #04AA6D;
-        padding: 14px 28px;
-        font-size: 16px;
-        cursor: pointer;
-        display: inline-block;
-        text-align: center;
-        border-radius: 8px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-      }
+    }
     </style>
   </head>
 
   <body>
     <div class="myDiv">
-      <div class="Header"></div>
-      <div class="Divider"></div>
+      <div class="Header">
+        <img src="https://64.media.tumblr.com/3b7e48caed4da480110eff58a9b8f851/f68b1ecfcc71eb9c-da/s250x400/a77da1387f446ad85049fc55a4061b0b51157841.gif">
+      </div>
+      <div class="Divider">
+        <img src="http://i1179.photobucket.com/albums/x398/futurerockstar/Gifs%20and%20Animated%20Dividers/heartdivider.gif">
+      </div>
       <div class="flex-container1">
-        <div class="Directory">
-          <a href="#">
-          <button class="centered-button">Directory</button></a><br>
-          <a href="index.html">
-          <button class="block">Home</button></a><br>
-          <a href="diary.html">
-          <button class="block">Diary</button>
-          </a><br>
-          <a href="shrines.html">
-          <button class="block">Shrines</button>
-          </a><br>
-          <a href="guestbook.html">
-          <button class="block">Guestbook</button>
-          </a><br>
-        </div>
+       <div class="Directory">
+        <button class="centered-button">DIRECTORY</button>
+        <a href = "../index.html">
+        <button>Home</button></a>
+        <a href="../public/diary.html">
+        <button>Diary</button></a>
+        <a href="../public/shrines.html">
+        <button>Shrines</button></a>
+        <a href="../public/guestbook.html">
+        <button>Guestbook</button></a>
+      </div>
         <div class="TableOfContents"></div>
       </div>
       <div class="flex-container2">
