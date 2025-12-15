@@ -37,13 +37,14 @@
       background-color: #fdb1bf;
       border: 3px solid #996855;
     }
-       .Footer {
-        margin-top: 20px;
-        padding: 12px;
-        background-color: #fffede;
-        border: 3px solid #e19c91;
-        text-align: center;
-        font-size: 13px;
+      .Footer {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #fffede;
+      border: 3px solid #e19c91;
+      text-align: center;
+      font-size: 13px;
       }
 
       button {
