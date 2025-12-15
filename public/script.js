@@ -1,47 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const addCommentBtn = document.getElementById('addCommentBtn');
-    const newCommentInput = document.getElementById('newComment');
-    const commentsContainer = document.getElementById('commentsContainer');
+const addCommentBtn = document.getElementById('addCommentBtn');
+const newCommentInput = document.getElementById('newComment');
+const commentsContainer = document.getElementById('commentsContainer');
 
-    // Load comments from localStorage when the page loads
-    loadComments();
+addCommentBtn.addEventListener('click', () => {
+  const text = newCommentInput.value.trim();
+  if (text === "") return; // ignore empty
 
-    addCommentBtn.addEventListener('click', addComment);
+  // Create a new comment box
+  const commentBox = document.createElement('div');
+  commentBox.className = 'comment-box';
+  commentBox.style.marginBottom = '8px'; // same spacing
 
-    function addComment() {
-        const commentText = newCommentInput.value.trim();
+  // Create header with username and date
+  const h3 = document.createElement('h3');
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  h3.textContent = `Guest — ${formattedDate}`;
 
-        if (commentText !== '') {
-            createCommentElement(commentText);
-            saveComment(commentText); // Save the new comment
-            newCommentInput.value = ''; // Clear the input field
-        }
-    }
+  // Create paragraph for comment text
+  const p = document.createElement('p');
+  p.textContent = text;
 
-    function createCommentElement(text) {
-        const commentDiv = document.createElement('div');
-        commentDiv.classList.add('comment'); // Use a CSS class for styling
+  // Append header and paragraph to comment box
+  commentBox.appendChild(h3);
+  commentBox.appendChild(p);
 
-        const commentTextNode = document.createElement('p');
-        commentTextNode.textContent = text;
+  // Add the new comment at the top of the vertical list
+  commentsContainer.insertBefore(commentBox, commentsContainer.firstChild);
 
-        commentDiv.appendChild(commentTextNode);
-        commentsContainer.appendChild(commentDiv);
-    }
-
-    function saveComment(text) {
-        // Retrieve existing comments or initialize an empty array
-        const comments = JSON.parse(localStorage.getItem('comments')) || [];
-        comments.push(text);
-        // Save the updated array back to localStorage
-        localStorage.setItem('comments', JSON.stringify(comments));
-    }
-
-    function loadComments() {
-        const comments = JSON.parse(localStorage.getItem('comments')) || [];
-        comments.forEach(commentText => {
-            createCommentElement(commentText);
-        });
-    }
+  // Clear textarea
+  newCommentInput.value = '';
 });
-
