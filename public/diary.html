@@ -317,34 +317,6 @@
         © 2025 Clemmy’s Corner — Made With Love ♡
       </div>
     </div>
-     
-    <script>
-      const addCommentBtn = document.getElementById('addCommentBtn');
-      const newComment = document.getElementById('newComment');
-      const commentsContainer = document.getElementById('commentsContainer');
-
-      addCommentBtn.addEventListener('click', () => {
-        if (newComment.value.trim() === "") return;
-
-        const commentBox = document.createElement('div');
-        commentBox.className = 'comment-box';
-
-        const date = new Date();
-        const header = document.createElement('h3');
-        header.textContent = `You — ${date.toLocaleDateString()}`;
-
-        const paragraph = document.createElement('p');
-        paragraph.textContent = newComment.value;
-
-        commentBox.appendChild(header);
-        commentBox.appendChild(paragraph);
-        commentsContainer.appendChild(commentBox);
-
-        newComment.value = '';
-
-       
-        commentsContainer.scrollTop = commentsContainer.scrollHeight;
-      });
-    </script>
+     <script src="script.js"></script>
   </body>
 </html>
