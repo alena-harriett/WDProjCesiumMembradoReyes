@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clemmy's Corner!</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      image-rendering: pixelated;
+    }
+
+    body {
+      margin: 0;
+      font-family: "MS PGothic", "Tahoma", Arial, sans-serif;
+      background-image: url("https://i.pinimg.com/736x/28/d8/2a/28d82a402a6f78e40d10bcf2c2fcc33f.jpg");
+      background-repeat: repeat;
+      background-attachment: fixed;
+      color: #2a1a14;
+    }
+
+    /* ===== MAIN WRAPPER ===== */
+    .myDiv {
+      width: 95%;
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 16px;
+      background-color: #996855;
+      border: 4px solid #f8accf;
+    }
+
+    /* ===== HEADER ===== */
+    .Header {
+      width: 100%;
+      height: 160px;
+      border: 3px solid #e19c91;
+      margin-bottom: 12px;
+      background: #fffede;
+    }
+
+    .Header img {
+      width: 100%;
+      height: 100%;
+      object-fit: stretch;
+      display: block;
+    }
+
+    /* ===== DIVIDER ===== */
+    .Divider {
+      width: 100%;
+      height: 45px;
+      border: 2px solid #e19c91;
+      margin: 12px 0;
+      background: #fffede;
+    }
+
+    .Divider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ===== ROW 1 ===== */
+    .flex-container1 {
+      display: flex;
+      gap: 18px;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+
+    .Directory {
+      flex: 3;
+      min-height: 420px;
+      padding: 12px;
+      background-color: #e19c91;
+      border: 3px solid #996855;
+    }
+
+    .Profile {
+      flex: 7;
+      min-height: 420px;
+      padding: 14px;
+      background-color: #e19c91;
+      border: 3px solid #996855;
+    }
+
+    /* ===== ROW 2 (FIXED WIDTH ISSUE) ===== */
+    .flex-container2 {
+      display: flex;
+      gap: 18px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .Updates {
+      flex: 6.4; /* smaller */
+      min-height: 260px;
+      padding: 12px;
+      background-color: #fdb1bf;
+      border: 3px solid #996855;
+    }
+
+    .To-do-List {
+      flex: 7;
+      min-height: 260px;
+      padding: 12px;
+      background-color: #e19c91;
+      border: 3px solid #996855;
+    }
+
+    .Music {
+      flex: 7;
+      min-height: 260px;
+      padding: 12px;
+      background-color: #e19c91;
+      border: 3px solid #996855;
+    }
+
+    /* ===== FOOTER ===== */
+    .Footer {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #fffede;
+      border: 3px solid #e19c91;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* ===== BUTTONS ===== */
+    button {
+      font-family: inherit;
+      background-color: #fdb1bf;
+      border: 3px solid #996855;
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 10px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    button:hover {
+      background-color: #fffede;
+    }
+
+    .centered-button {
+      text-align: center;
+      font-weight: bold;
+      background-color: #fffede;
+    }
+
+    /* ===== TEXT ===== */
+    h1 {
+      font-size: 18px;
+      color: #fffede;
+      text-align: center;
+      margin: 5px 0 12px;
+      letter-spacing: 1px;
+    }
+
+    p, li {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 700px) {
+      .flex-container1,
+      .flex-container2 {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="myDiv">
+
+    <div class="Header">
+      <img src="https://64.media.tumblr.com/3b7e48caed4da480110eff58a9b8f851/f68b1ecfcc71eb9c-da/s250x400/a77da1387f446ad85049fc55a4061b0b51157841.gif">
+    </div>
+
+    <div class="Divider">
+      <img src="http://i1179.photobucket.com/albums/x398/futurerockstar/Gifs%20and%20Animated%20Dividers/heartdivider.gif">
+    </div>
+
+    <div class="flex-container1">
+      <div class="Directory">
+        <button class="centered-button">DIRECTORY</button>
+        <a href = "./index.html">
+        <button>Home</button></a>
+        <a href="../public/diary.html">
+        <button>Diary</button></a>
+        <a href="../public/shrines.html">
+        <button>Shrines</button></a>
+        <a href="../public/guestbook.html">
+        <button>Guestbook</button></a>
+      </div>
+
+      <div class="Profile">
+        <h1>PROFILE</h1>
+        <p>Welcome to Clemmy’s Corner ✿</p>
+        <p>This site is forever under construction.</p>
+        <p>૮ ˶ᵔ ᵕ ᵔ˶ ა</p>
+      </div>
+    </div>
+
+    <div class="flex-container2">
+      <div class="Updates">
+        <h1>UPDATES</h1>
+        <p>• Layout updated</p>
+        <p>• Neocities style achieved</p>
+        <p>• More soon ♡</p>
+      </div>
+
+      <div class="To-do-List">
+        <h1>TO DO</h1>
+        <ul>
+          <li>Add blinkies</li>
+          <li>Finish diary</li>
+          <li>Add guestbook iframe</li>
+          <li>Music player</li>
+        </ul>
+      </div>
+
+      <div class="Music">
+        <h1>MUSIC</h1>
+        <p>♪ now playing ♪</p>
+        <p>(player coming soon)</p>
+      </div>
+    </div>
+
+    <div class="Footer">
+      © 2025 Clemmy’s Corner — Made With Love ♡
+    </div>
+
+  </div>
+</body>
+</html>
