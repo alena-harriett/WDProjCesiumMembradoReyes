@@ -7,19 +7,20 @@
       }
 
       .Directory {
-        flex: 3;
-        min-height: 420px;
-        padding: 12px;
-        background-color: #e19c91;
-        border: 3px solid #996855;
-      }
-
-      .Profile {
-      flex: 7;
+      flex: 3;
       min-height: 420px;
-      padding: 14px;
+      padding: 12px;
       background-color: #e19c91;
       border: 3px solid #996855;
+    }
+
+      .Profile {
+        flex: 7;
+        max-width: 717px;
+        min-height: 420px;
+        padding: 14px;
+        background-color: #e19c91;
+        border: 3px solid #996855;
     }
 
        /* =====ROW 2=====*/
@@ -27,13 +28,13 @@
         display: flex;
         gap: 18px;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 0px;
       }
 
       .Updates {
-      flex: 6.4; /* smaller */
+      flex: 3;
       min-height: 260px;
-      padding: 19px;
+      padding: 17px;  
       background-color: #fdb1bf;
       border: 3px solid #996855;
     }
