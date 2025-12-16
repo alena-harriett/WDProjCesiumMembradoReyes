@@ -62,47 +62,7 @@
     <div class="Footer">© 2025 Clemmy’s Corner ♡</div>
   </div>
 </body>
-<script>
-// Get elements
-const addCommentBtn = document.getElementById('addCommentBtn');
-const newCommentInput = document.getElementById('newComment');
-const commentsContainer = document.getElementById('commentsContainer'); // vertical list
-const guestbookGallery = document.getElementById('guestbookGallery'); // horizontal gallery
-
-addCommentBtn.addEventListener('click', () => {
-  const text = newCommentInput.value.trim();
-  if (text === "") return; // ignore empty comments
-
-  // Create new comment for vertical list
-  const commentDiv = document.createElement('div');
-  commentDiv.className = 'guestbook-comment';
-  commentDiv.style.marginBottom = '8px';
-
-  const h3 = document.createElement('h3');
-  const now = new Date();
-  const formattedDate = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  h3.textContent = `Guest — ${formattedDate}`;
-
-  const p = document.createElement('p');
-  p.textContent = text;
-
-  commentDiv.appendChild(h3);
-  commentDiv.appendChild(p);
-
-  // Add to vertical list first
-  commentsContainer.appendChild(commentDiv);
-
-  // Optionally: also append to horizontal gallery
-  const galleryComment = commentDiv.cloneNode(true);
-  guestbookGallery.appendChild(galleryComment);
-
-  // Clear input
-  newCommentInput.value = '';
-
-  // Scroll gallery to show newest comment
-  guestbookGallery.scrollLeft = guestbookGallery.scrollWidth;
-});
-</script>
+<script src="script.js"></script>
 
 
 
