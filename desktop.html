@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClemmyOS - Desktop</title>
+
+<style>
+/* ===== GLOBAL SETTINGS (Copied from your perfect Index) ===== */
+* { box-sizing: border-box; }
+img { image-rendering: pixelated; }
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: "MS PGothic", "Tahoma", Geneva, sans-serif;
+    perspective: 1600px;
+    overflow: hidden;
+    background: #000;
+}
+
+/* ===== ROOM & SCENERY (Copied from your perfect Index) ===== */
+.room {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%);
+}
+
+.desk {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 38%;
+  background: linear-gradient(#caa08c, #a97c65);
+  box-shadow: inset 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* ===== LAPTOP STRUCTURE (Copied from your perfect Index) ===== */
+.laptop-3d {
+  width: 800px;
+  height: 600px;
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%) rotateX(18deg);
+  transform-style: preserve-3d;
+}
+
+.screen-shell {
+  width: 760px;
+  height: 460px;
+  background: linear-gradient(#ffd9eb, #f6bcd3);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 60px 120px rgba(0,0,0,0.45);
+}
+
+.screen-frame {
+    background: #fff3f9;
+    height: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 3px #ffb3d9;
+}
+
+.screen {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(#fffdfc, #ffeef6);
+  overflow: hidden;
+}
+
+/* glass glare */
+.screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.5), transparent 60%);
+  pointer-events: none;
+}
+
+/* ===== DESKTOP CONTENT (Custom for this page) ===== */
+.desktop {
+  position: absolute;
+  inset: 0;
+  padding: 18px;
+  background-image: url("https://i.imgur.com/lZk5Fqk.png");
+  background-size: cover;
+  z-index: 1;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 90px);
+  gap: 20px;
+}
+
+.icon {
+  text-align: center;
+  font-size: 12px;
+  color: #7a2f55;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.icon img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 6px;
+}
+
+/* ===== TASKBAR (Copied from your perfect Index) ===== */
+.taskbar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 36px;
+    background: linear-gradient(#ffb7d9, #ff93c6);
+    border-top: 2px solid #ff6fb3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 12px;
+    z-index: 500;
+}
+
+.taskbar-left {
+    display: flex;
+    gap: 6px;
+}
+
+/* ===== BUTTON STYLE (Copied from your perfect Index) ===== */
+.task-btn {
+  background: linear-gradient(#fff, #ffd6ea);
+  border: 2px solid #ff6fb3;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+h1 { font-size: 15px; color: #fffede; text-align: center; margin: 0 0 10px; letter-spacing: 1px; background: #996855; padding: 2px; }
+button { 
+    font-family: inherit; background-color: #fdb1bf; border: 2px solid #996855; 
+    padding: 6px; width: 100%; margin-bottom: 6px; cursor: pointer; 
+    text-align: center; font-size: 11px; font-weight: bold; color: #692f1a;
+}
+button:hover { background: #fffede; }
+
+/* ===== START MENU (Matches Blog Window style) ===== */
+.start-menu {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  width: 200px;
+  background: #fff0f8;
+  border: 3px solid #ff9acb;
+  box-shadow: 0 8px 30px rgba(255,140,190,0.6);
+  display: none;
+  flex-direction: column;
+  padding: 8px;
+  z-index: 1000;
+}
+
+.start-menu button {
+  background: none;
+  border: none;
+  padding: 8px;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  color: #692f1a;
+  border-radius: 4px;
+}
+
+.start-menu button:hover {
+  background: #ffd6ea;
+}
+
+/* ===== KEYBOARD (Copied from your perfect Index) ===== */
+.keyboard {
+    width: 800px; height: 200px;
+    background: linear-gradient(#ffd1e8, #f3a9c8);
+    margin: -10px auto 0;
+    border-radius: 0 0 26px 26px;
+    transform: rotateX(75deg) translateZ(-46px);
+    box-shadow: 0 80px 100px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<div class="room"></div>
+<div class="desk"></div>
+
+<div class="laptop-3d">
+  <div class="screen-shell">
+    <div class="screen-frame">
+      <div class="screen">
+
+        <div class="desktop">
+          <div class="icon-grid">
+            <div class="icon" onclick="location.href='index.html'">
+              <img src="https://i.imgur.com/kJXxHqG.png">
+              <div>My Blog</div>
+            </div>
+            <div class="icon" onclick="alert('Games coming soon ♡')">
+              <img src="https://i.imgur.com/3y7QX1E.png">
+              <div>Games</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="taskbar">
+          <div class="taskbar-left">
+            <button class="task-btn" onclick="toggleStart()">Start</button>
+            <button class="task-btn" onclick="location.reload()">Home</button>
+            
+          </div>
+          <div id="clock" style="font-weight: bold; color: #7a2f55;"></div>
+        </div>
+
+        <div class="start-menu" id="startMenu">
+          <button onclick="location.href='index.html'">✿ Open Blog</button>
+          <button onclick="alert('Settings Locked')">⚙ Settings</button>
+          <button onclick="alert('Shutting down...')">⏻ Shut Down</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="keyboard"></div>
+</div>
+
+<script>
+function updateClock() {
+    const clock = document.getElementById('clock');
+    const d = new Date();
+    let h = d.getHours();
+    let m = d.getMinutes();
+    let s = d.getSeconds();
+    m = m < 10 ? "0" + m : m;
+    s = s < 10 ? "0" + s : s;
+    clock.textContent = h + ":" + m + ":" + s;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+function toggleStart() {
+  const menu = document.getElementById('startMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Close menu if clicking desktop wallpaper
+document.querySelector('.desktop').onclick = function() {
+    document.getElementById('startMenu').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
