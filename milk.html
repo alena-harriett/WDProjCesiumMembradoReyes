@@ -190,7 +190,7 @@ body {
 
 .directory { flex: 3; }
 .profile { flex: 7; position: relative; }
-.profile img.side-gif { float: right; width: 45%; border: 2px solid #996855; margin-left: 10px; }
+.profile img.side-gif { float: right; width: 45%; margin-left: 10px; }
 
 .updates { flex: 3.25; background-color: #fdb1bf; }
 .todo { flex: 2.7; }
@@ -240,6 +240,17 @@ p, li { font-size: 12px; line-height: 1.4; margin: 4px 0; }
     transform: rotateX(75deg) translateZ(-46px);
     box-shadow: 0 80px 100px rgba(0,0,0,0.4);
 }
+
+/* ===== MUSIC PLAYER STYLE ===== */
+#musicplayer { background: #fffede; border: 2px solid #996855; padding: 8px; margin-top: 10px; border-radius: 4px; }
+.controls { width: 100%; margin-bottom: 5px; }
+.controls td { text-align: center; }
+.ctrlimg { width: 22px; cursor: pointer; filter: sepia(1) hue-rotate(-50deg) saturate(2); }
+.songtitle { font-size: 10px; color: #692f1a; background: #fdb1bf; display: block; padding: 2px; border: 1px solid #996855; margin-bottom: 8px; }
+.seeking, .slider_container { display: flex; align-items: center; justify-content: space-between; font-size: 9px; margin: 5px 0; gap: 5px; }
+input[type=range] { -webkit-appearance: none; width: 100%; background: #caa3b4; height: 3px; border-radius: 5px; outline: none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 8px; height: 8px; background: #996855; cursor: pointer; border-radius: 50%; }
+
 </style>
 </head>
 
@@ -273,9 +284,8 @@ p, li { font-size: 12px; line-height: 1.4; margin: 4px 0; }
                                 <h1>DIRECTORY</h1>
                                 <button onclick="location.reload()">Home</button>
                                 <a href="public/diary1.html"><button>Diary</button></a>
-                                <button>Shrines</button>
-                                <button>Guestbook</button>
-                                <button>Author's Note</button>
+                                <a href="public/shrines2.html"><button>Shrines</button></a >
+                                <a href = "public/guestbook1.html"><button>Guestbook</button></a>
                             </div>
 
                             <div class="box profile">
@@ -307,8 +317,33 @@ p, li { font-size: 12px; line-height: 1.4; margin: 4px 0; }
 
                             <div class="box music">
                                 <h1>MUSIC</h1>
-                                <p style="text-align:center">♪ Now Playing ♪<br><b>Tommy february6</b></p>
-                                <div style="background:#000; height:40px; border:1px inset #fff; margin-top:10px;"></div>
+                                <div id="musicplayer">
+                                    <table class="controls">
+                                        <tbody><tr>
+                                            <td><div class="prev-track" onclick="alert('Use the Spotify player to skip!')"><img class="ctrlimg" src="https://file.garden/Zztv0a9yEhr5pmEq/back.png"></div></td>
+                                            <td><div class="playpause-track" onclick="alert('Click Play on the Spotify box!')"><img class="ctrlimg" src="https://file.garden/Zztv0a9yEhr5pmEq/play.png"></div></td>
+                                            <td><div class="next-track" onclick="alert('Use the Spotify player to skip!')"><img class="ctrlimg" src="https://file.garden/Zztv0a9yEhr5pmEq/next.png"></div></td>
+                                        </tr></tbody>
+                                    </table>
+                                    
+                                    <div>
+                                        <marquee scrollamount="5" class="songtitle">Now Streaming from Spotify Playlist...</marquee>
+                                    </div>
+
+                                    <iframe style="border-radius:8px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZqdYmS905gh?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                                    <div class="seeking">
+                                        <div class="current-time">0:00</div>
+                                        <input type="range" min="1" max="100" value="0" class="seek_slider">
+                                        <div class="total-duration">-:--</div>
+                                    </div>
+
+                                    <div class="slider_container">
+                                        <span>🔈</span>
+                                        <input type="range" min="0" max="20" value="10" class="volume_slider">
+                                        <span>🔊</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

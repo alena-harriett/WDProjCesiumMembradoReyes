@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guestbook𐔌՞. .՞𐦯</title>
+
+<style>
+/* ===== GLOBAL & 3D SHARED SETTINGS ===== */
+* { box-sizing: border-box; }
+img { image-rendering: pixelated; }
+body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sans-serif; perspective: 1600px; overflow: hidden; background: #000; }
+.room { position: absolute; inset: 0; background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%); }
+.desk { position: absolute; bottom: 0; width: 100%; height: 38%; background: linear-gradient(#caa08c, #a97c65); box-shadow: inset 0 20px 40px rgba(0,0,0,0.25); }
+.laptop-3d { width: 800px; height: 600px; position: absolute; bottom: 18%; left: 50%; transform: translateX(-50%) rotateX(18deg); transform-style: preserve-3d; }
+.screen-shell { width: 760px; height: 460px; background: linear-gradient(#ffd9eb, #f6bcd3); border-radius: 18px; padding: 18px; box-shadow: 0 60px 120px rgba(0,0,0,0.45); }
+.screen-frame { background: #fff3f9; height: 100%; padding: 14px; border-radius: 10px; box-shadow: inset 0 0 0 3px #ffb3d9; }
+.screen { position: relative; height: 100%; background: linear-gradient(#fffdfc, #ffeef6); overflow: hidden; }
+
+/* ===== BLOG WINDOW ===== */
+.blog-window { position: absolute; inset: 10px; bottom: 45px; background-color: #996855; border: 4px solid #f8accf; display: flex; flex-direction: column; z-index: 10; }
+.blog-titlebar { background: linear-gradient(#ffd6ea, #ffb7d9); padding: 6px 10px; display: flex; justify-content: space-between; font-weight: bold; color: #692f1a; font-size: 14px; border-bottom: 2px solid #ff9acb; }
+.blog-scroll-area { flex: 1; overflow-y: auto; background-image: url("https://i.pinimg.com/736x/28/d8/2a/28d82a402a6f78e40d10bcf2c2fcc33f.jpg"); padding: 15px; }
+
+/* ===== GUESTBOOK CONTENT (Diary Sizing) ===== */
+.Header { width: 100%; height: 130px; border: 3px solid #e19c91; margin-bottom: 12px; background: #fffede; overflow: hidden; }
+.Header img { width: 100%; height: 100%; object-fit: cover; }
+.Divider { width: 100%; height: 35px; border: 2px solid #e19c91; margin-bottom: 12px; background: #fffede; }
+.Divider img { width: 100%; height: 100%; object-fit: cover; }
+
+.flex-container1, .flex-container2 { display: flex; gap: 12px; margin-bottom: 12px; }
+.box { background-color: #e19c91; border: 3px solid #996855; padding: 12px; color: #692f1a; text-align: center;}
+
+.Directory, .Updates { width: 150px; flex-shrink: 0; }
+.GuestbookLog { flex: 7; }
+.GuestbookHistory { flex: 4.5; }
+.GiftShelf { flex: 2.25; }
+
+h1 { font-size: 14px; color: #fffede; text-align: center; margin: 0 0 10px; background: #996855; padding: 2px; letter-spacing: 1px; }
+
+.blog-btn { font-family: inherit; background-color: #fdb1bf; border: 2px solid #996855; padding: 6px; width: 100%; margin-bottom: 6px; cursor: pointer; text-align: center; font-size: 11px; font-weight: bold; color: #692f1a; }
+.blog-btn:hover { background: #fffede; }
+
+p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
+textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #fffede; font-family: inherit; font-size: 11px; padding: 5px; margin-bottom: 5px; resize: none; }
+
+.guestbook-comment { background: rgba(255,255,255,0.4); border: 1px dashed #996855; padding: 8px; margin-top: 8px; text-align: left; }
+.guestbook-comment h3 { font-size: 9px; margin: 0; color: #692f1a; }
+
+/* ===== POPUP WINDOW ===== */
+#historyPopup { 
+    display: none; position: absolute; top: 50px; left: 100px; width: 300px; height: 320px; 
+    background: #fffede; border: 3px solid #996855; z-index: 2000; flex-direction: column;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+}
+.popup-content { padding: 10px; overflow-y: auto; flex: 1; font-size: 11px; }
+.history-entry { border-bottom: 1px dashed #996855; padding: 5px 0; margin-bottom: 5px; text-align: left; }
+.history-entry span { font-weight: bold; font-size: 9px; color: #e19c91; }
+
+/* GIFT SHELF */
+.gift-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; text-align: center; }
+.gift-item { font-size: 18px; filter: drop-shadow(1px 1px 0px #996855); cursor: help; }
+.gift-item span { font-size: 8px; display: block; color: #692f1a; font-weight: bold; }
+
+/* ===== TASKBAR (Matches Diary Exactly) ===== */
+.taskbar { position: absolute; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#ffb7d9, #ff93c6); border-top: 2px solid #ff6fb3; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 12px; z-index: 500; }
+.taskbar-left { display: flex; gap: 6px; }
+.task-btn { 
+    background: linear-gradient(#fff, #ffd6ea); 
+    border: 2px solid #ff6fb3; 
+    border-radius: 6px; 
+    padding: 4px 10px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    font-family: inherit; 
+    color: #7a2f55; 
+    height: 26px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; /* Ensures centered text */
+    font-size: 12px;
+}
+.task-btn:hover { background: #fff; }
+
+.keyboard { width: 800px; height: 200px; background: linear-gradient(#ffd1e8, #f3a9c8); margin: -10px auto 0; border-radius: 0 0 26px 26px; transform: rotateX(75deg) translateZ(-46px); box-shadow: 0 80px 100px rgba(0,0,0,0.4); }
+</style>
+</head>
+
+<body>
+<div class="room"></div><div class="desk"></div>
+
+<div class="laptop-3d">
+    <div class="screen-shell">
+        <div class="screen-frame">
+            <div class="screen">
+                
+                <div id="historyPopup">
+                    <div class="blog-titlebar">
+                        <span>Archive_Logs.txt</span>
+                        <span style="cursor:pointer;" onclick="togglePopup()">[ X ]</span>
+                    </div>
+                    <div class="popup-content">
+                        <div class="history-entry"><span>2022:</span> "Your blog is so cozy, Clem! Love your outfits."</div>
+                        <div class="history-entry"><span>2023:</span> "Clementine, I bought the same camera as you! Reply pls?"</div>
+                        <div class="history-entry"><span>Early 2024:</span> "Why aren't you smiling in this one? You look better when you smile."</div>
+                        <div class="history-entry"><span>Late 2024:</span> "WE SAW YOU AT THE PARK. YOU DIDN'T LOOK LIKE YOUR PHOTOS."</div>
+                        <div class="history-entry"><span>System:</span> [OVERFLOW ERROR: 40,000+ NEW COMMENTS]</div>
+                    </div>
+                </div>
+
+                <div class="blog-window">
+                    <div class="blog-titlebar">
+                        <span>✿ Clemmy's Corner - Guestbook ✿</span>
+                        <span style="cursor:pointer;" onclick="window.location.href='../desktop.html'">[ X ]</span>
+                    </div>
+                    
+                    <div class="blog-scroll-area">
+                        <div class="Header"><img src="https://64.media.tumblr.com/3b7e48caed4da480110eff58a9b8f851/f68b1ecfcc71eb9c-da/s250x400/a77da1387f446ad85049fc55a4061b0b51157841.gif"></div>
+                        <div class="Divider"><img src="https://i5.glitter-graphics.org/pub/726/726615qqay0z8qmb.gif"></div>
+
+                        <div class="flex-container1">
+                            <div class="box Directory">
+                                <h1>DIRECTORY</h1>
+                                <button class="blog-btn" onclick="window.location.href='../desktop.html'">Home</button>
+                                <button class="blog-btn" onclick="window.location.href='diary1.html'">Diary</button>
+                                <button class="blog-btn" onclick="window.location.href='shrines2.html'">Shrines</button>
+                                <button class="blog-btn" onclick="location.reload()">Guestbook</button>
+                            </div>
+                            <div class="box GuestbookLog">
+                                <h1>Leave a Log</h1>
+                                <p>Clemmy’s Corner is always changing, always unfinished, and always growing in small ways. I hope you found something cozy here, even if it was just a moment of calm or a cute gif that made you smile. Feel free to leave anything you’d like: a greeting, a thought, or even just your name. It all means a lot to me.</p>
+                                <textarea id="newComment" placeholder="Write something perfect..."></textarea>
+                                <button class="blog-btn" onclick="saveLog()">Post Log</button>
+                            </div>
+                        </div>
+
+                        <div class="flex-container2">
+                            <div class="box Updates">
+                                <h1>STATUS</h1>
+                                <p style="font-size: 9px; color: #fffede; background: #996855; padding: 2px;">Popularity: ★★★★★</p>
+                                <img src="https://64.media.tumblr.com/9f25f4d69e58f4066e525fee2bda99e4/ebffab2ff4de37b8-74/s250x400/970b79b0b84fc855656733b55701338bb52057ea.gif" style="width: 100%; height: auto; margin-top: 6px;">
+                                <p style="font-size: 9px; margin-top: 5px;"><i>"Don't stop looking."</i></p>
+                            </div>
+                            
+                            <div class="box GuestbookHistory">
+                                <h1>RECENT LOGS</h1>
+                                <div id="commentsContainer" style="max-height: 180px; overflow-y: auto;"></div>
+                                <br><button class="blog-btn" onclick="togglePopup()">History</button>
+                            </div>
+
+                            <div class="box GiftShelf">
+                                <h1>GIFTS</h1>
+                                <div class="gift-grid">
+                                    <div class="gift-item" title="A bear.">🧸<span>Plushies</span></div>
+                                    <div class="gift-item" title="Pretty!">💄<span>Makeup</span></div>
+                                    <div class="gift-item" title="Smile!">🎀<span>Accessories</span></div>
+                                    <div class="gift-item" title="Watch.">🍰<span>Food</span></div> 
+                                </div>
+                                <p style="font-size: 8px; margin-top: 8px;">Gifts: 48,293</p>
+                            </div>
+                        </div>
+
+                        <div class="Footer" style="text-align:center; padding: 10px; background: #996855; color: white; font-size: 10px;">
+                            © 2025 Clemmy’s Corner — Made With Love ♡
+                        </div>
+                    </div>
+                </div>
+
+                <div class="taskbar">
+                    <div class="taskbar-left">
+                        <button class="task-btn" onclick="alert('ClemmyOS v1.0')">Start</button>
+                        <button class="task-btn" onclick="window.location.href='../desktop.html'">Home</button>
+                    </div>
+                    <div id="clock" style="font-weight: bold; color: #7a2f55;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="keyboard"></div>
+</div>
+
+<script>
+function updateClock() {
+    const clock = document.getElementById('clock');
+    const d = new Date();
+    clock.textContent = d.getHours() + ":" + (d.getMinutes()<10?'0':'') + d.getMinutes() + ":" + (d.getSeconds()<10?'0':'') + d.getSeconds();
+}
+setInterval(updateClock, 1000); updateClock();
+
+function togglePopup() {
+    const pop = document.getElementById('historyPopup');
+    pop.style.display = (pop.style.display === 'flex') ? 'none' : 'flex';
+}
+
+function saveLog() {
+    const textInput = document.getElementById('newComment');
+    const text = textInput.value;
+    if (!text) return;
+    const log = { text, date: new Date().toLocaleDateString() };
+    let logs = JSON.parse(localStorage.getItem('savedGuestbookLogs')) || [];
+    logs.push(log);
+    localStorage.setItem('savedGuestbookLogs', JSON.stringify(logs));
+    textInput.value = "";
+    loadLogs();
+}
+
+function loadLogs() {
+    const container = document.getElementById('commentsContainer');
+    const logs = JSON.parse(localStorage.getItem('savedGuestbookLogs')) || [];
+    const defaultLogs = [
+        { text: "Where are you? It's been 2 days. The stage feels empty.", date: "STILL WAITING" },
+        { text: "We love you, Clementine. Don't ever stop posting. We need you.", date: "02/15/25" },
+        { text: "I found your house! I'm leaving a gift at the gate! ♡", date: "02/12/25" }
+    ];
+    const displayLogs = logs.length > 0 ? logs : defaultLogs;
+    container.innerHTML = displayLogs.map(l => `
+        <div class="guestbook-comment">
+            <h3>Anonymous — ${l.date}</h3>
+            <p>${l.text}</p>
+        </div>
+    `).reverse().join('');
+}
+loadLogs();
+</script>
+</body>
+</html>

@@ -6,6 +6,7 @@
 <title>ClemmyOS Login</title>
 
 <style>
+/* ===== GLOBAL SETTINGS ===== */
 * { box-sizing: border-box; }
 img { image-rendering: pixelated; }
 
@@ -15,36 +16,24 @@ body {
     font-family: "MS PGothic", Verdana, monospace;
     perspective: 1600px;
     overflow: hidden;
+    background: #000; 
 }
 
-/* ===== ROOM ===== */
+/* ===== ROOM & SCENERY ===== */
 .room {
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(to bottom,
-            #fdeaf2 0%,
-            #f8cfe1 55%,
-            #caa3b4 56%,
-            #b38b9b 100%);
+    background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%);
 }
 
-/* wall texture */
+/* Wall texture & Window Light */
 .room::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.12),
-            rgba(255,255,255,0.12) 1px,
-            transparent 1px,
-            transparent 6px
-        );
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,0.12), rgba(255,255,255,0.12) 1px, transparent 1px, transparent 6px);
 }
 
-/* window light */
 .room::after {
     content: "";
     position: absolute;
@@ -52,11 +41,7 @@ body {
     left: 12%;
     width: 600px;
     height: 400px;
-    background: radial-gradient(
-        ellipse,
-        rgba(255,255,255,0.45),
-        rgba(255,255,255,0.15),
-        transparent 70%);
+    background: radial-gradient(ellipse, rgba(255,255,255,0.45), rgba(255,255,255,0.15), transparent 70%);
     filter: blur(30px);
 }
 
@@ -70,21 +55,7 @@ body {
     box-shadow: inset 0 20px 40px rgba(0,0,0,0.25);
 }
 
-.desk::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,255,255,0.06),
-            rgba(255,255,255,0.06) 2px,
-            transparent 2px,
-            transparent 6px
-        );
-}
-
-/* ===== LAPTOP ===== */
+/* ===== LAPTOP 3D STRUCTURE ===== */
 .laptop-3d {
     width: 800px;
     height: 600px;
@@ -95,19 +66,19 @@ body {
     transform: translateX(-50%) rotateX(18deg);
 }
 
-/* ===== SCREEN ===== */
+/* ===== SCREEN SHELL & FRAME ===== */
 .screen-shell {
     width: 760px;
     height: 460px;
     background: linear-gradient(#ffd9eb, #f6bcd3);
-    border-radius: 18px 18px 12px 12px;
+    border-radius: 18px;
     padding: 18px;
+    position: relative;
     transform-style: preserve-3d;
-    box-shadow:
-        0 60px 120px rgba(0,0,0,0.45),
-        inset 0 0 0 3px #ff9acb;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.45); /* Deep shadow */
 }
 
+/* 3D Depth for Shell */
 .screen-shell::after {
     content: "";
     position: absolute;
@@ -123,47 +94,37 @@ body {
     padding: 14px;
     border-radius: 10px;
     box-shadow: inset 0 0 0 3px #ffb3d9;
+    position: relative;
+    z-index: 2;
 }
 
 .screen {
     position: relative;
     height: 100%;
     background: linear-gradient(#fffdfc, #ffeef6);
-    border: 3px solid #ff9acb;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow:
-        inset 0 0 40px rgba(255,255,255,0.6),
-        inset 0 -16px 30px rgba(255,140,190,0.3);
 }
 
-/* CRT lines */
+/* CRT Lines & Glass Glare */
 .screen::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.12),
-            rgba(255,255,255,0.12) 1px,
-            transparent 1px,
-            transparent 3px
-        );
+    background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 1px, transparent 1px, transparent 3px);
+    z-index: 5;
+    pointer-events: none;
 }
 
-/* glass glare */
 .screen::after {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(120deg,
-            rgba(255,255,255,0.55) 0%,
-            rgba(255,255,255,0.15) 40%,
-            transparent 65%);
+    background: linear-gradient(120deg, rgba(255,255,255,0.5), transparent 60%);
     pointer-events: none;
+    z-index: 10;
 }
 
 /* ===== LOGIN UI ===== */
@@ -174,15 +135,15 @@ body {
     width: 320px;
     padding: 24px;
     text-align: center;
-    box-shadow:
-        0 24px 48px rgba(0,0,0,0.35),
-        inset 0 2px 0 rgba(255,255,255,0.9);
-    transform: translateZ(40px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.35), inset 0 2px 0 rgba(255,255,255,0.9);
+    z-index: 20;
+    position: relative;
 }
 
 .login-box h2 {
     margin: 0 0 16px;
     color: #ff7fb8;
+    font-size: 18px;
 }
 
 .login-box input {
@@ -192,12 +153,7 @@ body {
     border: 2px solid #ff9acb;
     border-radius: 6px;
     font-family: monospace;
-}
-
-.login-box input:focus {
-    outline: none;
-    border-color: #ff5fa8;
-    box-shadow: 0 0 8px rgba(255,127,184,0.7);
+    background: #fff;
 }
 
 .login-btn {
@@ -209,14 +165,11 @@ body {
     color: white;
     border-radius: 6px;
     cursor: pointer;
-    font-family: "MS PGothic", Verdana, monospace;
-    font-size: 14px;
+    font-weight: bold;
+    font-family: inherit;
 }
-
-.line {
-    font-size: 12px;
-    margin-top: 8px;
-    min-height: 16px;
+.login-btn:hover {
+    background: #ff7fb8;
 }
 
 /* ===== KEYBOARD ===== */
@@ -227,10 +180,7 @@ body {
     margin: -10px auto 0;
     border-radius: 0 0 26px 26px;
     transform: rotateX(75deg) translateZ(-46px);
-    box-shadow:
-        0 100px 150px rgba(0,0,0,0.55),
-        inset 0 10px 16px rgba(255,255,255,0.6),
-        inset 0 -10px 14px rgba(200,80,130,0.6);
+    box-shadow: 0 80px 100px rgba(0,0,0,0.4);
 }
 </style>
 </head>
@@ -299,13 +249,12 @@ function autoLogin(){
 }
 
 document.getElementById("loginBtn").onclick = ()=>{
-    if(usernameInput.value === REAL_USERNAME &&
-       passwordInput.value === REAL_PASSWORD){
-        typeMessage("Logging you in...", ()=>{
+    if(usernameInput.value === REAL_USERNAME && passwordInput.value === REAL_PASSWORD){
+         typeMessage("Logging you in...", ()=>{
             setTimeout(()=>location.href="desktop.html", 800);
-        });
+         });
     } else {
-        typeMessage("Incorrect username or password");
+         typeMessage("Incorrect username or password");
     }
 };
 
