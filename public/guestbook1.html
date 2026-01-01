@@ -83,6 +83,19 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
 .task-btn:hover { background: #fff; }
 
 .keyboard { width: 800px; height: 200px; background: linear-gradient(#ffd1e8, #f3a9c8); margin: -10px auto 0; border-radius: 0 0 26px 26px; transform: rotateX(75deg) translateZ(-46px); box-shadow: 0 80px 100px rgba(0,0,0,0.4); }
+/* ===== STATUS BOX ADDITIONS ===== */
+.visitor-counter {
+    background: #fffede;
+    color: #ff6fb3;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding: 2px 5px;
+    border: 1px solid #996855;
+    display: inline-block;
+    margin: 5px 0;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
 </style>
 </head>
 
@@ -139,7 +152,10 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                                 <h1>STATUS</h1>
                                 <p style="font-size: 9px; color: #fffede; background: #996855; padding: 2px;">Popularity: ★★★★★</p>
                                 <img src="https://64.media.tumblr.com/9f25f4d69e58f4066e525fee2bda99e4/ebffab2ff4de37b8-74/s250x400/970b79b0b84fc855656733b55701338bb52057ea.gif" style="width: 100%; height: auto; margin-top: 6px;">
-                                <p style="font-size: 9px; margin-top: 5px;"><i>"Don't stop looking."</i></p>
+                                <div style="margin: 8px 0;">
+                                    <span style="font-size: 8px; display: block; margin-bottom: 2px;">VISITORS:</span>
+                                    <div class="visitor-counter" id="hitCounter">000000</div>
+                                </div>
                             </div>
                             
                             <div class="box GuestbookHistory">
@@ -222,6 +238,18 @@ function loadLogs() {
     `).reverse().join('');
 }
 loadLogs();
+
+/* VISITOR COUNTER LOGIC */
+function incrementCounter() {
+    let count = localStorage.getItem('visitorCount') || 0;
+    count = parseInt(count) + 1;
+    localStorage.setItem('visitorCount', count);
+    
+    // Pad with zeros to look like a real counter (e.g., 000142)
+    const displayStr = count.toString().padStart(6, '0');
+    document.getElementById('hitCounter').textContent = displayStr;
+}
+incrementCounter();
 </script>
 </body>
 </html>

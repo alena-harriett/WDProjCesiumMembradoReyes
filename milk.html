@@ -383,6 +383,16 @@ updateClock();
 function exitToDesktop() {
     window.location.href = "desktop.html";
 }
+
+function toggleStart() {
+  const menu = document.getElementById('startMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Close menu if clicking desktop wallpaper
+document.querySelector('.desktop').onclick = function() {
+    document.getElementById('startMenu').style.display = 'none';
+}
 </script>
 
 </body>
