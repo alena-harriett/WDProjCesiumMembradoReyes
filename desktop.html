@@ -109,6 +109,31 @@ body {
   margin-bottom: 6px;
 }
 
+/* ===== NOTEPAD WINDOW (README) ===== */
+.window {
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    width: 400px;
+    background: #f0f0f0;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 #fff inset, -2px -2px 0 #808080 inset, 4px 4px 10px rgba(0,0,0,0.3);
+    display: none;
+    z-index: 2000;
+}
+.title-bar {
+    background: linear-gradient(90deg, #ff6fb3, #ffb7d9);
+    color: white;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+.close-btn { background: #ccc; border: 1px solid #000; width: 16px; height: 16px; font-size: 10px; cursor: pointer; text-align: center; line-height: 12px; }
+.window-body { padding: 10px; background: white; border: 1px solid #808080; margin: 2px; height: 250px; overflow-y: auto; font-family: "Courier New", Courier, monospace; font-size: 12px; color: #333; }
+
 /* ===== TASKBAR ===== */
 .taskbar {
     position: absolute;
@@ -205,11 +230,43 @@ button:hover { background: #fffede; }
               <img src="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg">
               <div>My Blog</div>
             </div>
+            
+              <div class="icon" onclick="openReadme()">
+              <img src="https://img.icons8.com/color/96/document.png">
+              <div>README.txt</div>
+            </div>
+
             <div class="icon" onclick="alert('Games coming soon ♡')">
               <img src="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg">
               <div>Games</div>
             </div>
           </div>
+        </div>
+
+        <div class="window" id="readmeWindow">
+            <div class="title-bar">
+                <span>README.txt - Notepad</span>
+                <button class="close-btn" onclick="closeReadme()">X</button>
+            </div>
+            <div class="window-body">
+                <strong>CASE FILE: #0215-CLEM</strong><br>
+                -----------------------------------<br>
+                <strong>Background:</strong><br>
+                Clementine was a standard hobbyist blogger until she acquired a second-hand computer from a friend (purchased at a yard sale). Device appeared to be a "steal."<br><br>
+                
+                <strong>The Infection:</strong><br>
+                Within seven days, system stability began to degrade. The hardware began self-powering at 03:00 AM, always defaulting to the blog homepage. Fans reported a shift in content; the "Clementine" persona became increasingly rigid, obsessed with "perfection."<br><br>
+                
+                <strong>The Entity:</strong><br>
+                An uncatalogued, formless entity resides within the local drive. It thrives on fear and insecurity. Reports indicate the entity has "bled" into physical space. Subject claimed to feel <span class="glitch-text">something sharp grabbing at her back</span> during sleep.<br><br>
+                
+                <strong>Last Known Contact:</strong><br>
+                A final diary entry was posted showing a redacted figure in the snow. Subject was holding a hammer. The hardware remained undamaged. <br><br>
+                <em>"YOU WILL NEVER GET RID OF ME."</em><br><br>
+                -----------------------------------<br>
+                <strong>INVESTIGATOR NOTE:</strong><br>
+                Hover over the <span style="color: #692f1a; font-weight: bold;">brown redacted bars</span> in the diary. The entity hates being seen. Reveal the truth before the "Live Viewers" finish downloading.
+            </div>
         </div>
 
         <div class="taskbar">
@@ -251,6 +308,15 @@ updateClock();
 function toggleStart() {
   const menu = document.getElementById('startMenu');
   menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function openReadme() {
+    document.getElementById('readmeWindow').style.display = 'block';
+    document.getElementById('startMenu').style.display = 'none';
+}
+
+function closeReadme() {
+    document.getElementById('readmeWindow').style.display = 'none';
 }
 
 // Close menu if clicking desktop wallpaper

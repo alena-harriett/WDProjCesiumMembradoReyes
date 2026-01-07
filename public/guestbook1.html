@@ -96,6 +96,33 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
     font-size: 14px;
     letter-spacing: 2px;
 }
+
+/* Jumpscare / Creepy Overlay */
+#horrorOverlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 20%, red 80%), url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXhuanVvZ2Vwc2gxanFvdnliYmo5MzdrbDc0YWM3eXZpam5kdGRmYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2fDq28RklgMxAbDRzO/giphy.gif');
+    background-size: cover;
+    background-position: center;
+    z-index: 9999;
+    display: none;
+    opacity: 100%;
+    pointer-events: none;
+}
+
+.glitch-red {
+    filter: contrast(2) brightness(0.5) sepia(1) hue-rotate(-50deg) !important;
+    animation: shake 0.1s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    40% { transform: translate(3px, 2px) rotate(-1deg); }
+    60% { transform: translate(-1px, -1px) rotate(1deg); }
+    80% { transform: translate(-3px, 1px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
 </style>
 </head>
 
@@ -154,7 +181,7 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                                 <img src="https://64.media.tumblr.com/9f25f4d69e58f4066e525fee2bda99e4/ebffab2ff4de37b8-74/s250x400/970b79b0b84fc855656733b55701338bb52057ea.gif" style="width: 100%; height: auto; margin-top: 6px;">
                                 <div style="margin: 8px 0;">
                                     <span style="font-size: 8px; display: block; margin-bottom: 2px;">VISITORS:</span>
-                                    <div class="visitor-counter" id="hitCounter">000000</div>
+                                    <div class="visitor-counter" id="hitCounter">012482</div>
                                 </div>
                             </div>
                             
@@ -164,18 +191,20 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                                 <br><button class="blog-btn" onclick="togglePopup()">History</button>
                             </div>
 
-                            <div class="box GiftShelf">
-                                <h1>GIFTS</h1>
-                                <div class="gift-grid">
-                                    <div class="gift-item" title="A bear.">🧸<span>Plushies</span></div>
-                                    <div class="gift-item" title="Pretty!">💄<span>Makeup</span></div>
-                                    <div class="gift-item" title="Smile!">🎀<span>Accessories</span></div>
-                                    <div class="gift-item" title="Watch.">🍰<span>Food</span></div> 
-                                </div>
-                                <p style="font-size: 8px; margin-top: 8px;">Gifts: 48,293</p>
+                            <div id="horrorOverlay"></div>
+
+                        <div class="box GiftShelf">
+                            <h1>GIFTS</h1>
+                            <div class="gift-grid">
+                                <div class="gift-item" title="A bear.">🧸<span>Plushies</span></div>
+                                <div class="gift-item" title="Pretty!">💄<span>Makeup</span></div>
+                                <div class="gift-item" title="Smile!">🎀<span>Accessories</span></div>
+                                <div class="gift-item" title="Watch.">🍰<span>Food</span></div> 
+                            </div>
+                            <button class="blog-btn" style="margin-top:10px; background:#ff9acb;" onclick="sendGift()">Send Gift ♡</button>
+                            <p style="font-size: 8px; margin-top: 8px;">Gifts Received: <span id="giftCount">48293</span></p>
                             </div>
                         </div>
-
                         <div class="Footer" style="text-align:center; padding: 10px; background: #996855; color: white; font-size: 10px;">
                             © 2025 Clemmy’s Corner — Made With Love ♡
                         </div>
@@ -225,9 +254,11 @@ function loadLogs() {
     const container = document.getElementById('commentsContainer');
     const logs = JSON.parse(localStorage.getItem('savedGuestbookLogs')) || [];
     const defaultLogs = [
-        { text: "Where are you? It's been 2 days. The stage feels empty.", date: "STILL WAITING" },
-        { text: "We love you, Clementine. Don't ever stop posting. We need you.", date: "02/15/25" },
-        { text: "I found your house! I'm leaving a gift at the gate! ♡", date: "02/12/25" }
+        { text: "YOU WILL NEVER GET RID OF ME.", date: "ERROR" },
+        { text: "Clementine? Why is your latest photo just a picture of the snow? Where are you?", date: "02/20/25" },
+        { text: "I can see the tall man in the trees in your last post. Please run.", date: "02/19/25" },
+        { text: "Does anyone else hear whispering when they stay on this page too long?", date: "02/18/25" },
+        { text: "She looks so much more 'perfect' since she got the new PC. Like a doll.", date: "02/16/25" }
     ];
     const displayLogs = logs.length > 0 ? logs : defaultLogs;
     container.innerHTML = displayLogs.map(l => `
@@ -239,17 +270,75 @@ function loadLogs() {
 }
 loadLogs();
 
+function loadLogs() {
+    const container = document.getElementById('commentsContainer');
+    
+    const savedLogs = JSON.parse(localStorage.getItem('savedGuestbookLogs')) || [];
+    
+    const loreLogs = [
+        { text: "DO NOT GO INTO THE SNOW.", date: "STILL WAITING" },
+        { text: "The camera is watching you even when the light is off.", date: "02/15/25" },
+        { text: "I'm outside. Open the window Clementine.", date: "02/12/25" },
+        { text: "She looks so much more 'perfect' since she got the new PC. Like a doll.", date: "02/10/25" },
+        { text: "Why is there a shadow in the kitchen? You live alone.", date: "02/08/25" }
+    ];
+
+    const allLogs = [...savedLogs.reverse(), ...loreLogs];
+
+    container.innerHTML = allLogs.map(l => `
+        <div class="guestbook-comment">
+            <h3>Anonymous — ${l.date}</h3>
+            <p>${l.text}</p>
+        </div>
+    `).join('');
+}
+
 /* VISITOR COUNTER LOGIC */
 function incrementCounter() {
-    let count = localStorage.getItem('visitorCount') || 0;
-    count = parseInt(count) + 1;
-    localStorage.setItem('visitorCount', count);
-    
-    // Pad with zeros to look like a real counter (e.g., 000142)
-    const displayStr = count.toString().padStart(6, '0');
-    document.getElementById('hitCounter').textContent = displayStr;
+    let count = 666000;
+    const hitCounter = document.getElementById('hitCounter');
+    setInterval(() => {
+        count += Math.floor(Math.random() * 10);
+        hitCounter.textContent = count.toString().padStart(6, '0');
+    }, 100);
 }
+    
 incrementCounter();
+
+function sendGift() {
+    const screen = document.querySelector('.screen');
+    const overlay = document.getElementById('horrorOverlay');
+    const countDisplay = document.getElementById('giftCount');
+    
+    screen.classList.add('glitch-red');
+    overlay.style.display = 'block';
+    setTimeout(() => {
+        
+        screen.classList.remove('glitch-red');
+        overlay.style.display = 'none';
+        
+
+        let currentGifts = parseInt(countDisplay.innerText);
+        countDisplay.innerText = currentGifts + 666;
+        countDisplay.style.color = "red";
+        countDisplay.style.fontWeight = "bold";
+
+
+        injectLoreComment("THANK YOU FOR THE OFFERING. YOU WILL BE REWARDED.");
+    }, 1500);
+}
+
+function injectLoreComment(msg) {
+    const container = document.getElementById('commentsContainer');
+    const newComment = document.createElement('div');
+    newComment.className = 'guestbook-comment';
+    newComment.style.border = "1px solid red";
+    newComment.innerHTML = `
+        <h3 style="color:red;">Anonymous    — ${new Date().toLocaleTimeString()}</h3>
+        <p style="color:red; font-weight:bold;">${msg}</p>
+    `;
+    container.prepend(newComment);
+}
 </script>
 </body>
 </html>
