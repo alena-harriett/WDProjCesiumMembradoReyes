@@ -29,7 +29,7 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .flex-container1, .flex-container2 { display: flex; gap: 12px; margin-bottom: 12px; width: 100%; }
 .box { border: 3px solid #996855; padding: 12px; color: #692f1a; text-align: left;}
 .Directory { width: 200px; flex-shrink: 0; background-color: #e19c91; }
-.Archives { width: 200px; flex-shrink: 0; background-color: #fdb1bf; }
+.Archives { width: 200px; flex-shrink: 0; background-color: #fdb1bf; height: 100%; }
 
 /* ===== GLITCH SYSTEM ===== */
 .glitch-overlay { position: absolute; inset: 0; background: rgba(255,0,0,0.15); display: none; z-index: 9999; pointer-events: none; mix-blend-mode: exclusion; }
@@ -45,9 +45,6 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .flex-container1, .flex-container2 { display: flex; gap: 12px; margin-bottom: 12px; width: 100%; }
 .box { border: 3px solid #996855; padding: 12px; color: #692f1a; text-align: left;}
 
-.Directory { width: 200px; flex-shrink: 0; background-color: #e19c91; }
-.Archives { width: 200px; flex-shrink: 0; background-color: #fdb1bf; }
-
 /* ===== MODAL STYLE ===== */
 .modal-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); display: none; justify-content: center; align-items: center; z-index: 5000; }
 .modal-window { width: 300px; background: #fffede; border: 3px solid #996855; box-shadow: 8px 8px 0px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
@@ -60,14 +57,14 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 
 .Spotlight { flex: 7; background-color: #e19c91; overflow: hidden; } 
 .Projects { flex: 3.375; background-color: #e19c91; }
-.Gallery { flex: 3.375; background-color: #e19c91; }
+.Gallery { flex: 3.375; height: 100%; background-color: #e19c91; }
 
 h1 { font-size: 14px; color: #fffede; text-align: center; margin: 0 0 10px; background: #996855; padding: 2px; letter-spacing: 1px; }
 p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
 .blog-btn { font-family: inherit; background-color: #fdb1bf; border: 2px solid #996855; padding: 6px; width: 100%; margin-bottom: 6px; cursor: pointer; text-align: center; font-size: 11px; font-weight: bold; color: #692f1a; display: block; text-decoration: none; }
 .blog-btn:hover { background: #fffede; }
 
-.spotlight-gallery { display: flex; overflow-x: auto; gap: 12px; padding: 8px 10px; background: rgba(255, 254, 222, 0.3); }
+.spotlight-gallery { display: flex; overflow-x: auto; gap: 12px; padding: 8px 10px; background: rgba(255, 254, 222, 0.3); height: 100%; box-sizing: border-box; }
 .spotlight-item img { height: 150px; border: 3px solid #996855; background: #fffede; }
 
 /* ===== TASKBAR ===== */
@@ -156,7 +153,19 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                 <a href="diary1.html" class="blog-btn">Diary</a>
                                 <a href="shrines2.html" class="blog-btn">Shrines</a>
                                 <a href="guestbook1.html" class="blog-btn">Guestbook</a>
+                                <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                                        <span style="font-size: 14px;">✧･ﾟ: *✧･ﾟ:*  *:･ﾟ✧*:･ﾟ✧</span>
                                 </div>
+                                <div style ="text-align: center;">
+                                <h1>WELCOME TO THE SHRINES</h1>
+                                <p>
+                                These are little digital altars I’ve made
+                                for the things and people I adore most.
+                                A collection of my current fixations,
+                                the characters and concepts that inspire me </p>
+                                <img src="https://media.tenor.com/0luUicFn14QAAAAi/love-you-gyaru.gif" style="width:60%; margin-top:10px; margin-bottom:10px; margin-left:auto; margin-right:auto;">
+                                </div>
+                            </div>
 
                             <div class="box Spotlight">
                                 <h1>SPOTLIGHT</h1>
@@ -169,10 +178,10 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                 If you don’t understand why something is here,
                                 that probably means it belongs.
                                 </p>
+                                <br>
                                 <div class="box Spotlight">
                                     <h1>CURRENT FIXATIONS</h1>
                                     <p style="text-align:center; font-style:italic; font-size: 9px;">✧ Click an icon to enter the shrine ✧</p>
-                                    
                                     <div class="spotlight-slider">
                                         <div class="fixation-card" onclick="openShrine('madoka')">
                                             <img src="https://media1.tenor.com/m/YTQ6Lx15K-cAAAAC/madoka-magica.gif">
@@ -190,12 +199,21 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                         <div class="fixation-card" onclick="openShrine('misa')">
                                             <img src="https://media1.tenor.com/m/WRO82nZrAgAAAAAd/death-note-misa-amane.gif">
                                             <span>misa</span>
+                                        </div>
                                     </div>
-                                    </div>
+                                </div>
+                                <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                                    <img src="https://external-media.spacehey.net/media/s0eSD8Y0lh284ZgLxanwnmDev7WrQjunDnvu4HtG3jSI=/https://64.media.tumblr.com/5ee9cbd08526450122d4ee02fa840cad/6c2288e9cfdf4bc6-7a/s250x400/a54b07a9257b83a3ac1b0d78d3b528ab0df81e3e.gifv" style="width:20%; margin-top:5px; margin-bottom:5px; margin-left:2px; margin-right:2px;">
+                                    <img src="https://external-media.spacehey.net/media/sjMlk0_SbnGpXNuQ2ABk_KIUmOgOxTWr3o24yF8LmxBg=/https://64.media.tumblr.com/255f4940446ec7fde529aa883e7c96f7/1b6561af1ed27a9d-20/s100x200/176c74e6b88fe72639e2d2d1a39fecd9a11cf52b.gifv" style="width:20%; margin-top:5px; margin-bottom:5px; margin-left:2px; margin-right:2px;">
+                                    <img src="https://external-media.spacehey.net/media/slkFE4kEohxA8J0ST0AlFYWhnmkj7YOgwEAYvRWA1QrI=/https://64.media.tumblr.com/c3621c77155df8c2e3a1f8046ab459d8/a5e34affd80f40d0-55/s100x200/7b403dbd3408c87f934b7f10c33df8d7ccf23c7e.gifv" style="width:20%; margin-top:5px; margin-bottom:5px; margin-left:5px; margin-right:2px;">
+                                    <img src="https://pix.crd.co/assets/images/gallery13/88cae855_original.png?v=c10c78ee" style="width:20%; margin-top:5px; margin-bottom:5px; margin-left:2px; margin-right:2px;">
+                                    <img src="https://pix.crd.co/assets/images/gallery14/aa2a9508_original.png?v=c10c78ee" style="width:20%; margin-top:5px; margin-bottom:5px; margin-left:2px; margin-right:2px;">
+                                    <img src="https://64.media.tumblr.com/39a94a8e906e351e71232baac48b5707/0a314c1722fc4072-a9/s100x200/56af5c99a3bd7458d7157f19ff6f6ab5c7d420e9.gifv" style="width:20%; margin-top:5px; margin-bottom:5px; margin-left:2px; margin-right:2px;">
+                                    <img src="https://pix.crd.co/assets/images/gallery14/05addb76_original.png?v=c10c78ee" style="width:20%; margin-top:5px; margin-bottom:5px; margin-left:2px; margin-right:2px;">
+                                    <img src="https://pix.crd.co/assets/images/gallery14/e4558ebb_original.png?v=c10c78ee" style="width:20%; margin-top:5px; margin-bottom:5px; margin-left:2px; margin-right:2px;">
                                 </div>
                             </div>
                         </div>
-
                         <div class="flex-container2">
                             <div class="box Archives">
                                 <h1>ARCHIVES</h1>
@@ -245,6 +263,10 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                         <div style="width: 5%; height: 100%; background: #fdb1bf;"></div>
                                     </div>
                                 </div>
+                                <div style ="text-align: center; margin-bottom: 10px;">
+                                        <span style="font-size: 10px; font-style: italic;">need to finish them soon...</span>
+                                <img src="https://media.tenor.com/pJg0lMkrmE8AAAAi/gyaru-tsundere.gif" style="width:50%; margin-top:10px; margin-left:auto; margin-right:auto;">
+                                </div>
                             </div>
 
                             <div class="box Gallery" style="overflow-y: auto; max-height: 250px;">
@@ -253,6 +275,8 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                 <p>This gallery is always changing. New things get added, old things get removed. It’s a reflection of my current mood and interests.</p>
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
                                     <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(-2deg);"><img src="https://i.pinimg.com/236x/8a/92/ef/8a92ef6f9d19f39088652d88a1099616.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">VIBE 01</p></div>
+                                    <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(3deg);"><img src="https://i.pinimg.com/236x/88/44/72/8844728590623a859e9a263836376517.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">MOOD 02</p></div>
+                                    <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(3deg);"><img src="https://i.pinimg.com/236x/88/44/72/8844728590623a859e9a263836376517.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">MOOD 02</p></div>
                                     <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(3deg);"><img src="https://i.pinimg.com/236x/88/44/72/8844728590623a859e9a263836376517.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">MOOD 02</p></div>
                                     <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(3deg);"><img src="https://i.pinimg.com/236x/88/44/72/8844728590623a859e9a263836376517.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">MOOD 02</p></div>
                                     <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(3deg);"><img src="https://i.pinimg.com/236x/88/44/72/8844728590623a859e9a263836376517.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">MOOD 02</p></div>
