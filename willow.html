@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClemmyOS - System Initialization</title>
+
+<style>
+/* REUSING YOUR 3D LAPTOP STYLES */
+* { box-sizing: border-box; }
+body {
+    margin: 0; height: 100vh; background: #000;
+    font-family: "MS PGothic", "Tahoma", Geneva, sans-serif;
+    perspective: 1600px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.room { position: absolute; inset: 0; background: linear-gradient(to bottom, #fdeaf2 0%, #caa3b4 100%); }
+.desk { position: absolute; bottom: 0; width: 100%; height: 38%; background: linear-gradient(#caa08c, #a97c65); }
+
+.laptop-3d {
+    width: 800px; height: 600px;
+    transform: rotateX(15deg);
+    transform-style: preserve-3d;
+}
+
+.screen-shell {
+    width: 760px; height: 460px; background: #ffd9eb;
+    border-radius: 18px; padding: 18px; margin: 0 auto;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+}
+
+.screen-frame { background: #fff3f9; height: 100%; padding: 14px; border-radius: 10px; }
+
+.screen {
+    position: relative; height: 100%;
+    background: #fffdfc; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* THE FORM WINDOW */
+.setup-window {
+    width: 400px; background: #f0f0f0;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 #fff inset, -2px -2px 0 #808080 inset;
+}
+
+.title-bar {
+    background: linear-gradient(90deg, #ff6fb3, #ffb7d9);
+    color: white; padding: 4px 8px;
+    font-size: 12px; font-weight: bold;
+}
+
+.window-body { padding: 20px; text-align: center; }
+
+h2 { font-size: 16px; color: #7a2f55; margin-top: 0; }
+p { font-size: 12px; color: #8b5a6d; margin-bottom: 20px; line-height: 1.4; }
+
+.form-group { text-align: left; margin-bottom: 15px; }
+label { display: block; font-size: 11px; font-weight: bold; margin-bottom: 5px; color: #4b2e21; }
+
+input, select {
+    width: 100%; padding: 6px;
+    border: 2px solid #ffb7d9;
+    background: #fff; font-family: inherit; font-size: 12px;
+}
+
+.btn-container { margin-top: 20px; }
+.submit-btn {
+    background: linear-gradient(#fff, #ffd6ea);
+    border: 2px solid #ff6fb3;
+    padding: 8px 20px; font-weight: bold;
+    cursor: pointer; color: #7a2f55; width: 100%;
+}
+.submit-btn:hover { background: #fff; }
+
+.keyboard {
+    width: 800px; height: 200px; background: #ffd1e8;
+    margin: -10px auto 0; border-radius: 0 0 26px 26px;
+    transform: rotateX(75deg) translateZ(-46px);
+}
+</style>
+</head>
+
+<body>
+<div class="room"></div>
+<div class="desk"></div>
+
+<div class="laptop-3d">
+  <div class="screen-shell">
+    <div class="screen-frame">
+      <div class="screen">
+
+        <div class="setup-window">
+            <div class="title-bar">System Setup Wizard v1.0</div>
+            <div class="window-body">
+                <img src="https://caitsith.neocities.org/toro/toro_sit.gif" style="width: 50px; margin-bottom: 10px;">
+                <h2>Welcome to ClemmyOS! ✿</h2>
+                <p>Before we begin our shared journey, I need to learn a little bit about you. Don't worry, your secrets are safe with me!</p>
+                
+                <form id="idForm">
+                    <div class="form-group">
+                        <label>USER IDENTITY (Name)</label>
+                        <input type="text" id="username" placeholder="Who am I caring for today?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>VESSEL BIRTH (Age/Birthday)</label>
+                        <input type="date" id="userAge" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>SYSTEM THEME (Preferred Mood)</label>
+                        <select id="userTheme">
+                            <option value="pink">Blushing Pink (Soft & Kind)</option>
+                            <option value="brown">Cozy Wood (Warm & Quiet)</option>
+                        </select>
+                    </div>
+
+                    <div class="btn-container">
+                        <button type="submit" class="submit-btn">Finalize Identity ✿</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="keyboard"></div>
+</div>
+
+<script>
+document.getElementById('idForm').onsubmit = function(e) {
+    e.preventDefault();
+    
+    // CAPTURE DATA
+    const name = document.getElementById('username').value;
+    const theme = document.getElementById('userTheme').value;
+    const birthday = document.getElementById('userAge').value;
+
+    // STORE DATA (The "Marking")
+    localStorage.setItem('clemmy_user', name);
+    localStorage.setItem('clemmy_theme', theme);
+    localStorage.setItem('clemmy_birthday', birthday);
+
+    // MOVE TO DESKTOP
+    alert("I've recorded you in my memory, " + name + ". I'm so happy we found each other!");
+    window.location.href = 'desktop.html';
+};
+</script>
+
+</body>
+</html>

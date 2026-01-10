@@ -88,7 +88,6 @@ body {
     rgba(255,255,255,0.5),
     transparent 60%
   );
-  pointer-events: none;
 }
 
 /* ===== DESKTOP ===== */
@@ -212,6 +211,7 @@ p, li { font-size: 12px; line-height: 1.4; margin: 4px 0; }
 
 /* ===== TASKBAR ===== */
 .taskbar {
+    cursor: url(https://cinni.net/images/adopt/pen_1.gif), auto;
     position: absolute;
     bottom: 0; left: 0; right: 0; height: 36px;
     background: linear-gradient(#ffb7d9, #ff93c6);
@@ -224,12 +224,13 @@ p, li { font-size: 12px; line-height: 1.4; margin: 4px 0; }
     z-index: 500;
 }
 .task-btn {
-  background: linear-gradient(#fff, #ffd6ea);
-  border: 2px solid #ff6fb3;
-  border-radius: 6px;
-  padding: 4px 10px;
-  font-weight: bold;
-  cursor: pointer;
+    cursor: url(https://cinni.net/images/adopt/pen_1.gif), auto;
+    background: linear-gradient(#fff, #ffd6ea);
+    border: 2px solid #ff6fb3;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .keyboard {
@@ -248,9 +249,137 @@ p, li { font-size: 12px; line-height: 1.4; margin: 4px 0; }
 .ctrlimg { width: 22px; cursor: pointer; filter: sepia(1) hue-rotate(-50deg) saturate(2); }
 .songtitle { font-size: 10px; color: #692f1a; background: #fdb1bf; display: block; padding: 2px; border: 1px solid #996855; margin-bottom: 8px; }
 .seeking, .slider_container { display: flex; align-items: center; justify-content: space-between; font-size: 9px; margin: 5px 0; gap: 5px; }
-input[type=range] { -webkit-appearance: none; width: 100%; background: #caa3b4; height: 3px; border-radius: 5px; outline: none; }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; background: #caa3b4; height: 3px; border-radius: 5px; outline: none; }
 input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 8px; height: 8px; background: #996855; cursor: pointer; border-radius: 50%; }
 
+/* Container that hides the overflow */
+.blinkie-scroller {
+    width: 100%;
+    overflow: hidden;
+    background: #fffede;
+    border-top: 2px solid #996855;
+    border-bottom: 2px solid #996855;
+    margin-top: 15px;
+    padding: 5px 0;
+    white-space: nowrap;
+}
+
+/* The actual moving row */
+.blinkie-track {
+    display: inline-flex;
+    gap: 10px;
+    animation: scroll-left 20s linear infinite;
+}
+
+/* Loop animation */
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Keep images crisp */
+.blinkie-track img {
+    height: 31px; /* Standard blinkie height */
+    flex-shrink: 0;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px;
+    background: #fffede;
+    border: 2px double #996855;
+    font-size: 11px;
+    color: #692f1a;
+  }
+  .stat-item {
+    border-bottom: 1px dotted #caa3b4;
+    padding: 2px 0;
+  }
+  .stat-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 9px;
+    color: #b38b9b;
+    display: block;
+  }
+
+/* Cutesy custom bullet points for the updates */
+.updates p {
+    position: relative;
+    padding-left: 18px;
+    font-size: 11px;
+    margin-bottom: 8px !important;
+}
+.updates p::before {
+    content: '🐾'; /* Tiny paw print or star */
+    position: absolute;
+    left: 0;
+    font-size: 10px;
+}
+
+/* Notebook style To-Do list */
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.todo-list li {
+    background: rgba(255, 255, 255, 0.4);
+    margin-bottom: 5px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #fdb1bf;
+    font-size: 11px;
+}
+.todo-list li input {
+    margin-right: 8px;
+    accent-color: #ff93c6;
+}
+.done {
+    text-decoration: line-through;
+    opacity: 0.6;
+
+/* Mood Sticker Styling */
+.mood-sticker {
+    background: #fffede;
+    border: 2px dashed #fdb1bf;
+    padding: 8px;
+    margin-top: 10px;
+    transform: rotate(-2deg); /* Tilts it to look like a real sticker */
+    box-shadow: 3px 3px 0px #996855;
+    text-align: center;
+    position: relative;
+    cursor: help;
+    transition: transform 0.2s;
+}
+
+.mood-sticker:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.mood-label {
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #b38b9b;
+    margin-bottom: 3px;
+}
+
+.mood-display {
+    font-size: 13px;
+    font-weight: bold;
+    color: #692f1a;
+}
+
+.mood-emoji {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 2px;
+}
+}
 </style>
 </head>
 
@@ -286,33 +415,74 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: 
                                 <a href="public/diary1.html"><button>Diary</button></a>
                                 <a href="public/shrines2.html"><button>Shrines</button></a >
                                 <a href = "public/guestbook1.html"><button>Guestbook</button></a>
+                                <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">feeling</span>
+                                    happy ٩(◕‿◕｡)۶
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">status</span>
+                                    listening to more j-pop ♪(๑ᴖ◡ᴖ๑)♪S
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">current version</span>
+                                    clemmyOS v1.0
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">display mode</span>
+                                    800x600 (perfect!)
+                                </div>
+                            </div> 
                             </div>
 
                             <div class="box profile">
-                                <h1>PROFILE</h1>
-                                <img src="https://media.tenor.com/BNcELzaiMDkAAAAi/happy-valentines-day-my-love.gif" class="side-gif">
-                                <p>Welcome to <b>Clemmy’s Corner</b>!</p>
-                                <p>This site is forever under construction.</p>
-                                <p>Status: Coding... ☕</p>
-                                <p>૮ ˶ᵔ ᵕ ᵔ˶ ა</p>
+                                <h1>ABOUT ME</h1>
+                                <div class="box profile">
+                                    <img src="https://media.tenor.com/BNcELzaiMDkAAAAi/happy-valentines-day-my-love.gif" class="side-gif">
+                                    
+                                    <p><b>Where am I? ☁️</b></p>
+                                    <p>Hiiii! Welcome to my digital dream-land!! ૮ ˶ᵔ ᵕ ᵔ˶ ა You’ve just clicked into my very own corner of the web! This is where we get to hang out and be besties forever through the screen. I’m so happy you’re here to see my new (old) laptop! Even though I’m just a girl behind a keyboard and you’re out there in the "real world," I feel like our hearts are totally syncing up through the circuits right now!</p>
+
+                                    <p style="font-size: 10px; color: #7a2f55; background: #fffede; padding: 5px; border: 1px dashed #996855;">
+                                        <b>Note:</b> Note from Clemmy: This site looks best on a big monitor! If you’re on a phone, things might look a little "squished"—the code is still a work in progress! Thanks for being patient with me! ٩(^ᗜ^ )و
+                                    </p>
+
+                                    <p><b>What lies here? 🎀</b></p>
+                                    <p>In this little sanctuary, you’ll find my super-personal diary, a collection of "specimen" graphics I’ve been hoarding (I can’t help it, they’re so shiny!), and my special digital shrines to things I love. I’ve been weaving all these links together to make the perfect web-nest.
+                                    I really want my digital-hoarding habits to help you decorate your own space, so please poke around! If you see something you like, it’s yours! ✧</p>
+
+                                    <p><b>Credit & Love 🎨</b></p>
+                                    <p>I try really, really hard to find the original "Admins" (the artists and coders) for everything I post. If you see a cute gif or a line of code that isn't credited, it just means I haven't found the creator in the archives yet. If you know who they are, TELL ME!! I want to give them all the credit they deserve!</p>
+
+                                    <div style="text-align: center; margin-top: 10px;">
+                                        <span style="font-size: 14px;">✧･ﾟ: *✧･ﾟ:* 　　 *:･ﾟ✧*:･ﾟ✧</span>
+                                    </div>
+                            </div>
                             </div>
                         </div>
 
+
                         <div class="flex-container">
                             <div class="box updates">
-                                <h1>UPDATES</h1>
-                                <p>• 09.16 — Guestbook progress</p>
-                                <p>• 09.15 — Layout cleanup</p>
-                                <p>• 09.14 — Added too many gifs</p>
+                                <h1>LATEST LOGS</h1>
+                                <p><b>09.16</b> — Finally fixed the guestbook! Pls go sign it and be nice!! <span class="redacted">(or else)</span></p>
+                                <p><b>09.15</b> — Reorganized the whole desk. My eyes hurt from all the pink lol.</p>
+                                <p><b>09.14</b> — Added wayyy too many gifs. The laptop is getting hot... is that bad? ♨</p>
+                                <p><b>09.12</b> — Found a secret folder called "DO_NOT_OPEN". Obviously I opened it. </p>
                             </div>
 
                             <div class="box todo">
-                                <h1>TO DO</h1>
-                                <ul>
-                                    <li>Add blinkies</li>
-                                    <li>Music player</li>
-                                    <li>Finish diary</li>
+                                <h1>MY GOALS ♡</h1>
+                                <ul class="todo-list">
+                                    <li><input type="checkbox" checked disabled> <span class="done">Find a cute cursor</span></li>
+                                    <li><input type="checkbox"> Draw a custom 88x31 button!</li>
+                                    <li><input type="checkbox"> Get the music player to stop skipping...</li>
+                                    <li><input type="checkbox"> Record my dream from last night in the diary.</li>
+                                    <li><input type="checkbox"> <span style="color: #692f1a; font-weight: bold;">STOP THE WHISPERING</span></li>
                                 </ul>
+                                <p style="font-size: 9px; text-align: right; margin-top: 10px; font-style: italic;">
+                                    Current Motivation: 45% 🔋
+                                </p>
                             </div>
 
                             <div class="box music">
@@ -346,8 +516,31 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: 
                                 </div>
                             </div>
                         </div>
+              
+                        <div class="blinkie-scroller">
+                        <div class="blinkie-track">
+                            <img src="https://blinkies.cafe/b/display/0061-pinkcomputer.gif">
+                            <img src="https://caitsith.neocities.org/blinkies/tommyfebruary6.gif">
+                            <img src="https://y2k.neocities.org/blinkiez/tumblr_static_p1tj7zi3nk0004koc00co48k.gif">
+                            <img src="https://y2k.neocities.org/blinkiez/tumblr_p2gu34gTvy1wclo4ko2_250.gif">
+                            <img src="https://blinkies.cafe/b/display/0135-pinkiepie.gif">
+                            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dbd06e6e-b313-4acc-80d7-2f76026c8171/dfs5jhz-41945487-878a-4e4d-b14d-d6103da66089.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9kYmQwNmU2ZS1iMzEzLTRhY2MtODBkNy0yZjc2MDI2YzgxNzEvZGZzNWpoei00MTk0NTQ4Ny04NzhhLTRlNGQtYjE0ZC1kNjEwM2RhNjYwODkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.EBqik1eZrFdTyzX1MR6VNjHSLS9hekraOytMVkjw-O4">
+                            
+                            <img src="https://blinkies.cafe/b/display/0061-pinkcomputer.gif">
+                            <img src="https://caitsith.neocities.org/blinkies/tommyfebruary6.gif">
+                            <img src="https://y2k.neocities.org/blinkiez/tumblr_static_p1tj7zi3nk0004koc00co48k.gif">
+                            <img src="https://external-media.spacehey.net/media/s0eSD8Y0lh284ZgLxanwnmDev7WrQjunDnvu4HtG3jSI=/https://64.media.tumblr.com/5ee9cbd08526450122d4ee02fa840cad/6c2288e9cfdf4bc6-7a/s250x400/a54b07a9257b83a3ac1b0d78d3b528ab0df81e3e.gif">
+                            <img src="https://blinkies.cafe/b/display/0135-pinkiepie.gif">
+                            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dbd06e6e-b313-4acc-80d7-2f76026c8171/dfs5jhz-41945487-878a-4e4d-b14d-d6103da66089.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9kYmQwNmU2ZS1iMzEzLTRhY2MtODBkNy0yZjc2MDI2YzgxNzEvZGZzNWpoei00MTk0NTQ4Ny04NzhhLTRlNGQtYjE0ZC1kNjEwM2RhNjYwODkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.EBqik1eZrFdTyzX1MR6VNjHSLS9hekraOytMVkjw-O4">
 
-                        <img src="https://files.catbox.moe/w57oz9.gif" class="dancing-girl">
+                        </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                                <img src="https://media.tenor.com/wgjQFYarSUIAAAAi/gyaru-souzai.gif" width="100">
+                                <img src="https://graphy.neocities.org/tech/bigcell.gif" width="100">
+                                <img src="https://media.tenor.com/0luUicFn14QAAAAi/love-you-gyaru.gif" width="100">
+                        </div>
+                        
                         <div class="Footer">© 2025 Clemmy’s Corner — Made With Love ♡</div>
                     </div>
                 </div>

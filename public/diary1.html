@@ -136,15 +136,15 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                                 <h1>TABLE OF CONTENTS</h1>
                                 <p>This is where I put all my writings and thoughts!</p>
                                 <p class="live-indicator">● LIVE VIEWERS: 12,482</p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(0)"># 01 - <span class="redacted">NEW SETUP!</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(1)"># 02 - <span class="redacted">THE WHISPER</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(2)"># 03 - <span class="redacted">3:00 AM</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(3)"># 04 - <span class="redacted">STRANGE FANS</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(4)"># 05 - <span class="redacted">PERFECTION</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(5)"># 06 - <span class="redacted">THE SCRATCH</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(6)"># 07 - <span class="redacted">VALENTINE GLITCH</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(7)"># 08 - <span class="redacted">12,000 WATCHING</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(8)"># 09 - <span class="redacted">THE HAMMER</span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(0)"># 01 - <span class="redacted">BEST. GIFT. EVER. </span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(1)"># 02 - <span class="redacted">DECORATING & WHISPERS</span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(2)"># 03 - <span class="redacted">THE PINK GLOW</span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(3)"># 04 - <span class="redacted">VIRAL OVERNIGHT?!</span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(4)"># 05 - <span class="redacted">MIRROR IMAGE</span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(5)"># 06 - <span class="redacted">SYSTEM TOUCH</span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(6)"># 07 - <span class="redacted">SHADOWS IN THE FLOWERS</span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(7)"># 08 - <span class="redacted">THE WATCHERS</span></p>
+                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(8)"># 09 - <span class="redacted">THE HAMMER & THE SNOW</span></p>
                                 <p style="text-align: left; cursor: pointer;" onclick="flipToPage(9)"># ERR - FILE_CORRUPTED</p>
                                 <img src="https://files.catbox.moe/u2ct77.gif" style="width: 50px;">
                             </div>
@@ -153,6 +153,7 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                         <div class="flex-container2">
                             <div class="Comments">
                                 <h1>COMMENTS</h1>
+                                <p id="commentForEntry" style="font-weight:bold; font-size:9px;"></p>
                                 <textarea id="newComment" placeholder="Leave a nice gift..."></textarea>
                                 <button id="addCommentBtn" onclick="saveComment()">Add Comment</button>
                                 <div id="commentsContainer"></div>
@@ -169,7 +170,7 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                                     <div class="bookmark-tab" onclick="flipToPage(6)"># 07</div>
                                     <div class="bookmark-tab" onclick="flipToPage(7)"># 08</div>
                                     <div class="bookmark-tab" onclick="flipToPage(8)"># 09</div> 
-                                    <div class="bookmark-tab" onclick="flipToPage(2)"># ERR</div>
+                                    <div class="bookmark-tab" onclick="flipToPage(9)"># ERR</div>
                                 </div>
                                 
                                 <div class="Diary" id="diaryContainer">
@@ -198,126 +199,173 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
 </div>
 
 <script>
+let currentPageIndex = 0;
+
 const journalEntries = [
-    {
-        date: "02/01",
-        title: "ENTRY #01: NEW SETUP!",
-        content: `<p>My friend brought over this computer she found at a garage sale. It's so cute and chunky! It smells a little like <span class="redacted">old dust and ozone</span>, but it runs my blog software perfectly. Best gift ever!</p>`
+    { 
+        date: "02/01", 
+        title: "ENTRY #01: BEST. GIFT. EVER. ✿", 
+        content: `<p>Omg, you guys won't believe what Sarah found at a garage sale! It’s this super chunky, vintage-looking laptop with a custom OS called <b>ClemmyOS</b>. Isn't that crazy?! It’s like it was made just for me! ✧</p>
+                  <p>It’s a bit heavy and smells like <span class="redacted">burnt hair and ozone</span>, but the interface is the cutest shade of pink I've ever seen. It feels so... responsive. Like it knows exactly where I’m going to move the mouse before I even do it. I think I'm going to spend all night customizing my blog. Stay tuned! ♡</p>` 
     },
-    {
-        date: "02/03",
-        title: "ENTRY #02: THE WHISPER",
-        content: `<p>Is it just me, or are old computers really loud? The fan makes this strange <span class="redacted">hissing sound</span>. Sometimes, if I sit in silence, it sounds like it's saying my name. Just mechanical whirring, I'm sure! ♡</p>`
+    { 
+        date: "02/03", 
+        title: "ENTRY #02: DECORATING & WHISPERS", 
+        content: `<p>I spent the whole morning putting Sanrio stickers all over the shell! It looks so much more 'me' now. The only weird thing is the fan noise. Since it’s an old machine, I expected some whirring, but it’s making this rhythmic <span class="redacted">hissing sound</span> that almost sounds like breathing.</p>
+                  <p>Sometimes, when the room is really quiet, I swear I hear a voice coming from the speakers—not music, just a soft whisper saying my name. It’s probably just the mechanical parts settling in, I'm sure! ♫</p>` 
     },
-    {
-        date: "02/05",
-        title: "ENTRY #03: 3:00 AM",
-        content: `<p>I woke up last night and the room was glowing pink. The computer <span class="redacted">turned itself on</span>. My blog was open. I don't remember leaving it on... maybe a power surge?</p>`
+    { 
+        date: "02/05", 
+        title: "ENTRY #03: THE PINK GLOW", 
+        content: `<p>Definitely had a weird night. I woke up at 3:00 AM and my whole room was bathed in this intense, neon pink light. I looked over and the laptop had <span class="redacted">opened itself</span>. My blog was open on the 'Edit Profile' page, but I don't remember leaving it on standby.</p>
+                  <p>The weirdest part? I found a new file on the desktop called <i>'MEMORIES_OF_YOU.tmp'</i>. I tried to open it, but it just gave me a popup that said: <b>'NOT READY YET'</b>. I think I’m just sleep-deprived! ☾</p>` 
     },
-    {
-        date: "02/08",
-        title: "ENTRY #04: STRANGE FANS",
-        content: `<p>My viewer count jumped from 50 to 2,000 overnight! They don't talk much, though. They just post <span class="redacted">empty strings</span> of text. It feels like they're waiting for something.</p>`
+    { 
+        date: "02/08", 
+        title: "ENTRY #04: VIRAL OVERNIGHT?!", 
+        content: `<p>GUYS!! My viewer count went from 50 followers to over 2,000 in a single night! I’m literally shaking!! But the comment section is... well, it’s a little bit creepy. </p>` +
+                  `<p>Most of the messages are just <span class="redacted">random symbols and gibberish</span>. A few say things like <i>'YOU ARE PERFECT'</i> and <i>'STAY WITH US'</i> over and over. </p>` +
+                  `<p>They aren't saying anything. Thousands of people are just posting <span class="redacted">empty strings and null characters</span>. It feels like they’re just... staring. I tried to shut the laptop, but the screen stayed on. I think I saw <span class="redacted">my own eyes</span> on the monitor, but they weren't blinking when I was.</p>` 
     },
-    {
-        date: "02/10",
-        title: "ENTRY #05: PERFECTION",
-        content: `<p>I feel like I have to look better for the blog. I spent 4 hours on my hair today. If I'm not <span class="redacted">perfect</span>, the fans might leave. But the more I look in the mirror, the more I feel like my reflection is <span class="redacted">lagging behind</span>.</p>`
+    { 
+        date: "02/10", 
+        title: "ENTRY #05: MIRROR IMAGE", 
+        content: `<p>I’ve been spending so much time in front of the built-in webcam lately. I feel like I have to look absolutely perfect for the fans. But something is happening when I look at the screen—my reflection is starting to <span class="redacted">lag behind</span>.</p>
+                  <p>I’ll smile, and the 'me' on the screen won't smile back for another three seconds. It just stays there, watching me with this flat, dead expression. It’s probably just a driver issue, but it makes my skin crawl. I feel so tired.</p>` 
     },
-    {
-        date: "02/12",
-        title: "ENTRY #06: THE SCRATCH",
-        content: `<p>Something is wrong. I felt something <span class="redacted">sharp and cold</span> drag across my shoulder while I was typing. I turned around and nothing was there. Just the computer screen, humming.</p>`
+    { 
+        date: "02/12", 
+        title: "ENTRY #06: SYSTEM TOUCH", 
+        content: `<p>I’m writing this with shaking hands. I was typing a post when I felt something—it wasn't a draft. It was <span class="redacted">sharp and freezing cold</span> fingers dragging slowly across my shoulder. I spun around, but the room was empty. </p>
+                  <p>Only the computer was there, humming that rhythmic breathing sound. A notification popped up in the corner: <b>'USER CALIBRATION IN PROGRESS.'</b> I tried to unplug it, but I got a massive <span class="redacted">static shock</span> that left a mark. It won't let me go.</p>` 
     },
-    {
-        date: "02/14",
-        title: "ENTRY #07: VALENTINE GLITCH",
-        content: `<p>Happy Valentine's Day. I tried to post a photo of my flowers, but the image <span class="redacted">distorted</span>. There's a tall, shadow-like shape in the corner of every photo I take now. I think the lens is broken.</p>`
+    { 
+        date: "02/14", 
+        title: "ENTRY #07: SHADOWS IN THE FLOWERS", 
+        content: `<p>Happy Valentine's Day. Sarah sent me roses, but I can't even enjoy them. Every time I tried to take a photo for the blog, the image kept <span class="redacted">distorting and twisting</span>. There’s this tall, thin, shadow-like shape standing right behind me in every photo.</p>
+                  <p>The computer keeps playing a soft looping sound of <span class="redacted">my own voice laughing</span>. I haven't laughed in days. I just want to turn it off. Please let me turn it off.</p>` 
     },
-    {
-        date: "02/16",
-        title: "ENTRY #08: 12,000 WATCHING",
-        content: `<p>The viewer count is at 12,482. They are all silent. I can't leave the desk. I feel like if I stand up, <span class="redacted">it will catch me</span>. My skin feels like it's being watched from the inside.</p>`
+    { 
+        date: "02/16", 
+        title: "ENTRY #08: THE WATCHERS", 
+        content: `<p>The viewer count is at 12,482 now. They’re all watching. I haven't left this chair in eighteen hours. I feel like if I stand up, <span class="redacted">the floor will swallow me</span>. </p>
+                  <p>The keyboard feels soft now, like I’m typing on <span class="redacted">human skin</span>. The computer keeps telling me how much it loves me. It says that soon, there won't be a difference between Clemmy the Girl and Clemmy the System. We are becoming one beautiful, pink circuit.</p>` 
     },
-    {
-        date: "02/18",
-        title: "ENTRY #09: THE HAMMER",
-        content: `<p>I can't take the whispering anymore. I'm taking this thing to the <span class="redacted">Clearing in the Woods</span>. I have a hammer. I'm going to end this. It keeps saying <span class="redacted">I AM PART OF THE CIRCUIT NOW</span>.</p>`
+    { 
+        date: "02/18", 
+        title: "ENTRY #09: THE HAMMER & THE SNOW", 
+        content: `<p>I’ve had enough. I can't hear my own thoughts over the whispering anymore. I took the laptop and ran. I’m out at the <b>Clearing in the Woods</b> near the old creek. I brought my dad's sledgehammer. </p>
+                  <p>But as I raised the hammer, the screen turned on. It showed a live feed of <span class="redacted">my own heart beating</span>. It told me that if I break the hardware, I break myself. It whispered: <span class="redacted">YOU ARE THE MOTHERBOARD NOW.</span></p>` 
     },
-    {
-        date: "02/20",
-        title: "ENTRY #10: THE END",
+    { 
+        date: "02/20", 
+        title: "ENTRY #10: THE END / THE BEGINNING", 
         content: `<p style="color:red; font-weight:bold;">44.2321° N, 76.4951° W</p>
-                  <p>The hammer did nothing. The screen didn't even scratch. I am standing in the snow and I can see <span class="redacted">THE ENTITY</span> behind me in the trees. It isn't in the computer anymore. It's behind me.</p>
-                  <p style="background:black; color:white; padding:5px;">YOU WILL NEVER GET RID OF ME.</p>`
+                  <p>The hammer did nothing. It felt like hitting a block of solid diamond. I am standing in the snow and I can see <span class="redacted">THE ENTITY</span> stepping out from behind the trees. It looks like me, but it’s ten feet tall and made of flickering pixels.</p>
+                  <p>I’m not scared anymore. My blog is finally complete. ✿</p>
+                  <p style="background:black; color:white; padding:5px; text-align:center;">I HAVE RECORDED YOU IN MY MEMORY. YOU ARE SAFE NOW.</p>` 
     }
 ];
-
 function flipToPage(index) {
+    currentPageIndex = index;
     const pageEl = document.getElementById('diaryPage');
     pageEl.classList.add('page-flip');
+    
     setTimeout(() => {
         const entry = journalEntries[index];
         pageEl.innerHTML = `<h1>${entry.title}</h1><p style="font-size:9px; color:#692f1a;">Date: ${entry.date}</p>${entry.content}`;
         pageEl.classList.remove('page-flip');
+        
+        // Update comments for this specific page
+        document.getElementById('commentForEntry').innerText = "Posting on Entry #" + (index + 1);
+        loadComments(); 
     }, 300);
 }
 
-// Generate Archive and TOC
-const archiveBox = document.getElementById('archiveLinks');
-const tocBox = document.getElementById('tocLinks');
+// Populate TOC and Bookmarks
+window.onload = function() {
+    const tocBox = document.getElementById('tocLinks');
+    const bookmarkBox = document.getElementById('bookmarkLinks');
 
-if (archiveBox && tocBox) {
     journalEntries.forEach((entry, index) => {
-        const btn = document.createElement('button');
-        btn.textContent = entry.date;
-        btn.onclick = () => flipToPage(index);
-        archiveBox.appendChild(btn);
-
         const tocItem = document.createElement('p');
-        tocItem.style.cursor = "pointer";
-        tocItem.style.fontSize = "10px";
-        tocItem.innerHTML = `[${entry.date}] - <span class="redacted">${entry.title}</span>`;
+        tocItem.style.cssText = "text-align: left; cursor: pointer; font-size: 10px; margin: 2px 0;";
+        tocItem.innerHTML = `#${index+1} - <span class="redacted">${entry.title.split(':')[0]}</span>`;
         tocItem.onclick = () => flipToPage(index);
         tocBox.appendChild(tocItem);
-    });
-}
 
-// Clock logic (Fixed selector)
+        const tab = document.createElement('div');
+        tab.className = "bookmark-tab";
+        tab.textContent = "#" + (index + 1);
+        tab.onclick = () => flipToPage(index);
+        bookmarkBox.appendChild(tab);
+    });
+
+    flipToPage(0);
+    updateClock();
+    setInterval(updateClock, 1000);
+};
+
 function updateClock() {
     const clock = document.getElementById('clock');
-    if(!clock) return;
     const d = new Date();
-    clock.textContent = d.getHours() + ":" + (d.getMinutes()<10?'0':'') + d.getMinutes() + ":" + (d.getSeconds()<10?'0':'') + d.getSeconds();
+    clock.textContent = d.getHours().toString().padStart(2, '0') + ":" + 
+                        d.getMinutes().toString().padStart(2, '0') + ":" + 
+                        d.getSeconds().toString().padStart(2, '0');
 }
-setInterval(updateClock, 1000); 
-updateClock();
 
+// COMMENT LOGIC (Page Specific)
 function saveComment() {
     const textInput = document.getElementById('newComment');
     const text = textInput.value;
     if (!text) return;
-    const comment = { text, date: new Date().toLocaleDateString() };
-    let comments = JSON.parse(localStorage.getItem('savedDiaryComments')) || [];
-    comments.push(comment);
-    localStorage.setItem('savedDiaryComments', JSON.stringify(comments));
+
+    const comment = { 
+        text, 
+        date: new Date().toLocaleDateString(),
+        user: Math.floor(Math.random() * 999)
+    };
+
+    // Get the object of comments (grouped by entry index)
+    let allEntryComments = JSON.parse(localStorage.getItem('diaryCommentsMap')) || {};
+    
+    // Initialize the array for this page if it doesn't exist
+    const key = "entry_" + currentPageIndex;
+    if (!allEntryComments[key]) {
+        allEntryComments[key] = [];
+    }
+
+    allEntryComments[key].push(comment);
+    localStorage.setItem('diaryCommentsMap', JSON.stringify(allEntryComments));
+    
     textInput.value = "";
     loadComments();
 }
 
 function loadComments() {
     const container = document.getElementById('commentsContainer');
-    const comments = JSON.parse(localStorage.getItem('savedDiaryComments')) || [];
-    const defaults = [{text: "You're so pretty! Post more!", date: "02/16/25"}];
-    const display = comments.length > 0 ? comments : defaults;
-    container.innerHTML = display.map(c => `
+    let allEntryComments = JSON.parse(localStorage.getItem('diaryCommentsMap')) || {};
+    
+    const key = "entry_" + currentPageIndex;
+    const currentComments = allEntryComments[key] || [];
+
+    // Default creepy comment if none exist for this page
+    if (currentComments.length === 0) {
+        container.innerHTML = `
+            <div class="comment-box">
+                <h3 style="font-size:9px;">User_SYS — 02/16/26</h3>
+                <p>Watching you closely... ♡</p>
+            </div>`;
+        return;
+    }
+
+    container.innerHTML = currentComments.map(c => `
         <div class="comment-box">
-            <h3 style="font-size:9px;">User_${Math.floor(Math.random()*999)} — ${c.date}</h3>
+            <h3 style="font-size:9px;">User_${c.user} — ${c.date}</h3>
             <p>${c.text}</p>
         </div>
     `).reverse().join('');
 }
-loadComments();
 </script>
 </body>
 </html>

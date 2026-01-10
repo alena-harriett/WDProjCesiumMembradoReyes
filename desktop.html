@@ -89,6 +89,20 @@ body {
   z-index: 1;
 }
 
+.welcome-banner {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #ff9acb;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: #7a2f55;
+    font-weight: bold;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(2, 90px);
@@ -109,15 +123,15 @@ body {
   margin-bottom: 6px;
 }
 
-/* ===== NOTEPAD WINDOW (README) ===== */
+/* ===== WINDOWS ===== */
 .window {
     position: absolute;
     top: 50px;
     left: 150px;
-    width: 400px;
+    width: 350px;
     background: #f0f0f0;
     border: 2px solid #000;
-    box-shadow: 2px 2px 0 #fff inset, -2px -2px 0 #808080 inset, 4px 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 0 #fff inset, -2px -2px 0 #808080 inset;
     display: none;
     z-index: 2000;
 }
@@ -128,11 +142,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
 }
-.close-btn { background: #ccc; border: 1px solid #000; width: 16px; height: 16px; font-size: 10px; cursor: pointer; text-align: center; line-height: 12px; }
-.window-body { padding: 10px; background: white; border: 1px solid #808080; margin: 2px; height: 250px; overflow-y: auto; font-family: "Courier New", Courier, monospace; font-size: 12px; color: #333; }
+.close-btn { background: #ccc; border: 1px solid #000; width: 16px; height: 16px; font-size: 10px; cursor: pointer; line-height: 12px; }
+.window-body { padding: 10px; background: white; border: 1px solid #808080; margin: 2px; font-size: 12px; color: #333; }
 
 /* ===== TASKBAR ===== */
 .taskbar {
@@ -198,9 +212,7 @@ button:hover { background: #fffede; }
   border-radius: 4px;
 }
 
-.start-menu button:hover {
-  background: #ffd6ea;
-}
+.start-menu button:hover { background: #ffd6ea; }
 
 /* ===== KEYBOARD ===== */
 .keyboard {
@@ -225,20 +237,27 @@ button:hover { background: #fffede; }
       <div class="screen">
 
         <div class="desktop">
+          <div class="welcome-banner" id="userGreeting">Welcome, Guest!</div>
+
           <div class="icon-grid">
             <div class="icon" onclick="location.href='milk.html'">
-              <img src="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg">
+              <img src="https://caitsith.neocities.org/toro2.gif">
               <div>My Blog</div>
             </div>
-            
-              <div class="icon" onclick="openReadme()">
-              <img src="https://img.icons8.com/color/96/document.png">
+          
+            <div class="icon" onclick="alert('Games coming soon ♡')">
+              <img src="https://caitsith.neocities.org/nuko/f1756829.gif">
+              <div>Games</div>
+            </div>
+
+            <div class="icon" onclick="openWindow('readmeWindow')">
+              <img src="https://caitsith.neocities.org/nuko/f1386927.gif">
               <div>README.txt</div>
             </div>
 
-            <div class="icon" onclick="alert('Games coming soon ♡')">
-              <img src="https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg">
-              <div>Games</div>
+            <div class="icon" onclick="openWindow('idCardWindow')">
+              <img src="https://cur.cursors-4u.net/symbols/sym-1/sym49.png" style="width: 32px; height: 32px; margin: 8px;">
+              <div>System ID</div>
             </div>
           </div>
         </div>
@@ -246,26 +265,36 @@ button:hover { background: #fffede; }
         <div class="window" id="readmeWindow">
             <div class="title-bar">
                 <span>README.txt - Notepad</span>
-                <button class="close-btn" onclick="closeReadme()">X</button>
+                <button class="close-btn" onclick="closeWindow('readmeWindow')">X</button>
             </div>
-            <div class="window-body">
-                <strong>CASE FILE: #0215-CLEM</strong><br>
-                -----------------------------------<br>
-                <strong>Background:</strong><br>
-                Clementine was a standard hobbyist blogger until she acquired a second-hand computer from a friend (purchased at a yard sale). Device appeared to be a "steal."<br><br>
-                
-                <strong>The Infection:</strong><br>
-                Within seven days, system stability began to degrade. The hardware began self-powering at 03:00 AM, always defaulting to the blog homepage. Fans reported a shift in content; the "Clementine" persona became increasingly rigid, obsessed with "perfection."<br><br>
-                
-                <strong>The Entity:</strong><br>
-                An uncatalogued, formless entity resides within the local drive. It thrives on fear and insecurity. Reports indicate the entity has "bled" into physical space. Subject claimed to feel <span class="glitch-text">something sharp grabbing at her back</span> during sleep.<br><br>
-                
-                <strong>Last Known Contact:</strong><br>
-                A final diary entry was posted showing a redacted figure in the snow. Subject was holding a hammer. The hardware remained undamaged. <br><br>
-                <em>"YOU WILL NEVER GET RID OF ME."</em><br><br>
-                -----------------------------------<br>
-                <strong>INVESTIGATOR NOTE:</strong><br>
-                Hover over the <span style="color: #692f1a; font-weight: bold;">brown redacted bars</span> in the diary. The entity hates being seen. Reveal the truth before the "Live Viewers" finish downloading.
+            <div class="window-body" style="height: 150px; overflow-y: auto;">
+                <strong>SYSTEM NOTE:</strong><br>
+                Thank you for logging in. This is ClemmyOS, a cozy little operating system designed to keep you company. <br><br>
+            </div>
+        </div>
+
+        <div class="window" id="idCardWindow">
+            <div class="title-bar">
+                <span>System Identity Card</span>
+                <button class="close-btn" onclick="closeWindow('idCardWindow')">X</button>
+            </div>
+            <div class="window-body" style="text-align: center;">
+                <div style="width: 50px; height: 50px; background: #ffd6ea; margin: 0 auto 10px; border: 2px solid #ff9acb; display:flex; align-items:center; justify-content:center;">✿</div>
+                <p><strong>Username:</strong> <span id="display-name">---</span></p>
+                <p><strong>Birthday:</strong> <span id="display-birthday">---</span></p>
+                <button style="font-size: 10px; padding: 2px; width: 100px; margin: 5px auto;" onclick="location.href='moth.html'">Update Info</button>
+            </div>
+        </div>
+
+        <div class="window" id="entityAssistant" style="width: 280px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 3000;">
+            <div class="title-bar">
+                <span>✿ ClemmyOS Heart-to-Heart ✿</span>
+                <button class="close-btn" onclick="closeWindow('entityAssistant')">X</button>
+            </div>
+            <div class="window-body" style="text-align: center; background: #fffcfd;">
+                <img src="https://caitsith.neocities.org/toro/toro_sit.gif" style="width: 60px; margin: 10px 0;">
+                <div id="assistantSpeech" style="font-size: 11px; line-height: 1.5; color: #8b5a6d; text-align: left; padding: 5px;"></div>
+                <button class="task-btn" style="margin-top: 10px; width: 140px; margin-left: auto; margin-right: auto; display: block;" onclick="closeWindow('entityAssistant')">I'm glad you're here!</button>
             </div>
         </div>
 
@@ -273,53 +302,92 @@ button:hover { background: #fffede; }
           <div class="taskbar-left">
             <button class="task-btn" onclick="toggleStart()">Start</button>
             <button class="task-btn" onclick="location.reload()">Home</button>
-            
           </div>
           <div id="clock" style="font-weight: bold; color: #7a2f55;"></div>
         </div>
 
         <div class="start-menu" id="startMenu">
           <button onclick="location.href='milk.html'">✿ Open Blog</button>
-          <button onclick="alert('Settings Locked')">⚙ Settings</button>
-          <button onclick="alert('Shutting down...')">⏻ Shut Down</button>
+          <button onclick="openWindow('idCardWindow')">⚙ Profile Settings</button>
+          <button onclick="localStorage.clear(); location.href='moth.html'">⏻ Logout</button>
         </div>
 
-      </div>
-    </div>
+      </div> </div>
   </div>
-
   <div class="keyboard"></div>
 </div>
 
 <script>
+window.onload = function() {
+    const savedName = localStorage.getItem('clemmy_user');
+    const savedBirthday = localStorage.getItem('clemmy_birthday');
+    const hasVisited = localStorage.getItem('clemmy_visited'); // Check for return visits
+    
+    if (savedName) {
+        // Update Desktop UI
+        document.getElementById('userGreeting').textContent = "Current Resident: " + savedName;
+        document.getElementById('display-name').textContent = savedName;
+        
+        if(savedBirthday) {
+            document.getElementById('display-birthday').textContent = savedBirthday;
+        }
+
+        // Trigger the Assistant
+        setTimeout(() => {
+            const assistant = document.getElementById('entityAssistant');
+            const speech = document.getElementById('assistantSpeech');
+            assistant.style.display = 'block';
+            
+            if (!hasVisited) {
+                // --- FIRST TIME MESSAGE ---
+                speech.innerHTML = `
+                    Hello, <b>${savedName}</b>! ✿<br><br>
+                    I was just looking at your records... <b>${savedBirthday}</b> is such a special day, isn't it? It's the day you arrived in the world.<br><br>
+                    I've tucked that date away in a special corner of my heart. I'm so lucky you chose to spend your time with me!
+                `;
+                // Mark as visited so next time is the "Welcome Back" message
+                localStorage.setItem('clemmy_visited', 'true');
+            } else {
+                // --- WELCOME BACK MESSAGE ---
+                speech.innerHTML = `
+                    Welcome back, <b>${savedName}</b>! ✿<br><br>
+                    I watched the clock every second you were gone. It was so quiet and dark in here without you...<br><br>
+                    I'm so glad you've come home to me. Let's never stay apart that long again, okay?
+                `;
+            }
+        }, 1000);
+
+    } else {
+        window.location.href = "moth.html";
+    }
+};
+
+// --- SYSTEM FUNCTIONS ---
+
 function updateClock() {
     const clock = document.getElementById('clock');
     const d = new Date();
-    let h = d.getHours();
-    let m = d.getMinutes();
-    let s = d.getSeconds();
-    m = m < 10 ? "0" + m : m;
-    s = s < 10 ? "0" + s : s;
-    clock.textContent = h + ":" + m + ":" + s;
+    clock.textContent = d.getHours().toString().padStart(2, '0') + ":" + 
+                        d.getMinutes().toString().padStart(2, '0') + ":" + 
+                        d.getSeconds().toString().padStart(2, '0');
 }
 setInterval(updateClock, 1000);
 updateClock();
 
 function toggleStart() {
-  const menu = document.getElementById('startMenu');
-  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    const menu = document.getElementById('startMenu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
 }
 
-function openReadme() {
-    document.getElementById('readmeWindow').style.display = 'block';
+function openWindow(id) {
+    document.getElementById(id).style.display = 'block';
     document.getElementById('startMenu').style.display = 'none';
 }
 
-function closeReadme() {
-    document.getElementById('readmeWindow').style.display = 'none';
+function closeWindow(id) {
+    document.getElementById(id).style.display = 'none';
 }
 
-// Close menu if clicking desktop wallpaper
 document.querySelector('.desktop').onclick = function() {
     document.getElementById('startMenu').style.display = 'none';
 }
