@@ -66,6 +66,10 @@ The data is saved to the user's computer via the `localStorage` API. This allows
 
 ## Wireframes & Layout
 
-### Page 1: ClemmyOS Login
-![ClemmyOS Login]()
+### Page 1: index.html (ClemmyOS Login)
+![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/1.png)
+### Page 2: moth.html (ClemmyOS Login)
+![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/2.png)
+### Page 3: desktop.html (ClemmyOS - Desktop)
+![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/3.png)
 
