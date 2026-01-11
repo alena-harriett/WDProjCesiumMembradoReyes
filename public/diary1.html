@@ -16,6 +16,18 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .screen-shell { width: 760px; height: 460px; background: linear-gradient(#ffd9eb, #f6bcd3); border-radius: 18px; padding: 18px; box-shadow: 0 60px 120px rgba(0,0,0,0.45); }
 .screen-frame { background: #fff3f9; height: 100%; padding: 14px; border-radius: 10px; box-shadow: inset 0 0 0 3px #ffb3d9; }
 .screen { position: relative; height: 100%; background: linear-gradient(#fffdfc, #ffeef6); overflow: hidden; }
+.screen::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 100;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.4;
+}
 
 .blog-window { position: absolute; inset: 10px; bottom: 45px; background-color: #996855; border: 4px solid #f8accf; display: flex; flex-direction: column; z-index: 10; }
 .blog-titlebar { background: linear-gradient(#ffd6ea, #ffb7d9); padding: 6px 10px; display: flex; justify-content: space-between; font-weight: bold; color: #692f1a; font-size: 14px; border-bottom: 2px solid #ff9acb; }
@@ -28,80 +40,148 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .Divider img { width: 100%; height: 100%; object-fit: cover; }
 
 .flex-container1, .flex-container2 { display: flex; gap: 12px; margin-bottom: 12px; }
-.Directory, .TableOfContents, .Comments, .Diary { background-color: #e19c91; border: 3px solid #996855; padding: 12px; color: #692f1a; }
+.Directory, .TableOfContents, .Comments { background-color: #e19c91; border: 3px solid #996855; padding: 12px; color: #692f1a; }
 .Directory { width: 150px; flex-shrink: 0; }
 .TableOfContents { flex: 7; text-align: center; }
 .Comments { width: 150px; flex-shrink: 0;}
 
-/* THE ANIMATED DIARY BOX */
-.Diary { 
-    flex: 10; 
-    text-align: center; 
-    position: relative; 
-    perspective: 1000px;
-    background-color: #fffede; /* Paper color */
-    background-image: linear-gradient(#f1d6d6 1px, transparent 1px);
-    background-size: 100% 20px; /* Lined paper look */
-    min-height: 250px;
+/* ===== 3D DIARY BOOK MECHANICS (TWO-PAGE SPREAD) ===== */
+.diary-viewport {
+    perspective: 1200px;
+    flex: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 380px;
 }
 
-.diary-page {
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
-    transform-origin: left center;
+.diary-book {
+    width: 200px; /* Initial closed width */
+    height: 340px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease, width 0.8s ease;
 }
 
-.page-flip {
-    transform: rotateY(-20deg) scale(0.95);
-    opacity: 0;
+.book-open {
+    width: 400px; /* Expands to two pages */
+    height: 100%;
 }
 
-/* Bookmarks on the side */
-.bookmarks {
+.diary-spine {
     position: absolute;
-    right: -10px;
-    top: 20px;
+    left: 50%; top: 0; bottom: 0;
+    width: 16px;
+    background: #865543;
+    z-index: 15;
+    transform: translateX(-8px);
+    display: none;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.book-open .diary-spine { display: block; }
+
+.diary-cover {
+    position: absolute;
+    right: 0;
+    width: 240px; height: 100%;
+    background: #fdb1bf;
+    border: 3px solid #996855;
+    border-radius: 4px 10px 10px 4px;
+    z-index: 30;
+    transform-origin: left;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backface-visibility: hidden;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+}
+
+.diary-cover::after {
+    content: "CLEMMY'S DIARY";
+    background: #fffede;
+    padding: 10px;
+    border: 2px dashed #996855;
+    font-weight: bold;
+}
+
+.book-open .diary-cover { transform: rotateY(-180deg); pointer-events: none; }
+
+.diary-pages-spread {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    background: transparent;
+    z-index: 10; /* Above bookmarks, below cover */
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+.book-open .diary-pages-spread { opacity: 1; pointer-events: auto; }
+
+.page-left, .page-right {
+    flex: 1;
+    background: #fffede;
+    background-image: linear-gradient(#f1d6d6 1px, transparent 1px);
+    background-size: 100% 20px;
+    border: 1px solid #996855;
+    padding: 15px;
+    position: relative;
+}
+.page-left { border-radius: 10px 0 0 10px; border-right: none; }
+.page-right { border-radius: 0 10px 10px 0; border-left: 1px solid #d4a391; }
+
+/* Bookmarks - Positioned BEHIND the pages */
+.bookmarks {
+    position: absolute;
+    right: -25px; /* Peeks out from the right */
+    top: 20px;
+    display: flex; 
+    flex-direction: column; 
     gap: 5px;
+    z-index: 5; /* Lower than pages (10) */
 }
 .bookmark-tab {
-    width: 35px;
-    height: 18px;
-    background: #fdb1bf;
+    width: 35px; height: 22px;
+    background: #e19c91;
     border: 2px solid #996855;
     border-left: none;
-    font-size: 8px;
-    font-weight: bold;
+    font-size: 9px; font-weight: bold;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 5px;
+    transition: transform 0.2s, background 0.2s;
+    border-radius: 0 5px 5px 0;
 }
-.bookmark-tab:hover { background: #fffede; width: 40px; }
+.bookmark-tab:hover { background: #fffede; transform: translateX(5px); }
 
+/* Animation for content */
+.page-turning-effect { animation: pageFade 0.4s ease-in-out; }
+@keyframes pageFade {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Base Styles */
 h1 { font-size: 13px; color: #fffede; text-align: center; margin: 0 0 10px; background: #996855; padding: 2px; letter-spacing: 1px; }
-
 button, .blog-btn { font-family: inherit; background-color: #fdb1bf; border: 2px solid #996855; padding: 6px; width: 100%; margin-bottom: 6px; cursor: pointer; text-align: center; font-size: 11px; font-weight: bold; color: #692f1a; }
 button:hover { background: #fffede; }
-
 p { font-size: 12px; line-height: 1.4; margin: 6px 0; }
 textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #fffede; font-family: inherit; font-size: 11px; padding: 5px; margin-bottom: 5px; resize: none; }
-
 .comment-box { background: rgba(255,255,255,0.4); border: 1px dashed #996855; padding: 8px; margin-top: 8px; text-align: left; }
 .redacted { background: #692f1a; color: #692f1a; cursor: help; }
 .redacted:hover { background: transparent; color: #ff0000; font-weight: bold; }
-
 .live-indicator { font-size: 10px; color: #ff0000; animation: blink 1s infinite; font-weight: bold; }
 @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
-
 .oh img { width: 100px; display: block; margin: 20px auto; }
 .Footer { text-align: center; color: #fffede; background: #996855; padding: 10px; font-size: 11px; margin-top: 20px; }
-
-/* ===== TASKBAR ===== */
 .taskbar { position: absolute; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#ffb7d9, #ff93c6); border-top: 2px solid #ff6fb3; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 12px; z-index: 500; }
 .taskbar-left { display: flex; gap: 6px; }
 .task-btn { background: linear-gradient(#fff, #ffd6ea); border: 2px solid #ff6fb3; border-radius: 6px; padding: 4px 10px; font-weight: bold; cursor: pointer; font-family: inherit; color: #7a2f55; }
 .keyboard { width: 800px; height: 200px; background: linear-gradient(#ffd1e8, #f3a9c8); margin: -10px auto 0; border-radius: 0 0 26px 26px; transform: rotateX(75deg) translateZ(-46px); box-shadow: 0 80px 100px rgba(0,0,0,0.4); }
+.cover-sticker { position: absolute; bottom: 10px; right: 10px; width: 40px; }
 </style>
 </head>
 
@@ -130,23 +210,12 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                                 <button onclick="flipToPage(0)">Diary</button>
                                 <button onclick="window.location.href='shrines2.html'">Shrines</button>
                                 <button onclick="window.location.href='guestbook1.html'">Guestbook</button>
-
                             </div>
                             <div class="TableOfContents">
                                 <h1>TABLE OF CONTENTS</h1>
-                                <p>This is where I put all my writings and thoughts!</p>
+                                <p>All my writings and thoughts!</p>
                                 <p class="live-indicator">● LIVE VIEWERS: 12,482</p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(0)"># 01 - <span class="redacted">BEST. GIFT. EVER. </span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(1)"># 02 - <span class="redacted">DECORATING & WHISPERS</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(2)"># 03 - <span class="redacted">THE PINK GLOW</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(3)"># 04 - <span class="redacted">VIRAL OVERNIGHT?!</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(4)"># 05 - <span class="redacted">MIRROR IMAGE</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(5)"># 06 - <span class="redacted">SYSTEM TOUCH</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(6)"># 07 - <span class="redacted">SHADOWS IN THE FLOWERS</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(7)"># 08 - <span class="redacted">THE WATCHERS</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(8)"># 09 - <span class="redacted">THE HAMMER & THE SNOW</span></p>
-                                <p style="text-align: left; cursor: pointer;" onclick="flipToPage(9)"># ERR - FILE_CORRUPTED</p>
-                                <img src="https://files.catbox.moe/u2ct77.gif" style="width: 50px;">
+                                <div id="tocLinks"></div>
                             </div>
                         </div>
 
@@ -159,27 +228,28 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                                 <div id="commentsContainer"></div>
                             </div>
                             
-                            <div class="Diary" id="diaryContainer">
-                                <div class="bookmarks">
-                                    <div class="bookmark-tab" onclick="flipToPage(0)"># 01</div>
-                                    <div class="bookmark-tab" onclick="flipToPage(1)"># 02</div>
-                                    <div class="bookmark-tab" onclick="flipToPage(2)"># 03</div>
-                                    <div class="bookmark-tab" onclick="flipToPage(3)"># 04</div>
-                                    <div class="bookmark-tab" onclick="flipToPage(4)"># 05</div>
-                                    <div class="bookmark-tab" onclick="flipToPage(5)"># 06</div>
-                                    <div class="bookmark-tab" onclick="flipToPage(6)"># 07</div>
-                                    <div class="bookmark-tab" onclick="flipToPage(7)"># 08</div>
-                                    <div class="bookmark-tab" onclick="flipToPage(8)"># 09</div> 
-                                    <div class="bookmark-tab" onclick="flipToPage(9)"># ERR</div>
+                            <div class="diary-viewport">
+                                <div class="diary-book" id="myBook">
+                                    <div class="diary-cover" onclick="toggleBook()">
+                                        <img src="https://files.catbox.moe/u2ct77.gif" class="cover-sticker">
+                                        <p style="font-size: 8px;">✧ click to open ✧</p>
+                                    </div>
+                                    <div class="bookmarks" id="bookmarkLinks"></div>
+                                    
+                                    <div class="diary-spine"></div>
+
+                                    <div class="diary-pages-spread">
+                                        <div class="page-left" id="pageLeft"></div>
+                                        <div class="page-right" id="pageRight">
+                                            <div id="pageContentRight">
+                                                 <h2 style="margin-top: 50px; font-size: 14px; text-align: center;">Select an entry...</h2>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                
-                                <div class="Diary" id="diaryContainer">
-                                <div class="diary-page" id="diaryPage"></div>
-                            </div>
                             </div>
                         </div>
 
-                        <div class="oh"><img src="https://files.catbox.moe/ijeyee.gif"></div>
                         <div class="Footer">© 2025 Clemmy’s Corner — Made With Love ♡</div>
                     </div>
                 </div>
@@ -200,6 +270,7 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
 
 <script>
 let currentPageIndex = 0;
+let isBookOpen = false;
 
 const journalEntries = [
     { 
@@ -266,44 +337,65 @@ const journalEntries = [
                   <p style="background:black; color:white; padding:5px; text-align:center;">I HAVE RECORDED YOU IN MY MEMORY. YOU ARE SAFE NOW.</p>` 
     }
 ];
+
+function toggleBook() {
+    const book = document.getElementById('myBook');
+    isBookOpen = !isBookOpen;
+    if (isBookOpen) {
+        book.classList.add('book-open');
+        flipToPage(currentPageIndex);
+    } else {
+        book.classList.remove('book-open');
+    }
+}
+
 function flipToPage(index) {
+    if (!isBookOpen) toggleBook();
     currentPageIndex = index;
-    const pageEl = document.getElementById('diaryPage');
-    pageEl.classList.add('page-flip');
+    
+    const pageLeft = document.getElementById('pageLeft');
+    const pageRight = document.getElementById('pageContentRight');
+    
+    pageLeft.classList.remove('page-turning-effect');
+    pageRight.classList.remove('page-turning-effect');
+    void pageLeft.offsetWidth; 
+    pageLeft.classList.add('page-turning-effect');
+    pageRight.classList.add('page-turning-effect');
     
     setTimeout(() => {
         const entry = journalEntries[index];
-        pageEl.innerHTML = `<h1>${entry.title}</h1><p style="font-size:9px; color:#692f1a;">Date: ${entry.date}</p>${entry.content}`;
-        pageEl.classList.remove('page-flip');
-        
-        // Update comments for this specific page
-        document.getElementById('commentForEntry').innerText = "Posting on Entry #" + (index + 1);
+        pageLeft.innerHTML = `
+            <h1 style="background:none; color:#692f1a; border-bottom:2px solid #996855; margin-top:40px; font-size:11px;">${entry.title}</h1>
+            <p style="text-align:center; font-style:italic; margin-top:20px; font-size:10px;">Date: ${entry.date}</p>
+            <img src="https://files.catbox.moe/u2ct77.gif" style="width:30px; display:block; margin:40px auto; opacity:0.3;">
+        `;
+        pageRight.innerHTML = `<div style="margin-top:10px;">${entry.content}</div>`;
+        document.getElementById('commentForEntry').innerText = "Entry #" + (index + 1);
         loadComments(); 
-    }, 300);
+    }, 150);
 }
 
-// Populate TOC and Bookmarks
 window.onload = function() {
     const tocBox = document.getElementById('tocLinks');
     const bookmarkBox = document.getElementById('bookmarkLinks');
 
     journalEntries.forEach((entry, index) => {
         const tocItem = document.createElement('p');
-        tocItem.style.cssText = "text-align: left; cursor: pointer; font-size: 10px; margin: 2px 0;";
-        tocItem.innerHTML = `#${index+1} - <span class="redacted">${entry.title.split(':')[0]}</span>`;
+        tocItem.style.cssText = "text-align: left; cursor: pointer; font-size: 10px; margin: 4px 0;";
+        tocItem.innerHTML = `#${index+1} - <span class="redacted">${entry.title.split(':')[1] || entry.title}</span>`;
         tocItem.onclick = () => flipToPage(index);
         tocBox.appendChild(tocItem);
 
         const tab = document.createElement('div');
         tab.className = "bookmark-tab";
         tab.textContent = "#" + (index + 1);
-        tab.onclick = () => flipToPage(index);
+        tab.onclick = (e) => { e.stopPropagation(); flipToPage(index); };
         bookmarkBox.appendChild(tab);
     });
 
-    flipToPage(0);
     updateClock();
     setInterval(updateClock, 1000);
+    loadComments();
 };
 
 function updateClock() {
@@ -314,30 +406,15 @@ function updateClock() {
                         d.getSeconds().toString().padStart(2, '0');
 }
 
-// COMMENT LOGIC (Page Specific)
 function saveComment() {
     const textInput = document.getElementById('newComment');
-    const text = textInput.value;
-    if (!text) return;
-
-    const comment = { 
-        text, 
-        date: new Date().toLocaleDateString(),
-        user: Math.floor(Math.random() * 999)
-    };
-
-    // Get the object of comments (grouped by entry index)
+    if (!textInput.value) return;
+    const comment = { text: textInput.value, date: new Date().toLocaleDateString(), user: Math.floor(Math.random() * 999) };
     let allEntryComments = JSON.parse(localStorage.getItem('diaryCommentsMap')) || {};
-    
-    // Initialize the array for this page if it doesn't exist
     const key = "entry_" + currentPageIndex;
-    if (!allEntryComments[key]) {
-        allEntryComments[key] = [];
-    }
-
+    if (!allEntryComments[key]) allEntryComments[key] = [];
     allEntryComments[key].push(comment);
     localStorage.setItem('diaryCommentsMap', JSON.stringify(allEntryComments));
-    
     textInput.value = "";
     loadComments();
 }
@@ -345,20 +422,12 @@ function saveComment() {
 function loadComments() {
     const container = document.getElementById('commentsContainer');
     let allEntryComments = JSON.parse(localStorage.getItem('diaryCommentsMap')) || {};
-    
     const key = "entry_" + currentPageIndex;
     const currentComments = allEntryComments[key] || [];
-
-    // Default creepy comment if none exist for this page
     if (currentComments.length === 0) {
-        container.innerHTML = `
-            <div class="comment-box">
-                <h3 style="font-size:9px;">User_SYS — 02/16/26</h3>
-                <p>Watching you closely... ♡</p>
-            </div>`;
+        container.innerHTML = `<div class="comment-box"><h3 style="font-size:9px;">User_SYS — 02/16/26</h3><p>Watching you... ♡</p></div>`;
         return;
     }
-
     container.innerHTML = currentComments.map(c => `
         <div class="comment-box">
             <h3 style="font-size:9px;">User_${c.user} — ${c.date}</h3>

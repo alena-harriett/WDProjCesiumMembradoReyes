@@ -70,13 +70,17 @@ body {
   overflow: hidden;
 }
 
-/* glass glare */
 .screen::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.5), transparent 60%);
-  pointer-events: none;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 100;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.4;
 }
 
 /* ===== DESKTOP CONTENT ===== */
@@ -256,7 +260,7 @@ button:hover { background: #fffede; }
             </div>
 
             <div class="icon" onclick="openWindow('idCardWindow')">
-              <img src="https://cur.cursors-4u.net/symbols/sym-1/sym49.png" style="width: 32px; height: 32px; margin: 8px;">
+              <img src="https://caitsith.neocities.org/nuko/f1628778.gif">
               <div>System ID</div>
             </div>
           </div>
