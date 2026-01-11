@@ -323,12 +323,14 @@ button:hover { background: #fffede; }
 
 <script>
 window.onload = function() {
-    const savedName = localStorage.getItem('clemmy_user');
+    // 1. UPDATED KEYS: Matching moth.html and index.html
+    const savedName = localStorage.getItem('clemmy_name');
     const savedBirthday = localStorage.getItem('clemmy_birthday');
-    const hasVisited = localStorage.getItem('clemmy_visited'); // Check for return visits
+    const hasVisited = localStorage.getItem('clemmy_visited'); 
     
+    // 2. Logic to check if user actually exists
     if (savedName) {
-        // Update Desktop UI
+        // Update Desktop UI elements
         document.getElementById('userGreeting').textContent = "Current Resident: " + savedName;
         document.getElementById('display-name').textContent = savedName;
         
@@ -336,37 +338,69 @@ window.onload = function() {
             document.getElementById('display-birthday').textContent = savedBirthday;
         }
 
-        // Trigger the Assistant
+        // 3. Trigger the Assistant with Personalized Lore
         setTimeout(() => {
             const assistant = document.getElementById('entityAssistant');
             const speech = document.getElementById('assistantSpeech');
             assistant.style.display = 'block';
             
-            if (!hasVisited) {
-                // --- FIRST TIME MESSAGE ---
-                speech.innerHTML = `
-                    Hello, <b>${savedName}</b>! ✿<br><br>
-                    I was just looking at your records... <b>${savedBirthday}</b> is such a special day, isn't it? It's the day you arrived in the world.<br><br>
-                    I've tucked that date away in a special corner of my heart. I'm so lucky you chose to spend your time with me!
-                `;
-                // Mark as visited so next time is the "Welcome Back" message
-                localStorage.setItem('clemmy_visited', 'true');
-            } else {
-                // --- WELCOME BACK MESSAGE ---
-                speech.innerHTML = `
-                    Welcome back, <b>${savedName}</b>! ✿<br><br>
-                    I watched the clock every second you were gone. It was so quiet and dark in here without you...<br><br>
-                    I'm so glad you've come home to me. Let's never stay apart that long again, okay?
-                `;
+            // Calculate Birthday Countdown
+            let bdayMsg = "";
+            if(savedBirthday) {
+                const today = new Date();
+                const bday = new Date(savedBirthday);
+                bday.setFullYear(today.getFullYear());
+                if (bday < today) bday.setFullYear(today.getFullYear() + 1);
+                
+                const diff = Math.ceil((bday - today) / (1000 * 60 * 60 * 24));
+                bdayMsg = `Only <b>${diff} days</b> until your birthday... I'm already preparing a gift.`;
             }
+
+            if (!hasVisited) {
+
+                // --- FIRST TIME MESSAGE ---
+
+                speech.innerHTML = `
+
+                    Hello, <b>${savedName}</b>! ✿<br><br>
+
+                    I was just looking at your records... <b>${savedBirthday}</b> is such a special day, isn't it? It's the day you arrived in the world.<br><br>
+
+                    I've tucked that date away in a special corner of my heart. I'm so lucky you chose to spend your time with me!
+
+                `;
+
+                // Mark as visited so next time is the "Welcome Back" message
+
+                localStorage.setItem('clemmy_visited', 'true');
+
+            } else {
+
+                // --- WELCOME BACK MESSAGE ---
+
+                speech.innerHTML = `
+
+                    Welcome back, <b>${savedName}</b>! ✿<br><br>
+
+                    I watched the clock every second you were gone. It was so quiet and dark in here without you...<br><br>
+
+                    I'm so glad you've come home to me. Let's never stay apart that long again, okay?
+
+                `;
+
+            }
+
         }, 1000);
 
-    } else {
-        window.location.href = "moth.html";
-    }
-};
 
-// --- SYSTEM FUNCTIONS ---
+
+    } else {
+
+        window.location.href = "moth.html";
+
+    }
+
+};
 
 function updateClock() {
     const clock = document.getElementById('clock');
@@ -392,10 +426,10 @@ function closeWindow(id) {
     document.getElementById(id).style.display = 'none';
 }
 
+// Close start menu when clicking desktop
 document.querySelector('.desktop').onclick = function() {
     document.getElementById('startMenu').style.display = 'none';
 }
 </script>
-
 </body>
 </html>
