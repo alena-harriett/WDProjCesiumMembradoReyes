@@ -35,3 +35,41 @@
 <li>As a comment section for the guestbook webpage.</li>
 <li>As a live date/time counter. This will be used on the Home page.</li>
 </ul>
+
+
+
+# Project Proposal: ClemmyOS User Integration & Lore System
+
+## Design & Narrative 
+**Purpose:** The website is designed as an immersive "ARG" style narrative experience. The user "discovers" an old laptop running a pink, glitchy operating system called **ClemmyOS**. To make the experience more personal and unsettling, the website needs to "know" who is behind the screen.
+
+**How it is used:**
+The website utilizes a **System Initialization Form** upon the first visit. Instead of a standard sign-up, this acts as a registration into the laptop's memory. The form collects the user’s **Name** and **Birthday**. 
+
+**Narrative Integration:**
+* **Personalization:** Throughout the site, the entity within the laptop will refer to the user by their chosen name in pop-up windows, alert boxes, and the desktop interface.
+
+**Data Persistence:**
+The data is saved to the user's computer via the `localStorage` API. This allows the website to "remember" the user across different sessions without needing an external database, reinforcing the idea that the data is stored locally on this "haunted" machine.
+
+---
+
+## New Webpages Overview
+
+| Page | Title | Purpose |
+| :--- | :--- | :--- |
+| **Page 1** | `index.html` | A login page that recognizes the user's name and asks for a passcode. |
+| **Page 2** | `moth.html` | The "Setup Wizard" form used to collect user name and birthdate. |
+| **Page 3** | `desktop.html` | The main hub that displays a personalized greeting and birthday countdowns. |
+
+---
+
+## Wireframes & Layout
+
+### Page 1: index.html (ClemmyOS Login)
+![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/1.png)
+### Page 2: moth.html (ClemmyOS Login)
+![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/2.png)
+### Page 3: desktop.html (ClemmyOS - Desktop)
+![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/3.png)
+
