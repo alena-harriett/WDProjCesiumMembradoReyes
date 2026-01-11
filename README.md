@@ -67,6 +67,5 @@ The data is saved to the user's computer via the `localStorage` API. This allows
 ## Wireframes & Layout
 
 ### Page 1: ClemmyOS Login
-**Header:** `✿ ClemmyOS v1.0 - Setup Wizard ✿`  
-**Section Header:** `User Identification`
+
 
