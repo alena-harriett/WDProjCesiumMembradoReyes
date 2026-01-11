@@ -176,6 +176,14 @@ body {
     background: #ff7fb8;
 }
 
+.line {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #ff5fa8;
+    min-height: 15px;
+    font-weight: bold;
+}
+
 /* ===== KEYBOARD ===== */
 .keyboard {
     width: 800px;
@@ -199,7 +207,7 @@ body {
         <div class="screen-frame">
             <div class="screen">
                 <div class="login-box">
-                    <h2>Login to ClemmyOS</h2>
+                    <h2 id="loginTitle">Login to ClemmyOS</h2>
                     <input id="username" placeholder="Username">
                     <input id="password" type="password" placeholder="Password">
                     <button class="login-btn" id="loginBtn">Login</button>
@@ -212,56 +220,80 @@ body {
 </div>
 
 <script>
-const REAL_USERNAME = "clemmy";
+// 1. Force check localStorage IMMEDIATELY
+let storedName = localStorage.getItem("clemmy_name");
+
+// 2. Decide who the "Real" user is for this session
+// If storedName exists, use it. Otherwise, use "clemmy"
+let targetUsername = storedName ? storedName : "clemmy";
 const REAL_PASSWORD = "12345";
 
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const message = document.getElementById("message");
+const loginTitle = document.getElementById("loginTitle");
 
-function typeInput(el, text, speed, cb){
-    let i=0; el.value="";
-    const t=setInterval(()=>{
+// 3. Update the UI text if they are a returning user
+if (storedName) {
+    loginTitle.innerText = "Welcome back, " + storedName;
+}
+
+function typeInput(el, text, speed, cb) {
+    let i = 0; el.value = "";
+    const t = setInterval(() => {
         el.value += text[i++];
-        if(i >= text.length){
+        if (i >= text.length) {
             clearInterval(t);
             cb && cb();
         }
     }, speed);
 }
 
-function typeMessage(text, cb){
-    message.textContent="";
-    let i=0;
-    const t=setInterval(()=>{
+function typeMessage(text, cb) {
+    message.textContent = "";
+    let i = 0;
+    const t = setInterval(() => {
         message.textContent += text[i++];
-        if(i >= text.length){
+        if (i >= text.length) {
             clearInterval(t);
             cb && cb();
         }
     }, 50);
 }
 
-function autoLogin(){
-    typeInput(usernameInput, REAL_USERNAME, 80, ()=>{
-        typeInput(passwordInput, REAL_PASSWORD, 90, ()=>{
-            typeMessage("Logging you in...", ()=>{
-                setTimeout(()=>location.href="moth.html", 800);
+function autoLogin() {
+    // We use targetUsername which was decided at the very top of the script
+    typeInput(usernameInput, targetUsername, 80, () => {
+        typeInput(passwordInput, REAL_PASSWORD, 90, () => {
+            typeMessage("Authenticating...", () => {
+                setTimeout(() => {
+                    // If they are still 'clemmy' (first time), send to setup
+                    // If they have a storedName, send to desktop
+                    if (!storedName) {
+                        window.location.href = "moth.html";
+                    } else {
+                        window.location.href = "desktop.html";
+                    }
+                }, 800);
             });
         });
     });
 }
 
-document.getElementById("loginBtn").onclick = ()=>{
-    if(usernameInput.value === REAL_USERNAME && passwordInput.value === REAL_PASSWORD){
-         typeMessage("Logging you in...", ()=>{
-            setTimeout(()=>location.href="desktop.html", 800);
-         });
+// Manual Login button click
+document.getElementById("loginBtn").onclick = () => {
+    if (usernameInput.value === targetUsername && passwordInput.value === REAL_PASSWORD) {
+        typeMessage("Logging you in...", () => {
+            setTimeout(() => {
+                window.location.href = storedName ? "desktop.html" : "moth.html";
+            }, 800);
+        });
     } else {
-         typeMessage("Incorrect username or password");
+        typeMessage("Access Denied.");
     }
 };
 
+// Start animation
 setTimeout(autoLogin, 1000);
 </script>
 

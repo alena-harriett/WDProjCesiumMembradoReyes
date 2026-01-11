@@ -213,7 +213,7 @@ document.getElementById('setupForm').onsubmit = function(e) {
     const name = document.getElementById('username').value;
     const birthday = document.getElementById('userAge').value;
 
-    localStorage.setItem('clemmy_user', name);
+    localStorage.setItem('clemmy_name', name);
     localStorage.setItem('clemmy_birthday', birthday);
 
     alert("I've recorded you in my memory, " + name + ". I'm so happy we found each other!");
