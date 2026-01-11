@@ -220,12 +220,11 @@ body {
 </div>
 
 <script>
-// 1. Force check localStorage IMMEDIATELY
-let storedName = localStorage.getItem("clemmy_name");
+// 1. IMMEDIATELY check the memory
+const storedName = localStorage.getItem("clemmy_name");
 
-// 2. Decide who the "Real" user is for this session
-// If storedName exists, use it. Otherwise, use "clemmy"
-let targetUsername = storedName ? storedName : "clemmy";
+// 2. If memory exists, target is the stored name. If not, target is "clemmy"
+let targetUsername = (storedName && storedName !== "") ? storedName : "clemmy";
 const REAL_PASSWORD = "12345";
 
 const usernameInput = document.getElementById("username");
@@ -233,7 +232,7 @@ const passwordInput = document.getElementById("password");
 const message = document.getElementById("message");
 const loginTitle = document.getElementById("loginTitle");
 
-// 3. Update the UI text if they are a returning user
+// 3. Update Title if returning
 if (storedName) {
     loginTitle.innerText = "Welcome back, " + storedName;
 }
@@ -262,14 +261,13 @@ function typeMessage(text, cb) {
 }
 
 function autoLogin() {
-    // We use targetUsername which was decided at the very top of the script
     typeInput(usernameInput, targetUsername, 80, () => {
         typeInput(passwordInput, REAL_PASSWORD, 90, () => {
             typeMessage("Authenticating...", () => {
                 setTimeout(() => {
-                    // If they are still 'clemmy' (first time), send to setup
-                    // If they have a storedName, send to desktop
-                    if (!storedName) {
+                    // Logic: If we just logged in as 'clemmy', go to setup.
+                    // If we logged in as a stored name, go to desktop.
+                    if (targetUsername === "clemmy") {
                         window.location.href = "moth.html";
                     } else {
                         window.location.href = "desktop.html";
@@ -280,20 +278,16 @@ function autoLogin() {
     });
 }
 
-// Manual Login button click
 document.getElementById("loginBtn").onclick = () => {
     if (usernameInput.value === targetUsername && passwordInput.value === REAL_PASSWORD) {
         typeMessage("Logging you in...", () => {
-            setTimeout(() => {
-                window.location.href = storedName ? "desktop.html" : "moth.html";
-            }, 800);
+            window.location.href = (targetUsername === "clemmy") ? "moth.html" : "desktop.html";
         });
     } else {
         typeMessage("Access Denied.");
     }
 };
 
-// Start animation
 setTimeout(autoLogin, 1000);
 </script>
 
