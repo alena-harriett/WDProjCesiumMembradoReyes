@@ -41,26 +41,38 @@
 # Project Proposal: ClemmyOS User Integration & Lore System
 
 ## Design & Narrative 
-**Purpose:** The website is designed as an immersive "ARG" style narrative experience. The user "discovers" an old laptop running a pink, glitchy operating system called **ClemmyOS**. To make the experience more personal and unsettling, the website needs to "know" who is behind the screen.
+**Purpose:** The website is designed as an immersive "ARG" (Alternate Reality Game) style narrative experience. The user "discovers" an old laptop running a pink, glitchy operating system called **ClemmyOS**. To make the experience more personal and unsettling, the website needs to "know" who is behind the screen.
 
 **How it is used:**
-The website utilizes a **System Initialization Form** upon the first visit. Instead of a standard sign-up, this acts as a registration into the laptop's memory. The form collects the user’s **Name** and **Birthday**. 
+The website utilizes a **System Initialization Form** (`moth.html`) after the first login. Instead of a standard sign-up, this acts as a registration into the laptop's memory. The form collects the user’s **Name** and **Birthday**. 
 
 **Narrative Integration:**
 * **Personalization:** Throughout the site, the entity within the laptop will refer to the user by their chosen name in pop-up windows, alert boxes, and the desktop interface.
+* **The "Ghost" in the Machine:** The login page (`index.html`) features an auto-typing script that simulates a ghost or the OS itself typing the user's name into the login field once it has been "learned."
 
 **Data Persistence:**
 The data is saved to the user's computer via the `localStorage` API. This allows the website to "remember" the user across different sessions without needing an external database, reinforcing the idea that the data is stored locally on this "haunted" machine.
 
 ---
 
+## Technical Implementation
+**The system uses the following form elements and logic:**
+
+`<input type="text">`: Captures the user's name.
+
+`<input type="date">`: Captures the birthday for future "special event" triggers.
+
+`localStorage.setItem('clemmy_name', name)`: Saves the identity to the browser's local memory.
+
+`localStorage.getItem('clemmy_name')`: Used by index.html to decide whether to send the user to the setup page (moth.html) or the main desktop.html.
+
 ## New Webpages Overview
 
 | Page | Title | Purpose |
 | :--- | :--- | :--- |
-| **Page 1** | `index.html` | A login page that recognizes the user's name and asks for a passcode. |
-| **Page 2** | `moth.html` | The "Setup Wizard" form used to collect user name and birthdate. |
-| **Page 3** | `desktop.html` | The main hub that displays a personalized greeting and birthday countdowns. |
+| **Page 1** | `index.html` | The login gate. It auto-types "clemmy" for new users and the saved username for returning users. |
+| **Page 2** | `moth.html` | The "Setup Wizard" form where users input their Name and Birthday to initialize the system. |
+| **Page 3** | `desktop.html` | The main hub that displays a personalized greeting ("Welcome, [Name]") and system files. |
 
 ---
 
