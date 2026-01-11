@@ -42,9 +42,6 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .Divider { width: 100%; height: 35px; border: 2px solid #e19c91; margin-bottom: 12px; background: #fffede; overflow: hidden; display: flex; }
 .Divider img { width: 100%; height: 100%; object-fit: repeat-x; }
 
-.flex-container1, .flex-container2 { display: flex; gap: 12px; margin-bottom: 12px; width: 100%; }
-.box { border: 3px solid #996855; padding: 12px; color: #692f1a; text-align: left;}
-
 /* ===== MODAL STYLE ===== */
 .modal-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); display: none; justify-content: center; align-items: center; z-index: 5000; }
 .modal-window { width: 300px; background: #fffede; border: 3px solid #996855; box-shadow: 8px 8px 0px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
@@ -57,15 +54,12 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 
 .Spotlight { flex: 7; background-color: #e19c91; overflow: hidden; } 
 .Projects { flex: 3.375; background-color: #e19c91; }
-.Gallery { flex: 3.375; height: 100%; background-color: #e19c91; }
+.Gallery { flex: 3.375; height: 100%; background-color: #fdb1bf}
 
 h1 { font-size: 14px; color: #fffede; text-align: center; margin: 0 0 10px; background: #996855; padding: 2px; letter-spacing: 1px; }
 p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
 .blog-btn { font-family: inherit; background-color: #fdb1bf; border: 2px solid #996855; padding: 6px; width: 100%; margin-bottom: 6px; cursor: pointer; text-align: center; font-size: 11px; font-weight: bold; color: #692f1a; display: block; text-decoration: none; }
 .blog-btn:hover { background: #fffede; }
-
-.spotlight-gallery { display: flex; overflow-x: auto; gap: 12px; padding: 8px 10px; background: rgba(255, 254, 222, 0.3); height: 100%; box-sizing: border-box; }
-.spotlight-item img { height: 150px; border: 3px solid #996855; background: #fffede; }
 
 /* ===== TASKBAR ===== */
 .taskbar { position: absolute; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#ffb7d9, #ff93c6); border-top: 2px solid #ff6fb3; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 12px; z-index: 500; }
@@ -113,7 +107,6 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
     color: white;
     border-radius: 4px;
 }
-
 </style>
 </head>
 
@@ -162,7 +155,7 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                 These are little digital altars I’ve made
                                 for the things and people I adore most.
                                 A collection of my current fixations,
-                                the characters and concepts that inspire me </p>
+                                the characters and concepts that inspire me!</p>
                                 <img src="https://media.tenor.com/0luUicFn14QAAAAi/love-you-gyaru.gif" style="width:60%; margin-top:10px; margin-bottom:10px; margin-left:auto; margin-right:auto;">
                                 </div>
                             </div>
@@ -215,7 +208,7 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                             </div>
                         </div>
                         <div class="flex-container2">
-                            <div class="box Archives">
+                            <div class="box Archives" style="overflow-y: auto; max-height: 260px;">
                                 <h1>ARCHIVES</h1>
                                 <p>This is where I’ll post any old gallery or spotlight content. Things of the past, really.</p>
                                 <div style="font-size: 9px; background: #996855; color: white; padding: 2px 4px; display: flex; justify-content: space-between; margin-bottom: 5px;">
@@ -243,7 +236,7 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                 </div>
                             </div>
 
-                            <div class="box Projects">
+                            <div class="box Projects" style="max-height: 260px;">
                                 <h1>PROJECTS</h1>
                                 <div class="proj-item" style="margin-bottom: 8px;">
                                     <p style="margin: 0; font-weight: bold;">✧ Character Shrine</p>
@@ -269,10 +262,11 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                 </div>
                             </div>
 
-                            <div class="box Gallery" style="overflow-y: auto; max-height: 250px;">
+                            <div class="box Gallery" style="overflow-y: auto; max-height: 260px;">
                                 <h1>GALLERY</h1>
                                 <p>A collection of images, gifs, and other visual things that I find inspiring or comforting.</p>
                                 <p>This gallery is always changing. New things get added, old things get removed. It’s a reflection of my current mood and interests.</p>
+                                <br>
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
                                     <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(-2deg);"><img src="https://i.pinimg.com/236x/8a/92/ef/8a92ef6f9d19f39088652d88a1099616.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">VIBE 01</p></div>
                                     <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(3deg);"><img src="https://i.pinimg.com/236x/88/44/72/8844728590623a859e9a263836376517.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">MOOD 02</p></div>
@@ -281,6 +275,7 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
                                     <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(3deg);"><img src="https://i.pinimg.com/236x/88/44/72/8844728590623a859e9a263836376517.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">MOOD 02</p></div>
                                     <div style="background: white; padding: 3px; border: 1px solid #996855; transform: rotate(3deg);"><img src="https://i.pinimg.com/236x/88/44/72/8844728590623a859e9a263836376517.jpg" style="width: 100%; height: 40px; object-fit: cover;"><p style="font-size: 7px; margin: 2px 0 0; text-align: center;">MOOD 02</p></div>
                                 </div>
+                                <br>
                             </div>
                         </div>
 
