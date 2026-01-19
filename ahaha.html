@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClemmyOS - Blog Desktop</title>
+
+<style>
+/* ===== GLOBAL SETTINGS ===== */
+* { box-sizing: border-box; }
+img { image-rendering: pixelated; }
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: "MS PGothic", "Tahoma", Geneva, sans-serif;
+    perspective: 1600px;
+    overflow: hidden;
+    background: #000;
+}
+
+/* ===== ROOM ===== */
+.room {
+  position: absolute;
+  inset: 0;
+  background: url("https://i.pinimg.com/1200x/15/0f/b1/150fb14a2a9f5736ab06f4def66908c3.jpg");
+  background-size: cover;
+}
+
+/* ===== DESK ===== */
+.desk {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 38%;
+  background: url("https://i.pinimg.com/1200x/91/f9/e4/91f9e485f1e06602c77ff205f4e5b9bc.jpg");
+  transform: rotateX(30deg) translateY(25%);
+  background-size: cover;
+}
+
+/* ===== LAPTOP ===== */
+.laptop-3d {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-40.5%) rotateX(10deg) translateY(-8%) translateZ(20px);
+    transform-style: preserve-3d;
+    z-index: 200;
+    pointer-events: none;
+}
+
+/* ===== SCREEN ===== */
+.screen-shell {
+  width: 75%;
+  height: 75%;
+  margin-top: -30px;
+  margin-left: 30px;
+  background: linear-gradient(#ffd9eb, #f6bcd3);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 60px 120px rgba(0,0,0,0.45);
+}
+
+.screen-frame {
+    background: #fff3f9;
+    height: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 3px #ffb3d9;
+}
+
+.screen {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(#fffdfc, #ffeef6);
+  overflow: hidden;
+}
+
+.screen::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 100;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+/* ===== DESKTOP ===== */
+.desktop {
+  position: absolute;
+  inset: 0;
+  padding: 18px;
+  background-image: url("https://i.imgur.com/lZk5Fqk.png");
+  background-size: cover;
+}
+
+/* ===== DESKTOP ICONS ===== */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 90px);
+  gap: 20px;
+}
+
+.icon {
+  text-align: center;
+  font-size: 12px;
+  color: #7a2f55;
+  cursor: pointer;
+}
+
+.icon img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 6px;
+}
+
+/* ===== TASKBAR ===== */
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: linear-gradient(#ffb7d9, #ff93c6);
+  border-top: 2px solid #ff6fb3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.taskbar-left {
+  display: flex;
+  gap: 6px;
+}
+
+/* ===== BLOG WINDOW ===== */
+.blog-window {
+    position: absolute;
+    inset: 10px;
+    bottom: 45px;
+    background-color: #996855;
+    border: 4px solid #f8accf;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.blog-titlebar {
+    background: linear-gradient(#ffd6ea, #ffb7d9);
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #692f1a;
+    font-size: 14px;
+    border-bottom: 2px solid #ff9acb;
+}
+
+.blog-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    background-image: url("https://i.pinimg.com/736x/28/d8/2a/28d82a402a6f78e40d10bcf2c2fcc33f.jpg");
+    background-repeat: repeat;
+    padding: 15px;
+}
+
+/* ===== BLOG CONTENT ===== */
+.Header { width: 100%; height: 130px; border: 3px solid #e19c91; margin-bottom: 12px; background: #fffede; overflow: hidden; }
+.Header img { width: 100%; height: 100%; object-fit: cover; }
+
+.Divider { width: 100%; height: 35px; border: 2px solid #e19c91; margin-bottom: 12px; background: #fffede; }
+.Divider img { width: 100%; height: 100%; object-fit: cover; }
+
+.flex-container { display: flex; gap: 12px; margin-bottom: 12px; }
+
+.box { 
+    background-color: #e19c91; 
+    border: 3px solid #996855; 
+    padding: 12px; 
+    color: #692f1a;
+}
+
+.directory { flex: 3; }
+.profile { flex: 7; position: relative; }
+.profile img.side-gif { float: right; width: 45%; margin-left: 10px; }
+
+.updates { flex: 3.25; background-color: #fdb1bf; }
+.todo { flex: 2.7; }
+.music { flex: 4; }
+
+
+/* ===== BUTTONS & TEXT ===== */
+h1 { font-size: 15px; color: #fffede; text-align: center; margin: 0 0 10px; letter-spacing: 1px; background: #996855; padding: 2px; }
+button { 
+    font-family: inherit; background-color: #fdb1bf; border: 2px solid #996855; 
+    padding: 6px; width: 100%; margin-bottom: 6px; cursor: pointer; 
+    text-align: center; font-size: 11px; font-weight: bold; color: #692f1a;
+}
+button:hover { background: #fffede; }
+
+p, li { font-size: 12px; line-height: 1.4; margin: 4px 0; }
+.Footer { text-align: center; color: #fffede; background: #996855; padding: 10px; font-size: 11px; margin-top: 20px; }
+
+
+/* ===== TASKBAR ===== */
+.taskbar {
+    cursor: url(https://cinni.net/images/adopt/pen_1.gif), auto;
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 36px;
+    background: linear-gradient(#ffb7d9, #ff93c6);
+    border-top: 2px solid #ff6fb3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 12px;
+    z-index: 500;
+}
+.task-btn {
+    cursor: url(https://cinni.net/images/adopt/pen_1.gif), auto;
+    background: linear-gradient(#fff, #ffd6ea);
+    border: 2px solid #ff6fb3;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.keyboard {
+    width: 83%; height: 200px;
+    position: center;
+    background: linear-gradient(#ffd1e8, #f3a9c8);
+    border-radius: 0 0 26px 26px;
+    margin-top: -60px;
+    transform: rotateX(50deg) translateZ(-46px) translateX(-20px);
+    box-shadow: 0 80px 100px rgba(0,0,0,0.4);
+}
+
+/* ===== MUSIC PLAYER STYLE ===== */
+#musicplayer { background: #fffede; border: 2px solid #996855; padding: 8px; margin-top: 10px; border-radius: 4px; }
+.controls { width: 100%; margin-bottom: 5px; }
+.controls td { text-align: center; }
+.ctrlimg { width: 22px; cursor: pointer; filter: sepia(1) hue-rotate(-50deg) saturate(2); }
+.songtitle { font-size: 10px; color: #692f1a; background: #fdb1bf; display: block; padding: 2px; border: 1px solid #996855; margin-bottom: 8px; }
+.seeking, .slider_container { display: flex; align-items: center; justify-content: space-between; font-size: 9px; margin: 5px 0; gap: 5px; }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; background: #caa3b4; height: 3px; border-radius: 5px; outline: none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 8px; height: 8px; background: #996855; cursor: pointer; border-radius: 50%; }
+
+/* Container that hides the overflow */
+.blinkie-scroller {
+    width: 100%;
+    overflow: hidden;
+    background: #fffede;
+    border-top: 2px solid #996855;
+    border-bottom: 2px solid #996855;
+    margin-top: 15px;
+    padding: 5px 0;
+    white-space: nowrap;
+}
+
+/* The actual moving row */
+.blinkie-track {
+    display: inline-flex;
+    gap: 10px;
+    animation: scroll-left 20s linear infinite;
+}
+
+/* Loop animation */
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Keep images crisp */
+.blinkie-track img {
+    height: 31px; /* Standard blinkie height */
+    flex-shrink: 0;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px;
+    background: #fffede;
+    border: 2px double #996855;
+    font-size: 11px;
+    color: #692f1a;
+  }
+  .stat-item {
+    border-bottom: 1px dotted #caa3b4;
+    padding: 2px 0;
+  }
+  .stat-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 9px;
+    color: #b38b9b;
+    display: block;
+  }
+
+/* Cutesy custom bullet points for the updates */
+.updates p {
+    position: relative;
+    padding-left: 18px;
+    font-size: 11px;
+    margin-bottom: 8px !important;
+}
+.updates p::before {
+    content: '🐾'; /* Tiny paw print or star */
+    position: absolute;
+    left: 0;
+    font-size: 10px;
+}
+
+/* Notebook style To-Do list */
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.todo-list li {
+    background: rgba(255, 255, 255, 0.4);
+    margin-bottom: 5px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #fdb1bf;
+    font-size: 11px;
+}
+.todo-list li input {
+    margin-right: 8px;
+    accent-color: #ff93c6;
+}
+.done {
+    text-decoration: line-through;
+    opacity: 0.6;
+
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="room"></div>
+<div class="desk"></div>
+
+<div class="laptop-3d">
+    <div class="screen-shell">
+        <div class="screen-frame">
+            <div class="screen">
+                
+                <div class="blog-window" id="blogWindow">
+                    <div class="blog-titlebar">
+                        <span>✿ Clemmy's Corner ✿</span>
+                        <span style="cursor:pointer;" onclick="exitToDesktop()">[ X ]</span>
+                    </div>
+                    
+                    <div class="blog-scroll-area">
+                        <div class="Header">
+                            <img src="https://64.media.tumblr.com/3b7e48caed4da480110eff58a9b8f851/f68b1ecfcc71eb9c-da/s250x400/a77da1387f446ad85049fc55a4061b0b51157841.gif">
+                        </div>
+
+                        <div class="Divider">
+                            <img src="https://i5.glitter-graphics.org/pub/726/726615qqay0z8qmb.gif"> 
+                        </div>
+
+                        <div class="flex-container">
+                            <div class="box directory">
+                                <h1>DIRECTORY</h1>
+                                <button onclick="location.reload()">Home</button>
+                                <a href="public/diary1.html"><button>Diary</button></a>
+                                <a href="public/shrines2.html"><button>Shrines</button></a >
+                                <a href = "public/guestbook1.html"><button>Guestbook</button></a>
+                                <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">feeling</span>
+                                    happy ٩(◕‿◕｡)۶
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">status</span>
+                                    listening to more j-pop ♪(๑ᴖ◡ᴖ๑)♪S
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">current version</span>
+                                    clemmyOS v1.0
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">display mode</span>
+                                    800x600 (perfect!)
+                                </div>
+                                
+                            </div>
+                            <img src = "https://media.tenor.com/jDyzxP_2XRAAAAAi/gyaru-kogal.gif" style="width:75%; margin-top:10px; margin-bottom:10px; margin-left:15px; margin-right:10px;"> 
+                            </div>
+
+                            <div class="box profile">
+                                <h1>ABOUT ME</h1>
+                                <div class="box profile">
+                                    <img src="https://media.tenor.com/BNcELzaiMDkAAAAi/happy-valentines-day-my-love.gif" class="side-gif">
+                                    
+                                    <p><b>Where am I? ☁️</b></p>
+                                    <p>Hiiii! Welcome to my digital dream-land!! ૮ ˶ᵔ ᵕ ᵔ˶ ა You’ve just clicked into my very own corner of the web! This is where we get to hang out and be besties forever through the screen. I’m so happy you’re here to see my new (old) laptop! Even though I’m just a girl behind a keyboard and you’re out there in the "real world," I feel like our hearts are totally syncing up through the circuits right now!</p>
+
+                                    <p style="font-size: 10px; color: #7a2f55; background: #fffede; padding: 5px; border: 1px dashed #996855;">
+                                        <b>Note:</b> Note from Clemmy: This site looks best on a big monitor! If you’re on a phone, things might look a little "squished". The code is still a work in progress! Thanks for being patient with me! ٩(^ᗜ^ )و
+                                    </p>
+
+                                    <p><b>What lies here? 🎀</b></p>
+                                    <p>In this little sanctuary, you’ll find my super-personal diary, a collection of "specimen" graphics I’ve been hoarding (I can’t help it, they’re so shiny!), and my special digital shrines to things I love. I’ve been weaving all these links together to make the perfect web-nest.
+                                    I really want my digital-hoarding habits to help you decorate your own space, so please poke around! If you see something you like, it’s yours! ✧</p>
+
+                                    <p><b>Credit & Love 🎨</b></p>
+                                    <p>I try really, really hard to find the original  artists and coders for everything I post. If you see a cute gif or a line of code that isn't credited, it just means I haven't found the creator in the archives yet. If you know who they are, TELL ME!! I want to give them all the credit they deserve!</p>
+
+                                    <div style="text-align: center; margin-top: 10px;">
+                                        <span style="font-size: 14px;">✧･ﾟ: *✧･ﾟ:* 　　 *:･ﾟ✧*:･ﾟ✧</span>
+                                    </div>
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <div class="flex-container">
+                            <div class="box updates">
+                                <h1>UPDATES</h1>
+                                <p><b>09.16</b> — Finally fixed the guestbook! Pls go sign it and be nice!! <span class="redacted">(or else)</span></p>
+                                <p><b>09.15</b> — Reorganized the whole desk. My eyes hurt from all the pink lol.</p>
+                                <p><b>09.14</b> — Added wayyy too many gifs. The laptop is getting hot... is that bad? ♨</p>
+                                <p><b>09.12</b> — Found a secret folder called "DO_NOT_OPEN". Obviously I opened it. </p>
+                            </div>
+
+                            <div class="box todo">
+                                <h1>MY GOALS ♡</h1>
+                                <ul class="todo-list">
+                                    <li><input type="checkbox" checked disabled> <span class="done">Find a cute cursor</span></li>
+                                    <li><input type="checkbox"> Draw a custom 88x31 button!</li>
+                                    <li><input type="checkbox"> Get the music player to stop skipping...</li>
+                                    <li><input type="checkbox"> Record my dream from last night in the diary.</li>
+                                    <li><input type="checkbox"> <span style="color: #692f1a; font-weight: bold;">STOP THE WHISPERING</span></li>
+                                </ul>
+                                <p style="font-size: 9px; text-align: right; margin-top: 10px; font-style: italic;">
+                                    Current Motivation: 45% 🔋
+                                </p>
+                            </div>
+
+                            <div class="box music">
+                                <h1>MUSIC</h1>
+                                <div id="musicplayer">
+                                    <table class="controls">
+                                        <tbody>
+                                            <tr>
+                                                <td><div class="prev-track" onclick="alert('Use the Spotify player to skip!')"><img class="ctrlimg" src="https://file.garden/Zztv0a9yEhr5pmEq/back.png"></div></td>
+                                                <td><div class="playpause-track" onclick="alert('Click Play on the Spotify box below!')"><img class="ctrlimg" src="https://file.garden/Zztv0a9yEhr5pmEq/play.png"></div></td>
+                                                <td><div class="next-track" onclick="alert('Use the Spotify player to skip!')"><img class="ctrlimg" src="https://file.garden/Zztv0a9yEhr5pmEq/next.png"></div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    
+                                    <div>
+                                        <marquee scrollamount="5" class="songtitle">Now Streaming: Clemmy's Kawaii Mix...</marquee>
+                                    </div>
+
+                                    <iframe style="border-radius:12px" 
+                                        src="https://open.spotify.com/embed/playlist/0WU6xTPFJBPw19tHYdjsx8?utm_source=generator" 
+                                        width="100%" 
+                                        height="152" 
+                                        frameBorder="0" 
+                                        allowfullscreen="" 
+                                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                        loading="lazy">
+                                    </iframe>
+
+                                    <div class="seeking">
+                                        <div class="current-time">0:00</div>
+                                        <input type="range" min="1" max="100" value="0" class="seek_slider">
+                                        <div class="total-duration">-:--</div>
+                                    </div>
+
+                                    <div class="slider_container">
+                                        <span>🔈</span>
+                                        <input type="range" min="0" max="20" value="10" class="volume_slider">
+                                        <span>🔊</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+              
+                        <div class="blinkie-scroller">
+                        <div class="blinkie-track">
+                            <img src="https://blinkies.cafe/b/display/0061-pinkcomputer.gif">
+                            <img src="https://caitsith.neocities.org/blinkies/tommyfebruary6.gif">
+                            <img src="https://y2k.neocities.org/blinkiez/tumblr_static_p1tj7zi3nk0004koc00co48k.gif">
+                            <img src="https://y2k.neocities.org/blinkiez/tumblr_p2gu34gTvy1wclo4ko2_250.gif">
+                            <img src="https://blinkies.cafe/b/display/0135-pinkiepie.gif">
+                            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dbd06e6e-b313-4acc-80d7-2f76026c8171/dfs5jhz-41945487-878a-4e4d-b14d-d6103da66089.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9kYmQwNmU2ZS1iMzEzLTRhY2MtODBkNy0yZjc2MDI2YzgxNzEvZGZzNWpoei00MTk0NTQ4Ny04NzhhLTRlNGQtYjE0ZC1kNjEwM2RhNjYwODkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.EBqik1eZrFdTyzX1MR6VNjHSLS9hekraOytMVkjw-O4">
+                            <img src="https://adriansblinkiecollection.neocities.org/g32.gif">
+                            
+                            <img src="https://blinkies.cafe/b/display/0061-pinkcomputer.gif">
+                            <img src="https://caitsith.neocities.org/blinkies/tommyfebruary6.gif">
+                            <img src="https://y2k.neocities.org/blinkiez/tumblr_static_p1tj7zi3nk0004koc00co48k.gif">
+                            <img src="https://external-media.spacehey.net/media/s0eSD8Y0lh284ZgLxanwnmDev7WrQjunDnvu4HtG3jSI=/https://64.media.tumblr.com/5ee9cbd08526450122d4ee02fa840cad/6c2288e9cfdf4bc6-7a/s250x400/a54b07a9257b83a3ac1b0d78d3b528ab0df81e3e.gif">
+                            <img src="https://blinkies.cafe/b/display/0135-pinkiepie.gif">
+                            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dbd06e6e-b313-4acc-80d7-2f76026c8171/dfs5jhz-41945487-878a-4e4d-b14d-d6103da66089.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9kYmQwNmU2ZS1iMzEzLTRhY2MtODBkNy0yZjc2MDI2YzgxNzEvZGZzNWpoei00MTk0NTQ4Ny04NzhhLTRlNGQtYjE0ZC1kNjEwM2RhNjYwODkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.EBqik1eZrFdTyzX1MR6VNjHSLS9hekraOytMVkjw-O4">
+                            <img src="https://adriansblinkiecollection.neocities.org/g32.gif">
+
+                        </div>
+                        </div>
+                        
+                        <div class="Footer">© 2025 Clemmy’s Corner — Made With Love ♡</div>
+                    </div>
+                </div>
+
+              <div class="taskbar">
+                  <div class="taskbar-left">
+                      <button class="task-btn" onclick="alert('ClemmyOS v1.0')">Start</button>
+                      <button class="task-btn" onclick="exitToDesktop()">Home</button>
+                  </div>
+                  <div id="clock" style="font-weight: bold; color: #7a2f55;"></div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="keyboard"></div>
+</div>
+
+<script>
+function updateClock() {
+    const clock = document.getElementById('clock');
+    const d = new Date();
+    let h = d.getHours();
+    let m = d.getMinutes();
+    let s = d.getSeconds();
+    m = m < 10 ? "0" + m : m;
+    s = s < 10 ? "0" + s : s;
+    clock.textContent = h + ":" + m + ":" + s;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+function exitToDesktop() {
+    window.location.href = "desktop.html";
+}
+
+function toggleStart() {
+  const menu = document.getElementById('startMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Close menu if clicking desktop wallpaper
+document.querySelector('.desktop').onclick = function() {
+    document.getElementById('startMenu').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
