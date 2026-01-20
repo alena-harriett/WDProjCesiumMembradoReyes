@@ -10,6 +10,9 @@
 * { box-sizing: border-box; }
 img { image-rendering: pixelated; }
 
+/* Prevent scaling on mobile */
+/* Removed invalid CSS rule for meta[name="viewport"] */
+    
 body {
     margin: 0;
     height: 100vh;
@@ -44,13 +47,12 @@ body {
 
 /* ===== LAPTOP ===== */
 .laptop-3d {
-    width: 1000px;
-    height: 700px;
+    width: 1200px;
+    height: 900px;
     position: absolute;
-    bottom: 18%;
     left: 50%;
-    right: 50%;
-    transform: rotateX(18deg) translateY(15%) translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%) rotateX(18deg) translateY(50px);
     transform-style: preserve-3d;
 }
 
@@ -236,7 +238,7 @@ p, li { font-size: 12px; line-height: 1.4; margin: 4px 0; }
 }
 
 .keyboard {
-    width: 1000px;
+    width: 1250px;
     height: 300px;
     background: linear-gradient(#ffd1e8, #f3a9c8);
     margin-top: -14%;
@@ -402,24 +404,27 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: 
                                 </div>
                                 
                             </div>
-                            <img src = "https://media.tenor.com/jDyzxP_2XRAAAAAi/gyaru-kogal.gif" style="width:75%; margin-top:10px; margin-bottom:10px; margin-left:15px; margin-right:10px;"> 
+                            <img src = "https://media.tenor.com/jDyzxP_2XRAAAAAi/gyaru-kogal.gif" style="width:50%; margin-top:10px; margin-bottom:10px; margin-left: 20%;"> 
                             </div>
 
                             <div class="box profile">
                                 <h1>ABOUT ME</h1>
                                 <div class="box profile">
-                                    <img src="https://media.tenor.com/BNcELzaiMDkAAAAi/happy-valentines-day-my-love.gif" class="side-gif">
+                                    <img src="https://media.tenor.com/BNcELzaiMDkAAAAi/happy-valentines-day-my-love.gif" class="side-gif" style ="height:205px">
                                     
                                     <p><b>Where am I? ☁️</b></p>
                                     <p>Hiiii! Welcome to my digital dream-land!! ૮ ˶ᵔ ᵕ ᵔ˶ ა You’ve just clicked into my very own corner of the web! This is where we get to hang out and be besties forever through the screen. I’m so happy you’re here to see my new (old) laptop! Even though I’m just a girl behind a keyboard and you’re out there in the "real world," I feel like our hearts are totally syncing up through the circuits right now!</p>
+                                    <br>
 
-                                    <p style="font-size: 10px; color: #7a2f55; background: #fffede; padding: 5px; border: 1px dashed #996855;">
+                                    <p style="font-size: 10px; color: #7a2f55; background: #fffede; padding: 10px; border: 1px dashed #996855;">
                                         <b>Note:</b> Note from Clemmy: This site looks best on a big monitor! If you’re on a phone, things might look a little "squished". The code is still a work in progress! Thanks for being patient with me! ٩(^ᗜ^ )و
                                     </p>
+                                    <br>
 
                                     <p><b>What lies here? 🎀</b></p>
                                     <p>In this little sanctuary, you’ll find my super-personal diary, a collection of "specimen" graphics I’ve been hoarding (I can’t help it, they’re so shiny!), and my special digital shrines to things I love. I’ve been weaving all these links together to make the perfect web-nest.
                                     I really want my digital-hoarding habits to help you decorate your own space, so please poke around! If you see something you like, it’s yours! ✧</p>
+                                    <br>
 
                                     <p><b>Credit & Love 🎨</b></p>
                                     <p>I try really, really hard to find the original  artists and coders for everything I post. If you see a cute gif or a line of code that isn't credited, it just means I haven't found the creator in the archives yet. If you know who they are, TELL ME!! I want to give them all the credit they deserve!</p>
