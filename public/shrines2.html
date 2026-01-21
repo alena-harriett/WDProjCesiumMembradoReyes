@@ -12,22 +12,54 @@ img { image-rendering: pixelated; }
 body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sans-serif; perspective: 1600px; overflow: hidden; background: #000; }
 .room { position: absolute; inset: 0; background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%); }
 .desk { position: absolute; bottom: 0; width: 100%; height: 38%; background: linear-gradient(#caa08c, #a97c65); box-shadow: inset 0 20px 40px rgba(0,0,0,0.25); }
-.laptop-3d { width: 800px; height: 600px; position: absolute; bottom: 18%; left: 50%; transform: translateX(-50%) rotateX(18deg); transform-style: preserve-3d; }
-.screen-shell { width: 760px; height: 460px; background: linear-gradient(#ffd9eb, #f6bcd3); border-radius: 18px; padding: 18px; box-shadow: 0 60px 120px rgba(0,0,0,0.45); }
-.screen-frame { background: #fff3f9; height: 100%; padding: 14px; border-radius: 10px; box-shadow: inset 0 0 0 3px #ffb3d9; }
-.screen { position: relative; height: 100%; background: linear-gradient(#fffdfc, #ffeef6); overflow: hidden; }
-.screen::after {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-    z-index: 100;
-    background-size: 100% 3px, 3px 100%;
-    pointer-events: none;
-    opacity: 0.4;
-}
+/* ===== LAPTOP ===== */
+    .laptop-3d {
+        width: 1200px;
+        height: 900px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotateX(18deg) translateY(50px);
+        transform-style: preserve-3d;
+    }
+    
+    /* ===== SCREEN ===== */
+    .screen-shell {
+      width: 100%;
+      height: 80%;
+      background: linear-gradient(#ffd9eb, #f6bcd3);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 60px 120px rgba(0,0,0,0.45);
+    }
+    
+    .screen-frame {
+        background: #fff3f9;
+        height: 100%;
+        padding: 14px;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 3px #ffb3d9;
+    }
+    
+    .screen {
+      position: relative;
+      height: 100%;
+      background: linear-gradient(#fffdfc, #ffeef6);
+      overflow: hidden;
+    }
+    
+    .screen::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        z-index: 100;
+        background-size: 100% 3px, 3px 100%;
+        pointer-events: none;
+        opacity: 0.4;
+    }
 
 .blog-window { position: absolute; inset: 10px; bottom: 45px; background-color: #996855; border: 4px solid #f8accf; display: flex; flex-direction: column; z-index: 10; }
 .blog-titlebar { background: linear-gradient(#ffd6ea, #ffb7d9); padding: 6px 10px; display: flex; justify-content: space-between; font-weight: bold; color: #692f1a; font-size: 14px; border-bottom: 2px solid #ff9acb; }
@@ -40,8 +72,8 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .Divider img { width: 100%; height: 100%; object-fit: cover; }
 .flex-container1, .flex-container2 { display: flex; gap: 12px; margin-bottom: 12px; width: 100%; }
 .box { border: 3px solid #996855; padding: 12px; color: #692f1a; text-align: left;}
-.Directory { width: 200px; flex-shrink: 0; background-color: #e19c91; }
-.Archives { width: 200px; flex-shrink: 0; background-color: #fdb1bf; height: 100%; }
+.Directory { flex: 3; flex-shrink: 0; background-color: #e19c91; }
+.Archives { flex: 2.98; flex-shrink: 0; background-color: #fdb1bf; }
 
 /* ===== GLITCH SYSTEM ===== */
 .glitch-overlay { position: absolute; inset: 0; background: rgba(255,0,0,0.15); display: none; z-index: 9999; pointer-events: none; mix-blend-mode: exclusion; }
@@ -65,8 +97,8 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .archive-file:hover { background: #fffede; color: #ff6fb3; }
 
 .Spotlight { flex: 7; background-color: #e19c91; overflow: hidden; } 
-.Projects { flex: 3.375; background-color: #e19c91; }
-.Gallery { flex: 3.375; height: 100%; background-color: #fdb1bf}
+.Projects { flex: 2; background-color: #e19c91; }
+.Gallery { flex: 4.5; height: 100%; background-color: #fdb1bf}
 
 h1 { font-size: 14px; color: #fffede; text-align: center; margin: 0 0 10px; background: #996855; padding: 2px; letter-spacing: 1px; }
 p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
@@ -77,7 +109,18 @@ p { font-size: 11px; line-height: 1.3; margin: 6px 0; }
 .taskbar { position: absolute; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#ffb7d9, #ff93c6); border-top: 2px solid #ff6fb3; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 12px; z-index: 500; }
 .taskbar-left { display: flex; gap: 6px; }
 .task-btn { background: linear-gradient(#fff, #ffd6ea); border: 2px solid #ff6fb3; border-radius: 6px; padding: 4px 10px; font-weight: bold; cursor: pointer; font-family: inherit; color: #7a2f55; }
-.keyboard { width: 800px; height: 200px; background: linear-gradient(#ffd1e8, #f3a9c8); margin: -10px auto 0; border-radius: 0 0 26px 26px; transform: rotateX(75deg) translateZ(-46px); box-shadow: 0 80px 100px rgba(0,0,0,0.4); }
+.keyboard {
+    width: 1250px;
+    height: 300px;
+    background: linear-gradient(#ffd1e8, #f3a9c8);
+    margin-top: -14%;
+    margin-left: 20.5%;
+    position: absolute;
+    border-radius: 0 0 26px 26px;
+    transform: rotateX(75deg) translateZ(-50px) translateX(-21%);
+    box-shadow: 0 80px 100px rgba(0,0,0,0.4);
+}
+
 
 .spotlight-slider {
     display: flex;
