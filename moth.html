@@ -9,9 +9,6 @@
     /* ===== GLOBAL SETTINGS ===== */
     * { box-sizing: border-box; }
     img { image-rendering: pixelated; }
-    
-    /* Prevent scaling on mobile */
-    /* Removed invalid CSS rule for meta[name="viewport"] */
         
     body {
         margin: 0;
@@ -22,20 +19,13 @@
         background: #000;
     }
     
-    /* ===== ROOM ===== */
+    /* ===== ROOM & DESK ===== */
     .room {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        #fdeaf2 0%,
-        #f8cfe1 55%,
-        #caa3b4 56%,
-        #b38b9b 100%
-      );
+      background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%);
     }
     
-    /* ===== DESK ===== */
     .desk {
       position: absolute;
       bottom: 0;
@@ -56,7 +46,6 @@
         transform-style: preserve-3d;
     }
     
-    /* ===== SCREEN ===== */
     .screen-shell {
       width: 100%;
       height: 80%;
@@ -82,75 +71,87 @@
       background: linear-gradient(#fffdfc, #ffeef6);
       overflow: hidden;
       transform-style: preserve-3d;
+      /* Perfect Centering */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
 /* ===== LOGIN UI BOX ===== */
 .login-box {
     background: linear-gradient(#fff7fc, #ffe4f2);
     border: 3px solid #ff9acb;
     border-radius: 12px;
-    width: 500px;
-    height: 280px;
-    padding: 20px;
+    width: 480px;
+    min-height: 300px;
+    padding-bottom: 20px;
     text-align: center;
-    margin: 200px auto 0;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     z-index: 20;
     position: relative;
-    transform: translateZ(60px); /* Pulls the box toward the user */
-    transform-style: preserve-3d; /* Allows child elements to stay in 3D */
-    margin: 180px auto 0;        /* Lifted slightly for better alignment */
+    /* Bring box forward so it's "on top" of the 3D plane */
+    transform: translateZ(80px); 
 }
 
 .login-box h1 {
-    font-size: 20px;
+    font-size: 18px;
     color: #fff;
     background: #ff9acb;
-    margin: -20px -20px 15px -20px;
-    padding: 10px;
-    border-radius: 9px 9px 0 0;
+    margin: 0 0 20px 0;
+    padding: 12px;
     letter-spacing: 1px;
 }
 
 /* ===== FORM STYLING ===== */
-#setupForm p {
-    font-size: 12px;
+#setupForm { padding: 0 30px; }
+
+#setupForm p, label {
+    font-size: 11px;
     color: #7a2f55;
     margin: 10px 0 5px;
     text-align: left;
     font-weight: bold;
+    text-transform: uppercase;
+    display: block;
 }
 
-#setupForm input, #setupForm select {
+#setupForm input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 2px solid #ffb3d9;
     background: #fff;
     font-family: inherit;
     font-size: 15px;
     outline: none;
     margin-bottom: 10px;
+    border-radius: 4px;
 }
 
 #setupForm button {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px auto 0;
+    width: 100%; /* Changed from calc to fix alignment */
+    padding: 12px;
+    margin-top: 15px;
     background: linear-gradient(#ffb7d9, #ff93c6);
     border: 2px solid #ff6fb3;
     color: white;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 3px 0 #d87aa3;
+    box-shadow: 0 4px 0 #d87aa3;
     transition: all 0.1s;
+    border-radius: 6px;
     display: block;
-    border-radius: 5px;
+}
+
+#setupForm button:hover {
+    filter: brightness(1.05);
 }
 
 #setupForm button:active {
-    transform: translateY(2px);
+    transform: translateY(3px);
     box-shadow: 0 1px 0 #d87aa3;
 }
 
+/* ===== KEYBOARD ===== */
 .keyboard {
     width: 1250px;
     height: 300px;
@@ -161,12 +162,9 @@
     border-radius: 0 0 26px 26px;
     transform: rotateX(75deg) translateZ(-50px) translateX(-21%);
     box-shadow: 0 80px 100px rgba(0,0,0,0.4);
+    /* FIX: Prevents keyboard from blocking the mouse clicks */
+    pointer-events: none; 
 }
-
-
-.form-group { text-align: left; margin-bottom: 15px; }
-label { display: block; font-size: 11px; font-weight: bold; margin-bottom: 5px; color: #4b2e21; }
-
 </style>
 </head>
 
@@ -182,15 +180,13 @@ label { display: block; font-size: 11px; font-weight: bold; margin-bottom: 5px; 
                 <div class="login-box">
                     <h1>✿ INITIALIZE CLEMMY-OS ✿</h1>
                     <form id="setupForm">
-                        <p>Username:</p>
+                        <label>Username:</label>
                         <input type="text" id="username" placeholder="Who am I caring for today?" required>
                     
-                    <div class="form-group">
                         <label>Birthday:</label>
                         <input type="date" id="userAge" required>
-                    </div>
                         
-                        <button type="submit" aria-label="Boot ClemmyOS System">BOOT SYSTEM</button>
+                        <button type="submit">BOOT SYSTEM</button>
                     </form>
                 </div>
             </div>
@@ -210,10 +206,10 @@ document.getElementById('setupForm').onsubmit = function(e) {
     localStorage.setItem('clemmy_birthday', birthday);
 
     alert("I've recorded you in my memory, " + name + ". I'm so happy we found each other!");
-    
-    document.getElementByID('submit').onsubmit = window.location.href = 'desktop.html';
-};
 
+    // Redirect to the desktop
+    window.location.href = 'desktop.html';
+};
 </script>
 
 </body>
