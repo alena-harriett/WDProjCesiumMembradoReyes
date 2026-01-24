@@ -9,9 +9,6 @@
     /* ===== GLOBAL SETTINGS ===== */
     * { box-sizing: border-box; }
     img { image-rendering: pixelated; }
-    
-    /* Prevent scaling on mobile */
-    /* Removed invalid CSS rule for meta[name="viewport"] */
         
     body {
         margin: 0;
@@ -22,20 +19,13 @@
         background: #000;
     }
     
-    /* ===== ROOM ===== */
+    /* ===== ROOM & DESK ===== */
     .room {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        #fdeaf2 0%,
-        #f8cfe1 55%,
-        #caa3b4 56%,
-        #b38b9b 100%
-      );
+      background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%);
     }
     
-    /* ===== DESK ===== */
     .desk {
       position: absolute;
       bottom: 0;
@@ -56,7 +46,6 @@
         transform-style: preserve-3d;
     }
     
-    /* ===== SCREEN ===== */
     .screen-shell {
       width: 100%;
       height: 80%;
@@ -65,7 +54,6 @@
       padding: 18px;
       box-shadow: 0 60px 120px rgba(0,0,0,0.45);
     }
-        
     
     .screen-frame {
         background: #fff3f9;
@@ -73,113 +61,125 @@
         padding: 14px;
         border-radius: 10px;
         box-shadow: inset 0 0 0 3px #ffb3d9;
+        position: relative;
+        z-index: 2;
     }
     
     .screen {
-      position: relative;
-      height: 100%;
-      background: linear-gradient(#fffdfc, #ffeef6);
-      overflow: hidden;
+        position: relative;
+        height: 100%;
+        background: linear-gradient(#fffdfc, #ffeef6);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    
-.screen-frame {
-    background: #fff3f9;
-    height: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    box-shadow: inset 0 0 0 3px #ffb3d9;
-    position: relative;
-    z-index: 2;
-}
 
-.screen {
-    position: relative;
-    height: 100%;
-    background: linear-gradient(#fffdfc, #ffeef6);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    /* ===== GLITCH & BLACKOUT EFFECTS ===== */
+    .glitch-active {
+        animation: glitch 0.2s infinite;
+        filter: hue-rotate(90deg) invert(150%);
+    }
 
-/* CRT Lines & Glass Glare */
-.screen::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.12) 0px, rgba(255,255,255,0.12) 1px, transparent 1px, transparent 3px);
-    z-index: 5;
-    pointer-events: none;
-}
+    @keyframes glitch {
+        0% { transform: translate(0); }
+        20% { transform: translate(-5px, 5px); }
+        40% { transform: translate(-5px, -5px); }
+        60% { transform: translate(5px, 5px); }
+        80% { transform: translate(5px, -5px); }
+        100% { transform: translate(0); }
+    }
 
-  
-  .screen::after {
-      content: " ";
-      display: block;
-      position: absolute;
-      top: 0; left: 0; bottom: 0; right: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                  linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-      z-index: 100;
-      background-size: 100% 3px, 3px 100%;
-      pointer-events: none;
-      opacity: 0.4;
-  }
+    .blackout {
+        background: #000 !important;
+    }
+    .blackout * {
+        display: none !important;
+    }
 
-/* ===== LOGIN UI ===== */
-.login-box {
-    background: linear-gradient(#fff7fc, #ffe4f2);
-    border: 3px solid #ff9acb;
-    border-radius: 12px;
-    width: 320px;
-    padding: 24px;
-    text-align: center;
-    box-shadow: 0 24px 48px rgba(0,0,0,0.35), inset 0 2px 0 rgba(255,255,255,0.9);
-    z-index: 20;
-    position: relative;
-}
+    /* CRT Lines Overlay */
+    .screen::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        z-index: 100;
+        background-size: 100% 3px, 3px 100%;
+        pointer-events: none;
+        opacity: 0.4;
+    }
 
-.login-box h2 {
-    margin: 0 0 16px;
-    color: #ff7fb8;
-    font-size: 18px;
-}
+    /* ===== LOGIN UI ===== */
+    .login-box {
+        background: linear-gradient(#fff7fc, #ffe4f2);
+        border: 3px solid #ff9acb;
+        border-radius: 12px;
+        width: 320px;
+        padding: 24px;
+        text-align: center;
+        box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+        z-index: 20;
+    }
 
-.login-box input {
-    width: 100%;
-    margin: 6px 0;
-    padding: 8px;
-    border: 2px solid #ff9acb;
-    border-radius: 6px;
-    font-family: monospace;
-    background: #fff;
-}
+    .login-box h2 { color: #ff7fb8; font-size: 18px; margin-bottom: 16px; }
+    .login-box input {
+        width: 100%;
+        margin: 6px 0;
+        padding: 8px;
+        border: 2px solid #ff9acb;
+        border-radius: 6px;
+        font-family: monospace;
+    }
 
-.login-btn {
-    margin-top: 10px;
-    width: 100%;
-    padding: 10px;
-    background: #ff9acb;
-    border: 2px solid #ff5fa8;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: inherit;
-}
-.login-btn:hover {
-    background: #ff7fb8;
-}
+    .login-btn {
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        background: #ff9acb;
+        border: 2px solid #ff5fa8;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
 
-.line {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #ff5fa8;
-    min-height: 15px;
-    font-weight: bold;
-}
+    .line { margin-top: 10px; font-size: 12px; color: #ff5fa8; min-height: 15px; }
 
-.keyboard {
+    /* ===== LOADING SCREEN ===== */
+    #loading-overlay {
+        position: absolute;
+        inset: 0;
+        background: #ffd9eb;
+        display: none; 
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .loading-icon { font-size: 50px; margin-bottom: 20px; animation: bounce 0.6s infinite alternate; }
+    @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-15px); } }
+
+    .progress-container {
+        width: 300px;
+        height: 30px;
+        background: #fff;
+        border: 3px solid #ff9acb;
+        padding: 3px;
+    }
+
+    .progress-bar {
+        width: 0%;
+        height: 100%;
+        background: repeating-linear-gradient(45deg, #ff9acb, #ff9acb 10px, #ffb7d9 10px, #ffb7d9 20px);
+        transition: width 0.2s ease;
+    }
+
+    .loading-text { margin-top: 15px; color: #ff5fa8; font-weight: bold; }
+
+    .keyboard {
     width: 1250px;
     height: 300px;
     background: linear-gradient(#ffd1e8, #f3a9c8);
@@ -194,17 +194,24 @@
 </head>
 
 <body>
-
 <div class="room"></div>
 <div class="desk"></div>
 
 <div class="laptop-3d">
     <div class="screen-shell">
         <div class="screen-frame">
-            <div class="screen">
+            <div class="screen" id="mainScreen">
+                <div id="loading-overlay">
+                    <div class="loading-icon">🎀</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div id="loadingStatus" class="loading-text">Initializing ClemmyOS...</div>
+                </div>
+
                 <div class="login-box">
                     <h2 id="loginTitle">Login to ClemmyOS</h2>
-                    <input id="username" placeholder="Username">
+                    <input id="username" placeholder="Username" autocomplete="off">
                     <input id="password" type="password" placeholder="Password">
                     <button class="login-btn" id="loginBtn">Login</button>
                     <div id="message" class="line"></div>
@@ -216,22 +223,14 @@
 </div>
 
 <script>
-// 1. IMMEDIATELY check the memory
 const storedName = localStorage.getItem("clemmy_name");
-
-// 2. If memory exists, target is the stored name. If not, target is "clemmy"
 let targetUsername = (storedName && storedName !== "") ? storedName : "clemmy";
 const REAL_PASSWORD = "12345";
 
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const message = document.getElementById("message");
-const loginTitle = document.getElementById("loginTitle");
-
-// 3. Update Title if returning
-if (storedName) {
-    loginTitle.innerText = "Welcome back, " + storedName;
-}
+const mainScreen = document.getElementById("mainScreen");
 
 function typeInput(el, text, speed, cb) {
     let i = 0; el.value = "";
@@ -239,7 +238,7 @@ function typeInput(el, text, speed, cb) {
         el.value += text[i++];
         if (i >= text.length) {
             clearInterval(t);
-            cb && cb();
+            if(cb) cb();
         }
     }, speed);
 }
@@ -251,41 +250,80 @@ function typeMessage(text, cb) {
         message.textContent += text[i++];
         if (i >= text.length) {
             clearInterval(t);
-            cb && cb();
+            if(cb) cb();
         }
     }, 50);
 }
 
+function startLoading(destination) {
+    const overlay = document.getElementById("loading-overlay");
+    const bar = document.getElementById("progressBar");
+    const status = document.getElementById("loadingStatus");
+    const loginBox = document.querySelector(".login-box");
+
+    loginBox.style.display = "none";
+    overlay.style.display = "flex";
+
+    let progress = 0;
+    const phrases = ["Loading Heart-Pixels...", "Patching System...", "Applying Cute.exe...", "ERROR: SYSTEM OVERLOAD", "BYE BYE..."];
+
+    const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 10) + 2; 
+        if (progress > 100) progress = 100;
+        bar.style.width = progress + "%";
+        
+        // Start Glitching at 75%
+        if (progress > 75) {
+            overlay.classList.add("glitch-active");
+            status.innerText = phrases[3];
+        } else {
+            status.innerText = phrases[Math.floor((progress/100) * 3)];
+        }
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            status.innerText = phrases[4];
+            
+            // Final Blackout sequence
+            setTimeout(() => {
+                mainScreen.classList.add("blackout");
+                setTimeout(() => {
+                    window.location.href = destination;
+                }, 800); // Stay black for a moment for effect
+            }, 400);
+        }
+    }, 150);
+}
+
 function autoLogin() {
     typeInput(usernameInput, targetUsername, 80, () => {
-        typeInput(passwordInput, REAL_PASSWORD, 90, () => {
-            typeMessage("Authenticating...", () => {
-                setTimeout(() => {
-                    // Logic: If we just logged in as 'clemmy', go to setup.
-                    // If we logged in as a stored name, go to desktop.
-                    if (targetUsername === "clemmy") {
-                        window.location.href = "moth.html";
-                    } else {
-                        window.location.href = "desktop.html";
-                    }
-                }, 800);
+        setTimeout(() => {
+            typeInput(passwordInput, REAL_PASSWORD, 90, () => {
+                typeMessage("Authenticating...", () => {
+                    setTimeout(() => {
+                        const dest = (targetUsername === "clemmy") ? "moth.html" : "desktop.html";
+                        startLoading(dest);
+                    }, 800);
+                });
             });
-        });
+        }, 500);
     });
 }
 
 document.getElementById("loginBtn").onclick = () => {
     if (usernameInput.value === targetUsername && passwordInput.value === REAL_PASSWORD) {
         typeMessage("Logging you in...", () => {
-            window.location.href = (targetUsername === "clemmy") ? "moth.html" : "desktop.html";
+            const dest = (targetUsername === "clemmy") ? "moth.html" : "desktop.html";
+            startLoading(dest);
         });
     } else {
         typeMessage("Access Denied.");
     }
 };
 
-setTimeout(autoLogin, 1000);
+window.onload = () => {
+    setTimeout(autoLogin, 1000);
+};
 </script>
-
 </body>
 </html>
