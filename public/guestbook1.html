@@ -221,8 +221,8 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                             
                             <div class="box GuestbookHistory">
                                 <h1>RECENT LOGS</h1>
-                                <div id="commentsContainer" style="max-height: 180px; overflow-y: auto;"></div>
-                                <br><button class="blog-btn" onclick="togglePopup()">History</button>
+                                <div id="commentsContainer" style="max-height: 200px; overflow-y: auto;"></div>
+                                <br><button class="blog-btn" onclick="loadLogs()">History</button>
                             </div>
 
                             <div class="box" style="flex: 2;">
@@ -273,6 +273,7 @@ setInterval(updateClock, 1000); updateClock();
 function togglePopup() {
     const pop = document.getElementById('historyPopup');
     pop.style.display = (pop.style.display === 'flex') ? 'none' : 'flex';
+
 }
 
 function saveLog() {
@@ -307,15 +308,24 @@ function loadLogs() {
 }
 loadLogs();
 
-function incrementCounter() {
-    let count = 666000;
-    const hitCounter = document.getElementById('hitCounter');
+// --- VISITOR COUNTER GLITCH ---
+function glitchCounter() {
+    const counter = document.getElementById('hitCounter');
+    let base = 12482;
+    
     setInterval(() => {
-        count += Math.floor(Math.random() * 10);
-        hitCounter.textContent = count.toString().padStart(6, '0');
-    }, 100);
+        // 10% chance to glitch out
+        if (Math.random() > 0.9) {
+            counter.innerText = "666" + Math.floor(Math.random() * 999);
+            counter.style.color = "#ff6fb3";
+        } else {
+            base++;
+            counter.innerText = "0" + base;
+            counter.style.color = "#996855";
+        }
+    }, 2000);
 }
-incrementCounter();
+glitchCounter();
 
 function sendGift(type) {
     const screen = document.getElementById('pcScreen');

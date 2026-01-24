@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clemmy's Corner - Credits & References</title>
+
+<style>
+  /* ===== GLOBAL SETTINGS ===== */
+  * { box-sizing: border-box; }
+  img { image-rendering: pixelated; }
+      
+  body {
+      margin: 0;
+      height: 100vh;
+      font-family: "MS PGothic", "Tahoma", Geneva, sans-serif;
+      perspective: 1600px;
+      overflow: hidden;
+      background: #000;
+  }
+  
+  /* ===== ROOM & DESK ===== */
+  .room {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%);
+  }
+  
+  .desk {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 38%;
+    background: linear-gradient(#caa08c, #a97c65);
+    box-shadow: inset 0 20px 40px rgba(0,0,0,0.25);
+  }
+  
+  /* ===== LAPTOP ===== */
+  .laptop-3d {
+      width: 1200px;
+      height: 900px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotateX(18deg) translateY(50px);
+      transform-style: preserve-3d;
+  }
+  
+  .screen-shell {
+    width: 100%;
+    height: 80%;
+    background: linear-gradient(#ffd9eb, #f6bcd3);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.45);
+  }
+  
+  .screen-frame {
+      background: #fff3f9;
+      height: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 3px #ffb3d9;
+  }
+  
+  .screen {
+    position: relative;
+    height: 100%;
+    background: #ffeef6;
+    overflow: hidden;
+    background-image: url("https://i.pinimg.com/736x/c8/99/e9/c899e9c7275c1d5501b753ece967fa2c.jpg");
+    background-size: cover;
+  }
+
+  /* Scanline Overlay */
+  .screen::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      z-index: 100;
+      background-size: 100% 3px, 3px 100%;
+      pointer-events: none;
+      opacity: 0.2;
+  }
+
+/* ===== CREDITS WINDOW ===== */
+.window {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    background: #f0f0f0;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 #fff inset, -2px -2px 0 #808080 inset;
+    z-index: 2000;
+}
+.title-bar {
+    background: linear-gradient(90deg, #ff6fb3, #ffb7d9);
+    color: white;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+.window-body { 
+    padding: 20px; 
+    background: white; 
+    border: 1px solid #808080; 
+    margin: 2px; 
+    height: 450px; 
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.credit-section {
+    margin-bottom: 25px;
+    border-bottom: 1px dashed #ffb7d9;
+    padding-bottom: 10px;
+}
+
+.credit-section h2 {
+    font-size: 14px;
+    color: #ff6fb3;
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
+.credit-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.credit-name { font-weight: bold; color: #692f1a; }
+.credit-source { color: #8b5a6d; font-style: italic; }
+
+/* ===== TASKBAR ===== */
+.taskbar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 36px;
+    background: linear-gradient(#ffb7d9, #ff93c6);
+    border-top: 2px solid #ff6fb3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 12px;
+    z-index: 500;
+}
+
+.task-btn {
+  background: linear-gradient(#fff, #ffd6ea);
+  border: 2px solid #ff6fb3;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.keyboard {
+    width: 1250px;
+    height: 300px;
+    background: linear-gradient(#ffd1e8, #f3a9c8);
+    margin-top: -14%;
+    margin-left: 20.5%;
+    position: absolute;
+    border-radius: 0 0 26px 26px;
+    transform: rotateX(75deg) translateZ(-50px) translateX(-21%);
+    box-shadow: 0 80px 100px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<div class="room"></div>
+<div class="desk"></div>
+
+<div class="laptop-3d">
+  <div class="screen-shell">
+    <div class="screen-frame">
+      <div class="screen">
+
+        <div class="window">
+            <div class="title-bar">
+                <span>C:\SYSTEM\ARCHIVE\CREDITS.txt</span>
+                <button style="background:#ccc; border:1px solid #000; cursor:pointer;" onclick="location.href='desktop.html'">X</button>
+            </div>
+            <div class="window-body">
+                <h1>Media References & Special Thanks</h1>
+                <p style="font-size: 11px; margin-bottom: 20px; color: #666;">
+                    Everything used in Clemmy's Corner is a tribute to the creators of the digital past. 
+                    If you see your work here and wish for a specific link or removal, please reach out.
+                </p>
+
+                <div class="credit-section">
+                    <h2>Graphics & Gifs</h2>
+                    <div class="credit-item">
+                        <span class="credit-name">Toro Inoue Gifs</span>
+                        <span class="credit-source">Caitsith.neocities.org</span>
+                    </div>
+                    <div class="credit-item">
+                        <span class="credit-name">Pixel Backgrounds</span>
+                        <span class="credit-source">Pinterest / Tumblr</span>
+                    </div>
+                    <div class="credit-item">
+                        <span class="credit-name">Banners & Dividers</span>
+                        <span class="credit-source">Glitter-Graphics</span>
+                    </div>
+                    <div class="credit-item">
+                        <span class="credit-name">Desktop Wallpaper</span>
+                        <span class="credit-source">Unknown Digital Archive</span>
+                    </div>
+                </div>
+
+                <div class="credit-section">
+                    <h2>Code & Logic</h2>
+                    <div class="credit-item">
+                        <span class="credit-name">3D CSS Perspective</span>
+                        <span class="credit-source">Modern Web Labs</span>
+                    </div>
+                    <div class="credit-item">
+                        <span class="credit-name">ClemmyOS Environment</span>
+                        <span class="credit-source">Lumi & Alena</span>
+                    </div>
+                </div>
+
+                <div class="credit-section">
+                    <h2>Aesthetic Inspiration</h2>
+                    <div class="credit-item">
+                        <span class="credit-name">Y2K / Webcore</span>
+                        <span class="credit-source">The "Old Web" movement</span>
+                    </div>
+                    <div class="credit-item">
+                        <span class="credit-name">Horror Themes</span>
+                        <span class="credit-source">Anonymous Corrupted Files</span>
+                    </div>
+                </div>
+
+                <div class="credit-section" style="border:none;">
+                    <h2>Creators</h2>
+                    <p class="credit-name">Lumi Reyes</p>
+                    <p class="credit-name">Alena Membrado</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <img src="https://caitsith.neocities.org/toro/toro_sleep.gif" style="width: 50px;">
+                    <p style="font-size: 10px; color: #ff6fb3;">Thank you for exploring the archive.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="taskbar">
+          <div class="taskbar-left">
+            <button class="task-btn" onclick="location.href='desktop.html'">Back to Desktop</button>
+          </div>
+          <div id="clock" style="font-weight: bold; color: #ffffff;"></div>
+        </div>
+
+      </div> 
+    </div>
+  </div>
+  <div class="keyboard"></div>
+</div>
+
+<script>
+function updateClock() {
+    const clock = document.getElementById('clock');
+    const d = new Date();
+    clock.textContent = d.getHours().toString().padStart(2, '0') + ":" + 
+                        d.getMinutes().toString().padStart(2, '0') + ":" + 
+                        d.getSeconds().toString().padStart(2, '0');
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>
