@@ -9,9 +9,6 @@
   /* ===== GLOBAL SETTINGS ===== */
   * { box-sizing: border-box; }
   img { image-rendering: pixelated; }
-  
-  /* Prevent scaling on mobile */
-  /* Removed invalid CSS rule for meta[name="viewport"] */
       
   body {
       margin: 0;
@@ -254,22 +251,10 @@ button:hover { background: #fffede; }
 .teex, .texas {
     flex-grow: .5;
 }
-/* Standardized Window styles for all windows */
-  .window {
-    position: absolute;
-    top: 50px;
-    left: 150px;
-    width: 350px; /* Default width */
-    background: #f0f0f0;
-    border: 2px solid #000;
-    box-shadow: 2px 2px 0 #fff inset, -2px -2px 0 #808080 inset;
-    display: none;
-    z-index: 2000;
-  }
 
   /* Specific sizing for the Credits Archive */
   #creditsWindow {
-    width: 450px;
+    width: 500px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -279,31 +264,13 @@ button:hover { background: #fffede; }
     background: white; 
     border: 1px solid #808080; 
     margin: 2px; 
-    font-size: 12px; 
+    font-size: 11px; 
     color: #333;
     max-height: 400px;
     overflow-y: auto;
+    line-height: 1.4;
   }
 
-  /* Credits Content Styling */
-  .credit-section {
-    margin-bottom: 15px;
-    border-bottom: 1px dashed #ffb7d9;
-    padding-bottom: 8px;
-  }
-  .credit-section h2 {
-    font-size: 13px;
-    color: #ff6fb3;
-    margin: 5px 0;
-    text-transform: uppercase;
-  }
-  .credit-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 3px;
-  }
-  .credit-name { font-weight: bold; color: #692f1a; }
-  .credit-source { color: #8b5a6d; font-style: italic; }
 </style>
 </head>
 
@@ -375,6 +342,7 @@ button:hover { background: #fffede; }
                </div>
             </div>
         </div>
+
         <div class="window" id="creditsWindow">
           <div class="title-bar">
               <span>C:\SYSTEM\ARCHIVE\CREDITS.txt</span>
@@ -382,42 +350,71 @@ button:hover { background: #fffede; }
           </div>
           <div class="window-body">
               <h1>Media References</h1>
-              <p style="font-size: 10px; color: #666; margin-bottom: 15px;">
-                  A tribute to the creators of the digital past.
-              </p>
-
-              <div class="credit-section">
-                  <h2>Graphics & Gifs</h2>
-                  <div class="credit-item">
-                      <span class="credit-name">Toro Inoue Gifs</span>
-                      <span class="credit-source">Caitsith.neocities</span>
-                  </div>
-                  <div class="credit-item">
-                      <span class="credit-name">Pixel Backgrounds</span>
-                      <span class="credit-source">Pinterest</span>
-                  </div>
-                  <div class="credit-item">
-                      <span class="credit-name">UI Elements</span>
-                      <span class="credit-source">...</span>
-                  </div>
-              </div>
-
-              <div class="credit-section">
-                  <h2>Code & Logic</h2>
-                  <div class="credit-item">
-                      <span class="credit-name">3D Perspective</span>
-                      <span class="credit-source">Modern Web Labs</span>
-                  </div>
-              </div>
-
-              <div class="credit-section" style="border:none;">
-                  <h2>Special Thanks</h2>
-                  <p style="font-size: 11px;">...</p>
-              </div>
-
-              <div style="text-align: center; margin-top: 20px;">
-                  <img src="https://caitsith.neocities.org/toro/toro_sleep.gif" style="width: 40px;">
-              </div>
+              <div style="white-space: pre-wrap;">Index.html
+W3Schools.com. (n.d.). https://www.w3schools.com/css/css3_3dtransforms.asp
+Coyier, C. (2025, January 28). filter | CSS-Tricks. CSS-Tricks. https://css-tricks.com/almanac/properties/f/filter/ 
+linear-gradient() - CSS | MDN. (2025, December 16). https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/gradient/linear-gradient 
+W3Schools.com. (n.d.). https://www.w3schools.com/jsref/met_win_setinterval.asp 
+Window: localStorage property - Web APIs | MDN. (2025, November 30). https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage 
+Moth.html
+Coyier, C. (2021, January 26). CSS Gradients | CSS-Tricks. CSS-Tricks. https://css-tricks.com/css3-gradients/ 
+pointer-events - CSS | MDN. (2025, November 27). https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/pointer-events 
+Desktop.html
+W3B R3S0URC3S. (n.d.). https://caitsith.neocities.org/graphics1 
+Pin on MONCHHICHI. (n.d.). Pinterest. https://ph.pinterest.com/pin/521784306802493633/ 
+Cope, S. (2022, September 22). box-shadow | CSS-Tricks. CSS-Tricks. https://css-tricks.com/almanac/properties/b/box-shadow/ 
+98.css. (n.d.). A Design System for Building Faithful Recreations of Old UIs. https://jdan.github.io/98.css/ 
+Basic concepts of grid layout - CSS | MDN. (2025, December 16). https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Basic_concepts 
+W3Schools.com. (n.d.). https://www.w3schools.com/css/css_grid_container.asp 
+Date - JavaScript | MDN. (2025, December 8). https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date 
+W3Schools.com. (n.d.). https://www.w3schools.com/css/css_grid_container.asp 
+z-index - CSS | MDN. (2025, November 7). https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/z-index 
+W3Schools.com. (n.d.). https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp 
+Milk.html
+Jackyuuu. (2025, May 26). Gyaru Kogal Sticker - Gyaru Kogal School girl - Discover & Share GIFs. Tenor. https://tenor.com/view/gyaru-kogal-school-girl-gif-10105149322601848080 
+ModestlyPeach. (2019, February 7). Happy Valentines Day my love sticker - Happy Valentines Day my love anime - Discover & share GIFs. Tenor. https://tenor.com/view/happy-valentines-day-my-love-anime-girl-gift-gif-13441992 
+dj shotacon: Image. (n.d.). Tumblr. https://64.media.tumblr.com/3b7e48caed4da480110eff58a9b8f851/f68b1ecfcc71eb9c-da/s250x400/a77da1387f446ad85049fc55a4061b0b51157841.gif
+Eternalfurtive. (2022, March 25). Discord Divider Sticker - Discord Divider Strawberry - Discover & Share GIFs. Tenor. https://tenor.com/view/discord-divider-strawberry-cute-gif-25211646 
+Pin on Random. (n.d.). Pinterest. https://ph.pinterest.com/pin/107804985305062550/
+blinkie maker | generate blinkie gifs with custom text! (n.d.). https://blinkies.cafe/?s=0061-pinkcomputer 
+BLINKIES. (n.d.). https://y2k.neocities.org/blinkies 
+CHIIKAWA blinkie // F2U by radiotrophic on DeviantArt. (2023, March 19). DeviantArt. https://www.deviantart.com/radiotrophic/art/CHIIKAWA-blinkie-F2U-954280439 
+Blinkie collection. (n.d.). https://adriansblinkiecollection.neocities.org/ 
+Coyier, C. (2025, December 17). CSS Flexbox Layout Guide | CSS-Tricks. CSS-Tricks. https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+Scanline | Post-processing. (n.d.). Cientos - TRESJS. https://post-processing.tresjs.org/guide/pmndrs/scanline - Google search. (n.d.). https://www.google.com/search?q=Scanline+%7C+Post-processing.+(n.d.).+Cientos+-+TresJS.+https%3A%2F%2Fpost-processing.tresjs.org%2Fguide%2Fpmndrs%2Fscanline&oq=Scanline+%7C+Post-processing.+(n.d.).+Cientos+-+TresJS.+https%3A%2F%2Fpost-processing.tresjs.org%2Fguide%2Fpmndrs%2Fscanline&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzI5M2owajSoAgCwAgE&sourceid=chrome&ie=UTF-8&safe=active&ssui=on 
+Diary1.html
+Eternalfurtive. (2022, March 25). Discord Divider Sticker - Discord Divider Strawberry - Discover & Share GIFs. Tenor. https://tenor.com/view/discord-divider-strawberry-cute-gif-25211646 
+Pin on Random. (n.d.). Pinterest. https://ph.pinterest.com/pin/107804985305062550/
+Flip Book - CSS only. (n.d.). CodePen. https://codepen.io/Marouen/pen/veBWdW 
+Shrines2.html
+Eternalfurtive. (2022, March 25). Discord Divider Sticker - Discord Divider Strawberry - Discover & Share GIFs. Tenor. https://tenor.com/view/discord-divider-strawberry-cute-gif-25211646  
+Pin on Random. (n.d.). Pinterest. https://ph.pinterest.com/pin/107804985305062550/ 
+Spidercat. (2021, June 18). Death Note Misa Amane GIF - Death note Misa Amane Look at me - Discover & Share GIFs. Tenor. https://tenor.com/view/death-note-misa-amane-look-at-me-gif-22016692 
+Chromee. (2025, April 17). Kangel Needy Streamer GIF - Kangel Needy streamer Needy girl overdose - Discover & Share GIFs. Tenor. https://tenor.com/view/kangel-needy-streamer-needy-girl-overdose-happy-omgkawaiiangel-gif-2473337722410728642 
+Winxdaphne. (2022, December 19). Sailor Moon GIF - Sailor Moon - Discover & Share GIFs. Tenor. https://tenor.com/view/sailor-moon-gif-27265458 
+Download Anime Serial Experiments Lain GiF. (n.d.). Gif Abyss. https://gifs.alphacoders.com/gifs/view/171352 
+Sleepylynx. (2022, January 17). Madoka Magica GIF - Madoka Magica - Discover & Share GIFs. Tenor. https://tenor.com/view/madoka-magica-gif-24532497 
+“stamps and blinkies [UPDATE!]🎀” Layout | SpaceHey. (n.d.). SpaceHey. https://layouts.spacehey.com/layout?id=106060 
+pix resources! (n.d.). Pix Resources! https://pix.crd.co/#stamps 
+ducky !! 🍓🍮: Image. (n.d.). Tumblr. https://64.media.tumblr.com/39a94a8e906e351e71232baac48b5707/0a314c1722fc4072-a9/s100x200/56af5c99a3bd7458d7157f19ff6f6ab5c7d420e9.gifv
+Sw3v3nz GIF. (2025, October 21). https://giphy.com/gifs/brm-analog-horror-sw3v3nz-haeySsChAfOzdanMWH 
+MaxRen. (2025, March 4). Gyaru Japanese GIF - Gyaru Japanese Ozcoin - Discover & Share GIFs. Tenor. https://tenor.com/view/gyaru-japanese-ozcoin-gif-7100741191460435910 
+Pinterest. (n.d.). Pinterest. https://ph.pinterest.com/pin/355714070586494062/ 
+gyaru winter y2k outfit. (n.d.). Pinterest. https://in.pinterest.com/pin/595671488248713588/ 
+Jackyuuu. (2025, May 26). Love You Gyaru Sticker - Love you Gyaru - Discover & Share GIFs. Tenor. https://tenor.com/view/love-you-gyaru-gif-15157872290221774724 
+Jackyuuu. (2025, May 26). Gyaru Tsundere Sticker - Gyaru Tsundere angry - Discover & Share GIFs. Tenor. https://tenor.com/view/gyaru-tsundere-angry-phone-school-girl-gif-11860287432315082831 
+Pin on ✨Cute✨. (n.d.). Pinterest. https://in.pinterest.com/pin/1029494796054664271/ 
+Pinterest. (n.d.). Pinterest. https://in.pinterest.com/pin/1110981801831263134/ 
+Pinterest. (n.d.). Pinterest. https://in.pinterest.com/pin/20547742047744598/ 
+Pinterest. (n.d.). Pinterest. https://in.pinterest.com/pin/963207439028509644/
+Pinterest. (n.d.). Pinterest. https://in.pinterest.com/pin/905786543812551752/ 
+Guestbook1.html
+Eternalfurtive. (2022, March 25). Discord Divider Sticker - Discord Divider Strawberry - Discover & Share GIFs. Tenor. https://tenor.com/view/discord-divider-strawberry-cute-gif-25211646 
+Pin on Random. (n.d.). Pinterest. https://ph.pinterest.com/pin/107804985305062550/ 
+Vaghasiya, K. (2025, May 28). How to create a visitor counter in HTML. Best Social Proof & FOMO App for Your Website | WiserNotify. https://wisernotify.com/blog/visitor-counter-in-html/ 
+The old net. (n.d.). https://theoldnet.com/ 
+☆.。:*єηgяαм ριхєℓ。.*・: Image. (n.d.). Tumblr. https://64.media.tumblr.com/9f25f4d69e58f4066e525fee2bda99e4/ebffab2ff4de37b8-74/s250x400/970b79b0b84fc855656733b55701338bb52057ea.gifv 
+Cupcakieyume. (2025, June 9). Danidandan Gyaru sticker - Danidandan Gyaru sticker - Discover & Share GIFs. Tenor. https://tenor.com/view/danidandan-gyaru-sticker-gif-4712888723781083223</div>
           </div>
         </div>
         
@@ -467,14 +464,11 @@ button:hover { background: #fffede; }
 
 <script>
 window.onload = function() {
-    // 1. UPDATED KEYS: Matching moth.html and index.html
     const savedName = localStorage.getItem('clemmy_name');
     const savedBirthday = localStorage.getItem('clemmy_birthday');
     const hasVisited = localStorage.getItem('clemmy_visited'); 
     
-    // 2. Logic to check if user actually exists
     if (savedName) {
-        // Update Desktop UI elements
         document.getElementById('userGreeting').textContent = "Current Resident: " + savedName;
         document.getElementById('display-name').textContent = savedName;
         
@@ -482,68 +476,22 @@ window.onload = function() {
             document.getElementById('display-birthday').textContent = savedBirthday;
         }
 
-        // 3. Trigger the Assistant with Personalized Lore
         setTimeout(() => {
             const assistant = document.getElementById('entityAssistant');
             const speech = document.getElementById('assistantSpeech');
             assistant.style.display = 'block';
             
-            // Calculate Birthday Countdown
-            let bdayMsg = "";
-            if(savedBirthday) {
-                const today = new Date();
-                const bday = new Date(savedBirthday);
-                bday.setFullYear(today.getFullYear());
-                if (bday < today) bday.setFullYear(today.getFullYear() + 1);
-                
-                const diff = Math.ceil((bday - today) / (1000 * 60 * 60 * 24));
-                bdayMsg = `Only <b>${diff} days</b> until your birthday... I'm already preparing a gift.`;
-            }
-
             if (!hasVisited) {
-
-                // --- FIRST TIME MESSAGE ---
-
-                speech.innerHTML = `
-
-                    Hello, <b>${savedName}</b>! ✿<br><br>
-
-                    I was just looking at your records... <b>${savedBirthday}</b> is such a special day, isn't it? It's the day you arrived in the world.<br><br>
-
-                    I've tucked that date away in a special corner of my heart. I'm so lucky you chose to spend your time with me!
-
-                `;
-
-                // Mark as visited so next time is the "Welcome Back" message
-
+                speech.innerHTML = `Hello, <b>${savedName}</b>! ✿<br><br>I was just looking at your records... <b>${savedBirthday}</b> is such a special day, isn't it?<br><br>I've tucked that date away in a special corner of my heart.`;
                 localStorage.setItem('clemmy_visited', 'true');
-
             } else {
-
-                // --- WELCOME BACK MESSAGE ---
-
-                speech.innerHTML = `
-
-                    Welcome back, <b>${savedName}</b>! ✿<br><br>
-
-                    I watched the clock every second you were gone. It was so quiet and dark in here without you...<br><br>
-
-                    I'm so glad you've come home to me. Let's never stay apart that long again, okay?
-
-                `;
-
+                speech.innerHTML = `Welcome back, <b>${savedName}</b>! ✿<br><br>I watched the clock every second you were gone. It was so quiet and dark in here without you...`;
             }
-
         }, 1000);
 
-
-
     } else {
-
         window.location.href = "moth.html";
-
     }
-
 };
 
 function updateClock() {
@@ -570,7 +518,6 @@ function closeWindow(id) {
     document.getElementById(id).style.display = 'none';
 }
 
-// Close start menu when clicking desktop
 document.querySelector('.desktop').onclick = function() {
     document.getElementById('startMenu').style.display = 'none';
 }
