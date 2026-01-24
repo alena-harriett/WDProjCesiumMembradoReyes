@@ -51,6 +51,42 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
     overflow: hidden;
     transform-style: preserve-3d;
 }
+* CRT Lines & Glass Glare */
+.screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.12) 0px, 
+        rgba(255, 255, 255, 0.12) 1px, 
+        transparent 1px, 
+        transparent 3px
+    );
+    /* Increased z-index to be above blog-window (1000) */
+    z-index: 2000; 
+    pointer-events: none;
+    /* This ensures the lines stay in front even with 3D transforms */
+    transform: translateZ(100px); 
+}
+
+.screen::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    /* Increased z-index */
+    z-index: 2001;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.4;
+    /* This ensures the lines stay in front even with 3D transforms */
+    transform: translateZ(101px);
+}
+
+
 
 .blog-window { 
     position: absolute; 
@@ -85,7 +121,18 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .Archives { flex: 3.02; flex-shrink: 0; background-color: #fdb1bf; }
 
 /* ===== GLITCH SYSTEM ===== */
-.glitch-overlay { position: absolute; inset: 0; background: rgba(255,0,0,0.15); display: none; z-index: 9999; pointer-events: none; mix-blend-mode: exclusion; }
+.glitch-overlay { 
+    position: absolute; 
+    inset: 0; 
+    background: rgba(255,0,0,0.15); 
+    display: none; 
+    /* Set higher than everything else */
+    z-index: 9999; 
+    pointer-events: none; 
+    mix-blend-mode: exclusion; 
+    /* Force it to the very front of the 3D stack */
+    transform: translateZ(150px); 
+}
 @keyframes shake { 0% { transform: translate(2px, 2px); } 25% { transform: translate(-2px, -2px); } 50% { transform: translate(-2px, 2px); } 75% { transform: translate(2px, -2px); } 100% { transform: translate(0,0); } }
 .glitching { animation: shake 0.15s infinite; filter: contrast(2) brightness(1.2); }
 
