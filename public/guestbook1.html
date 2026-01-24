@@ -10,45 +10,47 @@
 /* ===== GLOBAL & 3D SHARED SETTINGS ===== */
 * { box-sizing: border-box; }
 img { image-rendering: pixelated; }
-body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sans-serif; perspective: 1600px; overflow: hidden; background: #000; }
-.room { position: absolute; inset: 0; background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%); }
+body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sans-serif; perspective: 1600px; overflow: hidden; background: #000; transition: background 0.5s; }
+.room { position: absolute; inset: 0; background: linear-gradient(to bottom, #fdeaf2 0%, #f8cfe1 55%, #caa3b4 56%, #b38b9b 100%); transition: background 0.5s; }
 .desk { position: absolute; bottom: 0; width: 100%; height: 38%; background: linear-gradient(#caa08c, #a97c65); box-shadow: inset 0 20px 40px rgba(0,0,0,0.25); }
+
 /* ===== LAPTOP ===== */
-    .laptop-3d {
-        width: 1200px;
-        height: 900px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%) rotateX(18deg) translateY(50px);
-        transform-style: preserve-3d;
-    }
-    
-    /* ===== SCREEN ===== */
-    .screen-shell {
-      width: 100%;
-      height: 80%;
-      background: linear-gradient(#ffd9eb, #f6bcd3);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 60px 120px rgba(0,0,0,0.45);
-    }
-    
-    .screen-frame {
-        background: #fff3f9;
-        height: 100%;
-        padding: 14px;
-        border-radius: 10px;
-        box-shadow: inset 0 0 0 3px #ffb3d9;
-    }
-    
-    .screen {
-      position: relative;
-      height: 100%;
-      background: linear-gradient(#fffdfc, #ffeef6);
-      overflow: hidden;
-    }
-    /* CRT Lines & Glass Glare */
+.laptop-3d {
+    width: 1200px;
+    height: 900px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateX(18deg) translateY(50px);
+    transform-style: preserve-3d;
+}
+
+/* ===== SCREEN ===== */
+.screen-shell {
+    width: 100%;
+    height: 80%;
+    background: linear-gradient(#ffd9eb, #f6bcd3);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.45);
+}
+
+.screen-frame {
+    background: #fff3f9;
+    height: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 3px #ffb3d9;
+}
+
+.screen {
+    position: relative;
+    height: 100%;
+    background: linear-gradient(#fffdfc, #ffeef6);
+    overflow: hidden;
+}
+
+/* CRT Lines & Glass Glare */
 .screen::before {
     content: "";
     position: absolute;
@@ -58,28 +60,30 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
     pointer-events: none;
 }
 
-  
-  .screen::after {
-      content: " ";
-      display: block;
-      position: absolute;
-      top: 0; left: 0; bottom: 0; right: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                  linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-      z-index: 100;
-      background-size: 100% 3px, 3px 100%;
-      pointer-events: none;
-      opacity: 0.4;
-  }
-
-
+.screen::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 100;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.4;
+}
 
 /* ===== BLOG WINDOW ===== */
-.blog-window { position: absolute; inset: 10px; bottom: 45px; background-color: #996855; border: 4px solid #f8accf; display: flex; flex-direction: column; z-index: 10; }
+.blog-window { 
+    position: absolute; inset: 10px; bottom: 45px; 
+    background-color: #996855; border: 4px solid #f8accf; 
+    display: flex; flex-direction: column; z-index: 10; 
+    transition: transform 0.3s, filter 0.3s;
+}
 .blog-titlebar { background: linear-gradient(#ffd6ea, #ffb7d9); padding: 6px 10px; display: flex; justify-content: space-between; font-weight: bold; color: #692f1a; font-size: 14px; border-bottom: 2px solid #ff9acb; }
 .blog-scroll-area { flex: 1; overflow-y: auto; background-image: url("https://i.pinimg.com/736x/28/d8/2a/28d82a402a6f78e40d10bcf2c2fcc33f.jpg"); padding: 15px; }
 
-/* ===== GUESTBOOK CONTENT (Diary Sizing) ===== */
+/* ===== GUESTBOOK CONTENT ===== */
 .Header { width: 100%; height: 130px; border: 3px solid #e19c91; margin-bottom: 12px; background: #fffede; overflow: hidden; }
 .Header img { width: 100%; height: 100%; object-fit: cover; }
 .Divider { width: 100%; height: 35px; border: 2px solid #e19c91; margin-bottom: 12px; background: #fffede; }
@@ -91,7 +95,6 @@ body { margin: 0; height: 100vh; font-family: "MS PGothic", "Tahoma", Geneva, sa
 .Directory, .Updates { flex: 3; flex-shrink: 0; }
 .GuestbookLog { flex: 7; }
 .GuestbookHistory { flex: 4.5; }
-.GiftShelf { flex: 2.25;}
 
 h1 { font-size: 14px; color: #fffede; text-align: center; margin: 0 0 10px; background: #996855; padding: 2px; letter-spacing: 1px; }
 
@@ -105,111 +108,65 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
 .guestbook-comment h3 { font-size: 9px; margin: 0; color: #692f1a; }
 
 /* ===== POPUP WINDOW ===== */
-/* ===== POPUP WINDOW ===== */
 #historyPopup { 
-    display: none; 
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%) translateZ(100px); /* Center it and push forward */
-    width: 320px; 
-    height: 350px; 
-    background: #fffede; 
-    border: 3px solid #996855; 
-    z-index: 5000; /* High z-index */
-    flex-direction: column;
+    display: none; position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%) translateZ(100px); 
+    width: 320px; height: 350px; background: #fffede; 
+    border: 3px solid #996855; z-index: 5000; flex-direction: column;
     box-shadow: 15px 15px 0px rgba(0,0,0,0.3);
 }
 .popup-content { padding: 10px; overflow-y: auto; flex: 1; font-size: 11px; }
 .history-entry { border-bottom: 1px dashed #996855; padding: 5px 0; margin-bottom: 5px; text-align: left; }
 .history-entry span { font-weight: bold; font-size: 9px; color: #e19c91; }
 
-/* GIFT SHELF */
-.gift-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; text-align: center; }
-.gift-item { font-size: 18px; filter: drop-shadow(1px 1px 0px #996855); cursor: help; }
-.gift-item span { font-size: 8px; display: block; color: #692f1a; font-weight: bold; }
-
-/* ===== TASKBAR (Matches Diary Exactly) ===== */
-.taskbar { position: absolute; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#ffb7d9, #ff93c6); border-top: 2px solid #ff6fb3; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 12px; z-index: 500; }
-.taskbar-left { display: flex; gap: 6px; }
-.task-btn { 
-    background: linear-gradient(#fff, #ffd6ea); 
-    border: 2px solid #ff6fb3; 
-    border-radius: 6px; 
-    padding: 4px 10px; 
-    font-weight: bold; 
-    cursor: pointer; 
-    font-family: inherit; 
-    color: #7a2f55; 
-    height: 26px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; /* Ensures centered text */
-    font-size: 12px;
-}
-.task-btn:hover { background: #fff; }
-
-.keyboard {
-    width: 1250px;
-    height: 300px;
-    background: linear-gradient(#ffd1e8, #f3a9c8);
-    margin-top: -14%;
-    margin-left: 20.5%;
-    position: absolute;
-    border-radius: 0 0 26px 26px;
-    transform: rotateX(75deg) translateZ(-50px) translateX(-21%);
-    box-shadow: 0 80px 100px rgba(0,0,0,0.4);
-}
-/* ===== STATUS BOX ADDITIONS ===== */
+/* ===== STATUS & GIFTS ===== */
 .visitor-counter {
-    background: #fffede;
-    color: #ff6fb3;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    padding: 2px 5px;
-    border: 1px solid #996855;
-    display: inline-block;
-    margin: 5px 0;
-    font-size: 14px;
-    letter-spacing: 2px;
+    background: #fffede; color: #ff6fb3; font-family: 'Courier New', Courier, monospace;
+    font-weight: bold; padding: 2px 5px; border: 1px solid #996855;
+    display: inline-block; margin: 5px 0; font-size: 14px; letter-spacing: 2px;
 }
 
-/* Jumpscare / Creepy Overlay */
+.gift-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; }
+.gift-item { 
+    font-size: 20px; cursor: help; background: rgba(255,255,255,0.3); 
+    padding: 5px; border-radius: 5px; transition: 0.2s;
+}
+.gift-item:hover { transform: scale(1.1); background: #fff; }
+.gift-item span { font-size: 8px; display: block; color: #692f1a; font-weight: bold; font-family: sans-serif;}
+/* ===== TASKBAR ===== */
+.taskbar { position: absolute; bottom: 0; left: 0; right: 0; height: 36px; background: linear-gradient(#ffb7d9, #ff93c6); border-top: 2px solid #ff6fb3; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 12px; z-index: 500; }
+.task-btn { background: linear-gradient(#fff, #ffd6ea); border: 2px solid #ff6fb3; border-radius: 6px; padding: 4px 10px; font-weight: bold; cursor: pointer; color: #7a2f55; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+
+.keyboard { width: 1250px; height: 300px; background: linear-gradient(#ffd1e8, #f3a9c8); margin-top: -14%; margin-left: 20.5%; position: absolute; border-radius: 0 0 26px 26px; transform: rotateX(75deg) translateZ(-50px) translateX(-21%); box-shadow: 0 80px 100px rgba(0,0,0,0.4); }
+
+/* Horror FX */
 #horrorOverlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, transparent 20%, red 80%), url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXhuanVvZ2Vwc2gxanFvdnliYmo5MzdrbDc0YWM3eXZpam5kdGRmYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2fDq28RklgMxAbDRzO/giphy.gif');
-    background-size: cover;
-    background-position: center;
-    z-index: 9999;
-    display: none;
-    opacity: 100%;
-    pointer-events: none;
+    position: absolute; inset: 0; display: none; pointer-events: none; z-index: 9999;
+    background: url('https://media.tenor.com/bCcpR2jZtGgAAAAM/static-tv.gif');
+    opacity: 0.3; mix-blend-mode: hard-light;
 }
-
-.glitch-red {
-    filter: contrast(2) brightness(0.5) sepia(1) hue-rotate(-50deg) !important;
-    animation: shake 0.1s infinite;
-}
+.glitch-mode { filter: invert(1) hue-rotate(180deg); transition: 0.1s; }
+.tilted { transform: rotate(2deg); }
+.corrupted-text { font-family: 'VT323'; color: red; background: black; }
 
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    40% { transform: translate(3px, 2px) rotate(-1deg); }
-    60% { transform: translate(-1px, -1px) rotate(1deg); }
-    80% { transform: translate(-3px, 1px) rotate(0deg); }
+    25% { transform: translate(-2px, 0px) rotate(1deg); }
+    50% { transform: translate(2px, 2px) rotate(-1deg); }
+    75% { transform: translate(-1px, -1px) rotate(1deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
 </style>
 </head>
 
 <body>
-<div class="room"></div><div class="desk"></div>
+<div class="room" id="roomBg"></div><div class="desk"></div>
 
 <div class="laptop-3d">
     <div class="screen-shell">
         <div class="screen-frame">
-            <div class="screen">
+            <div class="screen" id="pcScreen">
                 
                 <div id="historyPopup">
                     <div class="blog-titlebar">
@@ -225,7 +182,7 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                     </div>
                 </div>
 
-                <div class="blog-window">
+                <div class="blog-window" id="mainWindow">
                     <div class="blog-titlebar">
                         <span>✿ Clemmy's Corner - Guestbook ✿</span>
                         <span style="cursor:pointer;" onclick="window.location.href='../desktop.html'">[ X ]</span>
@@ -245,7 +202,7 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                             </div>
                             <div class="box GuestbookLog">
                                 <h1>Leave a Log</h1>
-                                <p>Clemmy’s Corner is always changing, always unfinished, and always growing in small ways. I hope you found something cozy here, even if it was just a moment of calm or a cute gif that made you smile. Feel free to leave anything you’d like: a greeting, a thought, or even just your name. It all means a lot to me.</p>
+                                <p>Clemmy’s Corner is always changing, always unfinished... Leave anything you’d like.</p>
                                 <textarea id="newComment" placeholder="Write something perfect..."></textarea>
                                 <button class="blog-btn" onclick="saveLog()">Post Log</button>
                             </div>
@@ -268,21 +225,19 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                                 <br><button class="blog-btn" onclick="togglePopup()">History</button>
                             </div>
 
-                            <div id="horrorOverlay"></div>
-
-                        <div class="box GiftShelf">
-                            <h1>GIFTS</h1>
-                            <div class="gift-grid">
-                                <div class="gift-item" title="Cute.">🧸<span>Plushies</span></div>
-                                <div class="gift-item" title="Pretty!">💄<span>Makeup</span></div>
-                                <div class="gift-item" title="Lovely!">🎀<span>Accessories</span></div>
-                                <div class="gift-item" title="Yummy!">🍰<span>Food</span></div> 
+                            <div class="box" style="flex: 2;">
+                                <h1>GIFTS</h1>
+                                <div class="gift-grid">
+                                    <div class="gift-item" onclick="sendGift('Teddy')">🧸<span>Plush</span></div>
+                                    <div class="gift-item" onclick="sendGift('Lipstick')">💄<span>Makeup</span></div>
+                                    <div class="gift-item" onclick="sendGift('Bow')">🎀<span>Bow</span></div>
+                                    <div class="gift-item" onclick="sendGift('Cake')">🍰<span>Cake</span></div> 
+                                </div>
+                                <div style="margin-top:10px; font-size:9px;">
+                                    Total: <span id="giftCount">890</span>
+                                </div>
+                                <img src="https://media.tenor.com/QWeLUwbqYFcAAAAi/danidandan-gyaru.gif" style="width:50px; margin-top:5px;">
                             </div>
-                            <button class="blog-btn" style="margin-top:10px; background:#ff9acb;" onclick="sendGift()">Send Gift ♡</button>
-                            <p style="font-size: 8px; margin-top: 8px;">Gifts Received: <span id="giftCount">48293</span></p>
-                            <img src="https://media.tenor.com/QWeLUwbqYFcAAAAi/danidandan-gyaru.gif" style="width:60%; margin-top:10px; margin-bottom:10px; margin-left:auto; margin-right:auto;">
-                        </div>
-                            
                         </div>
                         <div class="Footer" style="text-align:center; padding: 10px; background: #996855; color: white; font-size: 10px;">
                             © 2025 Clemmy’s Corner — Made With Love ♡
@@ -290,8 +245,10 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
                     </div>
                 </div>
 
+                <div id="horrorOverlay"></div>
+
                 <div class="taskbar">
-                    <div class="taskbar-left">
+                    <div class="taskbar-left" style="display:flex; gap:5px;">
                         <button class="task-btn" onclick="alert('ClemmyOS v1.0')">Start</button>
                         <button class="task-btn" onclick="window.location.href='../desktop.html'">Home</button>
                     </div>
@@ -305,6 +262,8 @@ textarea { width: 100%; height: 60px; border: 2px solid #996855; background: #ff
 </div>
 
 <script>
+let corruptionLevel = 0;
+
 function updateClock() {
     const clock = document.getElementById('clock');
     const d = new Date();
@@ -331,29 +290,7 @@ function saveLog() {
 
 function loadLogs() {
     const container = document.getElementById('commentsContainer');
-    const logs = JSON.parse(localStorage.getItem('savedGuestbookLogs')) || [];
-    const defaultLogs = [
-        { text: "YOU WILL NEVER GET RID OF ME.", date: "ERROR" },
-        { text: "Clementine? Why is your latest photo just a picture of the snow? Where are you?", date: "02/20/25" },
-        { text: "I can see the tall man in the trees in your last post. Please run.", date: "02/19/25" },
-        { text: "Does anyone else hear whispering when they stay on this page too long?", date: "02/18/25" },
-        { text: "She looks so much more 'perfect' since she got the new PC. Like a doll.", date: "02/16/25" }
-    ];
-    const displayLogs = logs.length > 0 ? logs : defaultLogs;
-    container.innerHTML = displayLogs.map(l => `
-        <div class="guestbook-comment">
-            <h3>Anonymous — ${l.date}</h3>
-            <p>${l.text}</p>
-        </div>
-    `).reverse().join('');
-}
-loadLogs();
-
-function loadLogs() {
-    const container = document.getElementById('commentsContainer');
-    
     const savedLogs = JSON.parse(localStorage.getItem('savedGuestbookLogs')) || [];
-    
     const loreLogs = [
         { text: "DO NOT GO INTO THE SNOW. PLEASE CLEM.", date: "QYBLKW" },
         { text: "The camera is watching you even when the light is off.", date: "02/15/25" },
@@ -361,9 +298,7 @@ function loadLogs() {
         { text: "She looks so much more 'perfect' since she got the new PC. Like a doll.", date: "02/10/25" },
         { text: "Why is there a shadow in the kitchen? You live alone.", date: "02/08/25" }
     ];
-
     const allLogs = [...savedLogs.reverse(), ...loreLogs];
-e
     container.innerHTML = allLogs.map(l => `
         <div class="guestbook-comment">
             <h3>Anonymous — ${l.date}</h3>
@@ -371,8 +306,8 @@ e
         </div>
     `).join('');
 }
+loadLogs();
 
-/* VISITOR COUNTER LOGIC */
 function incrementCounter() {
     let count = 666000;
     const hitCounter = document.getElementById('hitCounter');
@@ -381,42 +316,50 @@ function incrementCounter() {
         hitCounter.textContent = count.toString().padStart(6, '0');
     }, 100);
 }
-    
 incrementCounter();
 
-function sendGift() {
-    const screen = document.querySelector('.screen');
+function sendGift(type) {
+    const screen = document.getElementById('pcScreen');
     const overlay = document.getElementById('horrorOverlay');
     const countDisplay = document.getElementById('giftCount');
+    const win = document.getElementById('mainWindow');
+
+    corruptionLevel++;
     
-    screen.classList.add('glitch-red');
+    // Inverted Glitch Effect
+    screen.classList.add('glitch-mode');
     overlay.style.display = 'block';
+    
     setTimeout(() => {
-        
-        screen.classList.remove('glitch-red');
+        screen.classList.remove('glitch-mode');
         overlay.style.display = 'none';
         
-
-        let currentGifts = parseInt(countDisplay.innerText);
-        countDisplay.innerText = currentGifts + 666;
-        countDisplay.style.color = "red";
-        countDisplay.style.fontWeight = "bold";
-
-
-        injectLoreComment("THANK YOU FOR THE OFFERING. YOU WILL BE REWARDED.");
-    }, 1500);
-}
-
-function injectLoreComment(msg) {
-    const container = document.getElementById('commentsContainer');
-    const newComment = document.createElement('div');
-    newComment.className = 'guestbook-comment';
-    newComment.style.border = "1px solid red";
-    newComment.innerHTML = `
-        <h3 style="color:red;">Anonymous    — ${new Date().toLocaleTimeString()}</h3>
-        <p style="color:red; font-weight:bold;">${msg}</p>
-    `;
-    container.prepend(newComment);
+        if (corruptionLevel === 1) {
+            alert("Thanks! Clemmy loves " + type + "! ♡");
+            countDisplay.innerText = parseInt(countDisplay.innerText) + 1;
+        } 
+        else if (corruptionLevel === 2) {
+            alert("s̶he̶ ̶d̶o̶es̶n̶'t̶ ̶n̶e̶e̶d̶ ̶m̶o̶r̶e̶");
+            win.classList.add('tilted');
+            countDisplay.innerText = "NO";
+            countDisplay.style.color = "red";
+        } 
+        else {
+            // Full Horror Mode
+            document.getElementById('roomBg').style.background = "#220000";
+            document.body.style.background = "#000000";
+            win.style.transform = "rotate(5deg) scale(0.9)";
+            win.style.filter = "invert(1)";
+            
+            const container = document.getElementById('commentsContainer');
+            container.insertAdjacentHTML('afterbegin', `
+                <div class="guestbook-comment" style="background:black; border:2px solid red;">
+                    <h3 style="color:red;">SYSTEM</h3>
+                    <p class="shaking" style="color:red; font-size:16px;">STOP FEEDING THE AVATAR.</p>
+                </div>
+            `);
+        }
+    }, 200);
 }
 </script>
 </body>
