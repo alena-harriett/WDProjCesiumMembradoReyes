@@ -87,20 +87,33 @@ The data is saved to the user's computer via the `localStorage` API. This allows
 
 # FINAL MODIFICATION PROPOSAL
 
-## Design & Narrative for CRUD
-**Purpose:** We will be implementing CRUD for our comment boxes in our website. These comment boxes help add to the lore and ineractivity of the website, as you can see little bits and pieces of the story in the comment sections as well as put your own comments.
+## 1. Description & Narrative
+### Purpose
+The purpose of this update is to evolve the "ClemmyOS" environment from a static display into a fully interactive system. By implementing a **Full CRUD (Create, Read, Update, Delete)** process, we are turning the Diary and Guestbook pages into a living database where users can manage their own "System Logs" and "Transmissions." This adds realism to the OS simulation, making the user feel like a true administrator of the system.
 
-**How it is used:**
-Whenever someone enters a comment, they have to click a button that says something along the lines of "post comment." This essentially acts as a sort of submit button that will save this information to the localstorage. It parses the information, saves it then displays it as a comment in the designated area. Once the comment is posted, there will be another button displaued on the upper right-hand side of the comment. This will be a "Delete" button, where users can just delete the comment which will in turn, delete it from the localstorage.
+### How to Use the Full CRUD Process
+* **CREATE (Post):** Users can type their thoughts into the input boxes labeled `<Write here>` or `<comment here>`. Clicking the "Send" or "Post" button saves this data into the computer's `localStorage` so it stays there even if the page is refreshed.
+* **READ (Display):** The system automatically scans the saved data and displays it in the "Comments" or "Recent Logs" area. Each new comment is added to the list without overwriting the previous ones.
+* **UPDATE (Edit):** If a user wants to change a comment they already posted, they can click on the text of their message. This allows them to edit the content directly. Once they finish, the updated version is saved back into the storage.
+* **DELETE (Remove):** Each displayed comment now features a **"Delete" button** on the right side. Clicking this will immediately remove that specific comment from the screen and permanently erase it from the `localStorage`.
+
+---
+
+## 2. Wireframe & Layout Implementation
+The following redesigns show exactly where the CRUD features are placed to ensure a smooth user experience.
+
+### Redesigned Page 1: Diary
+* **Location:** The CRUD system is integrated into the bottom-left module of the page.
+* **Interaction:** * The top section of this module is the **Input Area** for creating new diary comments.
+    * The bottom section is the **Comment Wall** where saved logs are displayed.
+    * **Delete Feature:** As seen in the wireframe, a small "Delete" button is placed inside the comment box next to the user's message for easy removal.
+* ![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/4.png)
+
+### Redesigned Page 2: Guestbook
+* **Location:** The CRUD system is the central focus of the page, located in the "Leave a log" and "Recent Logs" sections.
+* **Interaction:** * The **Input Area** sits at the top center, allowing users to "Broadcast" a message.
+    * The **Recent Logs** section below it acts as the display area.
+    * **Delete Feature:** To match the Diary page, every entry in the Recent Logs has its own dedicated "Delete" button, allowing users to scrub specific transmissions from the system record.
+* ![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/5.png)
 
 
-**Narrative Integration:**
-The whole purpose of this commenting system is to add some realism to the website and make it feel like you're actually interacting with it. There willbe some premade comments displayed to make it feel like a real blog with real fans/people who've visited, but we also wanted to integrate the user into the experience and make everything as interactable as possible. Part of this, is letting the user add and delete comments like in a real blog. It's really just meant to sell the realism of this and add really immerse the user into the story.
-
---
-## Wireframes & Layout
-
-### First changed page: Diary page within the blog.
-![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/4.png)
-### Second changed page: Guestbook page within the blog.
-![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/5.png)
