@@ -85,3 +85,22 @@ The data is saved to the user's computer via the `localStorage` API. This allows
 ### Page 3: desktop.html (ClemmyOS - Desktop)
 ![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/3.png)
 
+# FINAL MODIFICATION PROPOSAL
+
+## Design & Narrative for CRUD
+**Purpose:** We will be implementing CRUD for our comment boxes in our website. These comment boxes help add to the lore and ineractivity of the website, as you can see little bits and pieces of the story in the comment sections as well as put your own comments.
+
+**How it is used:**
+Whenever someone enters a comment, they have to click a button that says something along the lines of "post comment." This essentially acts as a sort of submit button that will save this information to the localstorage. It parses the information, saves it then displays it as a comment in the designated area. Once the comment is posted, there will be another button displaued on the upper right-hand side of the comment. This will be a "Delete" button, where users can just delete the comment which will in turn, delete it from the localstorage.
+
+
+**Narrative Integration:**
+The whole purpose of this commenting system is to add some realism to the website and make it feel like you're actually interacting with it. There willbe some premade comments displayed to make it feel like a real blog with real fans/people who've visited, but we also wanted to integrate the user into the experience and make everything as interactable as possible. Part of this, is letting the user add and delete comments like in a real blog. It's really just meant to sell the realism of this and add really immerse the user into the story.
+
+--
+## Wireframes & Layout
+
+### First changed page: Diary page within the blog.
+![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/4.png)
+### Second changed page: Guestbook page within the blog.
+![ClemmyOS Login](https://github.com/alena-harriett/WDProjCesiumMembradoReyes/blob/main/image/5.png)
